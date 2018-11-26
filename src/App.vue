@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~styles/vars';
+@import './assets/styles/vars';
 .container {
   .header {
     min-height: 50px;

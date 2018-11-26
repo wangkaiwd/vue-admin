@@ -1,0 +1,6 @@
+**/*.js
+**/*.vue
+// eslint-disable-next-line to ignore the next line.
+console.log("这行esline不检查")
+/* eslint-disable */
+console.log("整个文件都忽略eslint检查")
