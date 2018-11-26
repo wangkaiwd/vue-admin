@@ -1,1 +1,1 @@
-export const getComponent = path => () => import(`pages/${path}`)
+export const getComponent = path => () => import(`@/pages/${path}`);

@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { getComponent } from './lazyComponent';
 import Router from 'vue-router';
 import Testing from './testing';
 
@@ -10,7 +11,10 @@ const router = new Router({
     {
       path: '/404',
       name: '404',
-      component: getComponent('notFound')
+      component: getComponent('notFound'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '*',

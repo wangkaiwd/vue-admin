@@ -1,4 +1,5 @@
 //css重置样式
+@import './vars.less';
 html,
 body,
 p,
@@ -49,8 +50,7 @@ textarea {
 
 // 这里设置的box-sizing:border-box;并不会被*:通用选择器覆盖掉
 html {
-  box-sizing: border-box;
-  // 再点击元素的时候会有激活背景色,通过设置透明度为0来禁用
+  box-sizing: border-box; // 再点击元素的时候会有激活背景色,通过设置透明度为0来禁用
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -59,6 +59,7 @@ body {
   font-size: 14px; // 不同浏览器默认的行高是不同的,mdn：line-height: normal;取决于用户代理。桌面浏览器（包括火狐浏览器）使用默认值，约为1.2
   // 这取决于浏览器的font-family
   line-height: 1;
+  background-color: @body-background;
 }
 
 // 只要有元素设置自己的属性，就会以元素自己的属性优先
@@ -96,4 +97,25 @@ th {
 // 消除图片底部空白的bug
 img {
   vertical-align: top;
+}
+
+/* 设置滚动条的样式 */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* 滚动槽 */
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* 滚动条滑块 */
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
 }

@@ -1,7 +1,29 @@
-// css混合器
+// less混合器
+//清除浮动
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+
+.clearfix {
+  /* for ie 6,7 */
+  zoom: 1;
+}
+
+// 单行超出显示...
 .ell {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
+// 多行超出显示...
+.multiple-ell(@lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /* 行数*/
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
+}
