@@ -8,7 +8,7 @@ module.exports = {
     config.resolve.extensions
       .merge(['.js', '.jsx', '.vue', '.json', '.less'])
       .end()
-      .alias.set('@$', resolve('src'))
+      .alias.set('@', resolve('src'))
       .set('styles', resolve('src/assets/styels'))
       .set('components', resolve('src/components'))
       .set('img', resolve('src/assets/img'));

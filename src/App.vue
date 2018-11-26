@@ -27,21 +27,22 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '~styles/vars';
 .container {
   .header {
     min-height: 50px;
-    background-color: pink;
+    background-color: @header-background;
   }
   .main-wrapper {
     .main {
-      background-color: gray;
+      background-color: @easy-gray;
     }
     .ad {
     }
   }
   .footer {
     min-height: 190px;
-    background-color: blue;
+    background-color: @easy-gray;
   }
 }
 
