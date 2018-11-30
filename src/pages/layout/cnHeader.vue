@@ -1,10 +1,12 @@
 <template>
-  <el-header class="header">头部</el-header>
+  <div class="cn-header">
+
+  </div>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: "CnHeader",
   data() {
     return {};
   },
@@ -15,4 +17,6 @@ export default {
 };
 </script>
 <style lang='less' scoped>
+.cn-header {
+}
 </style>

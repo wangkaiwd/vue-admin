@@ -7,9 +7,6 @@ import '@/request/axiosConfig';
 import Api from '@/api';
 import { handlePromiseReject } from '@/utils/globalEvent';
 import './registerServiceWorker';
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
 handlePromiseReject(); // 全局捕获错误的Promise
 Vue.prototype.$api = Api;
 

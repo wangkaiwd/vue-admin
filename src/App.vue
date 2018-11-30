@@ -1,17 +1,20 @@
 <template>
-  <el-container class="container">
-    <el-header class="header">头部</el-header>
-    <el-container class="main-wrapper">
-      <el-main class="main">
+  <div class="container">
+    <header class="header">
+      头部
+      <CnHeader></CnHeader>
+    </header>
+    <div class="main-wrapper">
+      <div class="main">
         <keep-alive>
           <router-view v-if="$route.meta.keepAlive"></router-view>
         </keep-alive>
         <router-view v-if="!$route.meta.keepAlive"></router-view>
-      </el-main>
-      <el-aside class="ad">侧边内容</el-aside>
-    </el-container>
-    <el-footer class="footer">底部</el-footer>
-  </el-container>
+      </div>
+      <aside class="ad">侧边内容</aside>
+    </div>
+    <footer class="footer">底部</footer>
+  </div>
 </template>
 
 <script>
@@ -29,16 +32,24 @@ export default {
 <style lang="less" scoped>
 @import "~styles/vars";
 .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   .header {
+    .page-center;
     min-height: 50px;
     background-color: @header-background;
   }
   .main-wrapper {
-    min-height: 60vh;
+    display: flex;
+    .page-center;
+    flex: 1;
     .main {
+      flex: 1;
       background-color: @easy-gray;
     }
     .ad {
+      width: 290px;
     }
   }
   .footer {
