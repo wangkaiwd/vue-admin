@@ -24,7 +24,11 @@ export default {
   name: "App",
   computed: {},
   components: { Cnfooter, CnHeader },
-  mounted() {},
+  mounted() {
+    this.$api.topics().then(res => {
+      console.log(res);
+    });
+  },
   methods: {}
 };
 </script>

@@ -1,5 +1,5 @@
-import element from './element'
+import topics from './topics'
 
 export default {
-  element,
+  topics
 }
