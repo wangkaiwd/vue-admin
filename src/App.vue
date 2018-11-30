@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import Cnfooter from '@/pages/layout/cnFooter';
-import CnHeader from '@/pages/layout/cnHeader';
+import Cnfooter from "@/pages/layout/cnFooter";
+import CnHeader from "@/pages/layout/cnHeader";
 export default {
-  name: 'App',
+  name: "App",
   computed: {},
   components: { Cnfooter, CnHeader },
   mounted() {},
@@ -27,13 +27,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import './assets/styles/vars';
+@import "~styles/vars";
 .container {
   .header {
     min-height: 50px;
     background-color: @header-background;
   }
   .main-wrapper {
+    min-height: 60vh;
     .main {
       background-color: @easy-gray;
     }
