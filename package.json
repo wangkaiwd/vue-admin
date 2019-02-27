@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/wangkaiwd/vue-admin/issues"
   },
-  "homepage": "https://github.com/wangkaiwd/vue-admin#readme"
+  "homepage": "https://github.com/wangkaiwd/vue-admin#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.16",
+    "nodemon": "^1.18.10"
+  }
 }
