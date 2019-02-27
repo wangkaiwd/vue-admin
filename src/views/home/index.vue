@@ -1,51 +1,28 @@
 <template>
   <div class="home">
-    <notice-bar>store中的状态：{{count}}</notice-bar>
-    <van-button type="primary" @click="plus">+1</van-button>
-    <van-button type="primary" @click="minus">-1</van-button>
-    <van-button type="primary" @click="asyncPlus">+1(async)</van-button>
-    <div>
-      <van-button type="danger">
-        {{name}}
-      </van-button>
-    </div>
-    <div>
-      <van-button type="danger">
-        {{goodsName}}
-      </van-button>
-    </div>
-    <van-button type="primary" @click="userChangeName">userChangeName</van-button>
-    <van-button type="primary" @click="goodsChangeName">goodsChangeName</van-button>
+    <el-row>
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+    </el-row>
+
+    <el-row>
+      <el-button plain>朴素按钮</el-button>
+      <el-button type="primary" plain>主要按钮</el-button>
+      <el-button type="success" plain>成功按钮</el-button>
+      <el-button type="info" plain>信息按钮</el-button>
+      <el-button type="warning" plain>警告按钮</el-button>
+      <el-button type="danger" plain>危险按钮</el-button>
+    </el-row>
   </div>
 </template>
 
 <script>
-  import { Button, NoticeBar } from 'vant'
-  import { mapState, mapMutations, mapActions } from 'vuex'
 
-  console.log(process.env)
-  export default {
-    name: 'Home',
-    components: { VanButton: Button, NoticeBar },
-    data () {
-      return {}
-    },
-    mounted () {
-    },
-    computed: {
-      ...mapState(['count']),
-      //当定义命名空间的时候，第一个参数是命名空间字符串
-      //或者使用createNamespacedHelpers创建基于某个命名空间辅助函数
-      ...mapState('user', ['name']),
-      ...mapState('goods', { goodsName: 'name' })
-    },
-    methods: {
-      ...mapMutations(['plus', 'minus']),
-      ...mapActions(['asyncPlus']),
-      ...mapMutations('user', { userChangeName: 'changeName' }),
-      ...mapMutations('goods', { goodsChangeName: 'changeName' })
-    }
-  }
+  export default {}
 </script>
 
 <style lang="scss" scoped>
