@@ -1,17 +1,17 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div class="base-header">
+    index
   </div>
 </template>
+
 <script>
   export default {
-    name: 'App',
-    data () {
-      return {}
-    }
+    name: 'BaseHeader'
   }
 </script>
 
 <style lang="scss" scoped>
-  #app {}
+  .base-header {
+
+  }
 </style>

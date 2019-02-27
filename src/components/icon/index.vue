@@ -1,17 +1,17 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div class="base-icon">
+    index
   </div>
 </template>
+
 <script>
   export default {
-    name: 'App',
-    data () {
-      return {}
-    }
+    name: 'BaseIcon'
   }
 </script>
 
 <style lang="scss" scoped>
-  #app {}
+  .base-icon {
+  
+  }
 </style>

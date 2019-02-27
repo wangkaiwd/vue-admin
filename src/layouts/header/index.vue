@@ -1,17 +1,17 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div class="base-footer">
+    index
   </div>
 </template>
+
 <script>
   export default {
-    name: 'App',
-    data () {
-      return {}
-    }
+    name: 'BaseFooter'
   }
 </script>
 
 <style lang="scss" scoped>
-  #app {}
+  .base-footer {
+
+  }
 </style>

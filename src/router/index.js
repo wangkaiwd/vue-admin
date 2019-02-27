@@ -1,35 +1,14 @@
-import Vue from 'vue';
-import { getComponent } from './lazyComponent';
-import Router from 'vue-router';
-import Testing from './testing';
+import Vue from 'vue'
+import Router from 'vue-router'
 
-Vue.use(Router);
-
-const router = new Router({
+Vue.use(Router)
+const getComponent = dir => () => import(`views/${dir}`)
+export default new Router({
   routes: [
-    ...Testing,
     {
-      path: '/404',
-      name: '404',
-      component: getComponent('notFound'),
-      meta: {
-        keepAlive: true
-      }
-    },
-    {
-      path: '*',
-      redirect: '/404'
-    } // 404页面
-  ],
-  // 切换到新路由后时，页面滚动到顶部
-  scrollBehavior() {
-    return { x: 0, y: 0 };
-  }
-});
-
-// 路由全局导航守卫
-router.beforeEach((to, from, next) => {
-  next();
-});
-
-export default router;
+      path: '/',
+      name: 'home',
+      component: getComponent('home')
+    }
+  ]
+})

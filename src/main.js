@@ -1,19 +1,16 @@
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import store from './store';
-import '@/assets/styles';
-import '@/request/axiosConfig';
-import Api from '@/api';
-import { handlePromiseReject } from '@/utils/globalEvent';
-import './registerServiceWorker';
-handlePromiseReject(); // 全局捕获错误的Promise
-Vue.prototype.$api = Api;
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from 'store'
+import 'utils/rem'
+import 'styles/reset'
+import 'styles/base'
+import './registerServiceWorker'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 new Vue({
   router,
-  store,
+  store, // 把store的实例注入到所有的子组件中，子组件可以通过this.$store来进行访问
   render: h => h(App)
-}).$mount('#app');
+}).$mount('#app')
