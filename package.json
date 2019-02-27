@@ -1,33 +1,21 @@
 {
-  "name": "vant-mall",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "serve": "vue-cli-service serve --project-mode dev",
-    "build:test": "vue-cli-service build --project-mode test",
-    "build:pro": "vue-cli-service build --project-mode pro",
-    "analyse": "vue-cli-service build --report",
-    "lint": "vue-cli-service lint"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "dependencies": {
-    "axios": "^0.18.0",
-    "element-ui": "^2.5.4",
-    "register-service-worker": "^1.5.2",
-    "vue": "^2.5.21",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangkaiwd/vue-admin.git"
   },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.3.0",
-    "@vue/cli-plugin-eslint": "^3.3.0",
-    "@vue/cli-plugin-pwa": "^3.3.0",
-    "@vue/cli-service": "^3.3.0",
-    "@vue/eslint-config-standard": "^4.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.1",
-    "vue-template-compiler": "^2.5.21"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangkaiwd/vue-admin/issues"
+  },
+  "homepage": "https://github.com/wangkaiwd/vue-admin#readme"
 }
