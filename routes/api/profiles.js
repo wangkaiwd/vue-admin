@@ -22,4 +22,17 @@ router.post('/add', passport.authenticate('jwt', { session: false }), (req, res)
       err => console.log(err)
     );
 });
+
+router.get('/list', (req, res) => {
+  Profile.find()
+    .then(
+      (profile = []) => {
+        res.json({ code: 0, data: { data: profile }, msg: '成功' });
+      },
+      err => {
+        console.log('err', err);
+        res.status(404).json({ code: 66666, data: {}, msg: `${err.message}` });
+      }
+    );
+});
 module.exports = router;
