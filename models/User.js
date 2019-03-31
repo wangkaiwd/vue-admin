@@ -1,3 +1,6 @@
+/**
+ * 创建用户模型，来进行对应的数据库操作
+ */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -22,6 +25,5 @@ const UserSchema = new Schema({
     default: new Date
   }
 });
-const User = mongoose.model('user', UserSchema);
 
-module.exports = User;
+module.exports = mongoose.model('user', UserSchema);
