@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const gravatar = require('gravatar');
 // 生成用户token
 const jwt = require('jsonwebtoken');
+
+const passport = require('passport');
 const router = express.Router();
 const User = require('../../models/User');
 const privateKey = require('../../config/auth');
@@ -59,9 +61,9 @@ router.post('/login', (req, res) => {
               isMatch => {
                 if (isMatch) {
                   // jwt.sign参数：1.token生成规则, 2. 唯一的key值 3. options:可以设置过期时间
-                  const token = jwt.sign({ id: user.id, name: user.name }, privateKey, { expiresIn: 60 });
+                  const token = jwt.sign({ id: user.id, username: user.username }, privateKey, { expiresIn: '1h' });
                   // 要进行区分mongoose中的document和js Object的区别
-                  res.json({ code: 0, data: { token, ...user.toObject() }, msg: '成功' });
+                  res.json({ code: 0, data: { token: 'bearer ' + token, ...user.toObject() }, msg: '成功' });
                 } else {
                   res.json({ code: 10001, data: {}, msg: '密码错误' });
                 }
@@ -72,7 +74,7 @@ router.post('/login', (req, res) => {
       }
     );
 });
-router.post('/current', (req, res) => {
-  res.json({ code: 0, data: {}, msg: '成功' });
+router.post('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.json({ code: 0, data: req.user, msg: '成功' });
 });
 module.exports = router;
