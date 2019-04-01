@@ -3,8 +3,10 @@
  */
 const express = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const gravatar = require('gravatar');
 const saltRounds = 10;
+const { privateKey } = require('config/common');
 const router = express.Router();
 const User = require('models/User');
 router.get('/test', (req, res) => {
@@ -38,7 +40,9 @@ router.post('/login', (req, res) => {
     .then(
       user => {
         if (!user) {return res.json({ code: 10000, data: {}, msg: '请先注册' });}
-        res.json({ code: 0, data: { ...user.toObject() }, msg: '成功' });
+        const { password, date, ...rest } = user.toObject();
+        const token = jwt.sign(rest, privateKey, { expiresIn: '2h' });
+        res.json({ code: 0, data: { ...rest, token }, msg: '成功' });
       },
       err => console.log(err)
     );
