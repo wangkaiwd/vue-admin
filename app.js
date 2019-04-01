@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 require('utils/passport');
 app.use('/api/users', require('routers/api/users'));
+app.use('/api/profiles', require('routers/api/profiles'));
 
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);
