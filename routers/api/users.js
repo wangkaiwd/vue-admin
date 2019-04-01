@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
         if (!user) {return res.json({ code: 10000, data: {}, msg: '请先注册' });}
         const { password, date, ...rest } = user.toObject();
         const token = jwt.sign(rest, privateKey, { expiresIn: '2h' });
-        res.json({ code: 0, data: { ...rest, token }, msg: '成功' });
+        res.json({ code: 0, data: { ...rest, token: `bearer ${token}` }, msg: '成功' });
       },
       err => console.log(err)
     );
