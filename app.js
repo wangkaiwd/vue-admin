@@ -10,9 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 app.use('/api/users', users);
-app.get('/', (req, res) => {
-  res.json({ msg: 'hello express' });
-});
 
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);

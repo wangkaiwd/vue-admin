@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
-    "server": "node app.js"
+    "server": "node app.js",
+    "debug": "nodemon --inspect app.js"
   },
   "_moduleAliases": {
     "@": ".",
