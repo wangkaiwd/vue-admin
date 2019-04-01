@@ -6,6 +6,13 @@
     "start": "nodemon app.js",
     "server": "node app.js"
   },
+  "_moduleAliases": {
+    "@": ".",
+    "config": "./config",
+    "utils": "./utils",
+    "routers": "./routers",
+    "models": "./models"
+  },
   "repository": "git@github.com:wangkaiwd/vue-admin.git",
   "author": "wangkaiwd <1162486176@qq.com>",
   "license": "MIT",
@@ -15,6 +22,7 @@
     "express": "^4.16.4",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.0",
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
     "passport": "^0.4.0",
