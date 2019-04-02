@@ -18,7 +18,9 @@ router.post('/add', passport.authenticate('jwt', { session: false }), (req, res)
       err => console.log(err)
     );
 });
+// 要通过认证，必须要在请求头中携带token： Authorization: '具体的token'
 router.post('/list', passport.authenticate('jwt', { session: false }), (req, res) => {
+  // 通过认证之后可以通过req.user获取用户信息
   Profile.find()
     .then(
       (profile = []) => res.json({ code: 0, data: { data: profile }, msg: '成功' }),
