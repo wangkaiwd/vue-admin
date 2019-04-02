@@ -23,13 +23,13 @@ router.post('/add', passport.authenticate('jwt', { session: false }), (req, res)
 
 // 编辑
 router.post('/edit/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Profile.findByIdAndUpdate(req.params.id, { $set: req.body })
+  Profile.updateOne({ _id: req.params.id }, { $set: req.body })
     .then(
       profile => {
         if (profile) {
           res.json({ code: 0, data: {}, msg: '成功' });
         } else {
-          res.json({ code: 10001, data: {}, msg: '编辑出错' });
+          res.json({ code: 10001, data: {}, msg: '没有找到数据' });
         }
       },
       err => console.log(err)
