@@ -1,0 +1,9 @@
+//多行超出省略号
+@mixin ellipsis($line: 2, $line-height: 1.2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  line-height: $line-height;
+}

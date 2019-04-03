@@ -5,6 +5,8 @@
   "scripts": {
     "start": "nodemon app.js",
     "server": "node app.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"yarn start\" \"yarn run client\"",
     "debug": "nodemon --inspect app.js"
   },
   "_moduleAliases": {
@@ -20,6 +22,7 @@
   "dependencies": {
     "bcrypt": "^3.0.5",
     "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
