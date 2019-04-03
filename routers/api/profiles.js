@@ -49,7 +49,7 @@ router.post('/edit/:id', passport.authenticate('jwt', { session: false }), (req,
     );
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { id } = req.params;
   Profile.findByIdAndRemove(id)
     .then(
