@@ -1,23 +1,14 @@
 <template>
-  <el-row type="flex">
-    <left-nav></left-nav>
-    <el-col>
-      <el-card class="content">
-        <div slot="header">
-          {{title}}
-        </div>
-        <router-view></router-view>
-      </el-card>
-    </el-col>
-  </el-row>
+  <div class="app">
+    app
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-  import LeftNav from 'layouts/leftNav';
 
   export default {
     name: 'App',
-    components: { LeftNav },
     data () {
       return {
         title: ''
@@ -29,7 +20,7 @@
   };
 </script>
 <style lang="scss" scoped>
-  .content {
+  .app {
     height: 100vh;
   }
 </style>

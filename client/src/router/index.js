@@ -10,28 +10,14 @@ export default new Router({
       redirect: 'home'
     },
     {
-      path: '/home/index',
+      path: '/home',
       name: 'home',
-      component: getComponent('home'),
-      meta: { title: '首页' }
+      component: getComponent('home')
     },
     {
-      path: '/goods',
-      name: 'goods',
-      component: getComponent('goods'),
-      meta: { title: '商品' }
-    },
-    {
-      path: '/personal',
-      name: 'personal',
-      component: getComponent('personal'),
-      meta: { title: '个人中心' }
-    },
-    {
-      path: '/shopCart',
-      name: 'shopCart',
-      component: getComponent('shopCart'),
-      meta: { title: '购物车' }
-    },
+      path: '*',
+      name: '404',
+      component: getComponent('notFound')
+    }
   ]
 });
