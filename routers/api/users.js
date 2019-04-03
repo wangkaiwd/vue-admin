@@ -35,14 +35,22 @@ router.post('/register', (req, res) => {
     );
 });
 router.post('/login', (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
   User.findOne({ email })
     .then(
       user => {
         if (!user) {return res.json({ code: 10000, data: {}, msg: '请先注册' });}
-        const { password, date, ...rest } = user.toObject();
-        const token = jwt.sign(rest, privateKey, { expiresIn: '2h' });
-        res.json({ code: 0, data: { ...rest, token: `bearer ${token}` }, msg: '成功' });
+        const { password: hash, date, ...rest } = user.toObject();
+        bcrypt.compare(password, hash).then(
+          isMatch => {
+            if (isMatch) {
+              const token = jwt.sign(rest, privateKey, { expiresIn: '2h' });
+              res.json({ code: 0, data: { ...rest, token: `bearer ${token}` }, msg: '成功' });
+            } else {
+              res.json({ code: 0, data: {}, msg: '密码错误' });
+            }
+          }
+        );
       },
       err => console.log(err)
     );
