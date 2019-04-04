@@ -1,17 +1,17 @@
 <template>
-  <div class="not-found">
-    not-found
+  <div class="login">
+    login
   </div>
 </template>
 
 <script>
   export default {
-    name: 'NotFound'
-  };
+    name: 'login'
+  }
 </script>
 
 <style lang="scss" scoped>
-  .not-found {
+  .login {
 
   }
 </style>
