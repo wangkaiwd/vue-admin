@@ -5,17 +5,19 @@
 </template>
 
 <script>
-
   export default {
     name: 'AdminHome',
     data () {
-      return {};
+      return {}
     },
     mounted () {
     },
     methods: {}
-  };
+  }
 </script>
 
 <style lang="scss" scoped>
+  .home {
+
+  }
 </style>
