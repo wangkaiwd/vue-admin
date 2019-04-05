@@ -1,7 +1,7 @@
 <template>
   <div class="admin-login">
     <el-card class="admin-login-card">
-      <el-form :model="formItem" :rules="rules" label-width="80px" status-icon>
+      <el-form :model="formItem" :rules="rules" ref="formItem" label-width="80px">
         <el-form-item label="用户名" prop="username">
           <el-col :span="20">
             <el-input v-model="formItem.username" placeholder="请输入用户名"></el-input>
@@ -48,7 +48,7 @@
           email: '',
           password: '',
           confirmPassword: '',
-          role: ''
+          role: 'manager'
         },
         rules: {
           username: [
@@ -72,6 +72,9 @@
     methods: {
       onSubmit () {
         console.log('submit');
+        this.$refs.formItem.validate((valid, props) => {
+          console.log('values', valid, props);
+        });
       }
     }
   };
