@@ -3,6 +3,7 @@
     <div class="left-nav-logo">VUEADMIN</div>
     <el-menu
       :default-active="defaultActive"
+      :unique-opened="true"
       class="left-nav-menu"
       :router="true"
     >
@@ -19,7 +20,7 @@
     components: { SideBar },
     data () {
       return {
-        defaultActive: '/home/index'
+        defaultActive: '/main'
       }
     },
     watch: {

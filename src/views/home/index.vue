@@ -3,7 +3,7 @@
     <left-nav></left-nav>
     <el-col class="admin-home-content" :span="20">
       <admin-header></admin-header>
-      <el-card class="admin-home-content-page">
+      <el-card shadow="never" class="admin-home-content-page">
         <router-view></router-view>
       </el-card>
       <admin-footer></admin-footer>
@@ -37,6 +37,8 @@
     }
     &-content-page {
       flex: 1;
+      overflow: auto;
+      border: none;
     }
   }
 </style>
