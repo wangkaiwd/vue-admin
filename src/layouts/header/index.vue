@@ -1,25 +1,54 @@
 <template>
-  <el-row class="base-header">
-    <el-col>
-      <div>
-        <span class="base-header-username">张某某</span>
+  <div class="base-header">
+    <div class="base-header-user">
+      <span class="base-header-user-name">张某某</span>
+      <el-dropdown @command="onCommand">
         <img
-          src="https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiJ-O-Ys7vhAhVHmK0KHXXOAzQQjRx6BAgBEAU&url=%2Furl%3Fsa%3Di%26source%3Dimages%26cd%3D%26ved%3D%26url%3Dhttps%253A%252F%252Fwww.woyaogexing.com%252Ftouxiang%252Fweixin%252Findex_2.html%26psig%3DAOvVaw2Yrt3hWzK3XvO_v7cRs7J-%26ust%3D1554637778948450&psig=AOvVaw2Yrt3hWzK3XvO_v7cRs7J-&ust=1554637778948450"
+          class="base-header-user-avatar"
+          src="~img/defaultAvatar.png"
           alt="">
-      </div>
-    </el-col>
-  </el-row>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="personal">个人中心</el-dropdown-item>
+          <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'BaseHeader'
+    name: 'BaseHeader',
+    methods: {
+      onCommand (command) {
+        console.log('command', command)
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
   .base-header {
+    display: flex;
+    align-items: center;
     height: 60px;
     background-color: $blue;
+    &-user {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+    }
+    &-user-name {
+      color: $white;
+    }
+    &-user-avatar {
+      margin-left: 6px;
+      margin-right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 </style>
