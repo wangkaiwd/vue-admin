@@ -2,18 +2,18 @@ const path = require('path');
 const resolve = dir => path.resolve(__dirname, `src/${dir}/`);
 module.exports = {
   // 前端配置
-  devServer: {
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://localhost:1234',
-    //     ws: true,
-    //     changeOrigin: true
-    //   }
-    // }
-    // 只能将本地前端代码对应的服务地址进行代理
-    // 设置代理时不用设置axios的baseURL的协议域名和端口号,否则会出错
-    proxy: 'http://localhost:1234'
-  },
+  // devServer: {
+  //   // proxy: {
+  //   //   '/api': {
+  //   //     target: 'http://localhost:1234',
+  //   //     ws: true,
+  //   //     changeOrigin: true
+  //   //   }
+  //   // }
+  //   // 只能将本地前端代码对应的服务地址进行代理
+  //   // 设置代理时不用设置axios的baseURL的协议域名和端口号,否则会出错
+  //   proxy: 'http://localhost:1234'
+  // },
   // 关闭eslint
   lintOnSave: false,
   publicPath: process.env.NODE_ENV === 'development' ? '.' : '/vue-cli3.0-template/',
@@ -46,6 +46,7 @@ module.exports = {
       .set('mixins', resolve('mixins'))
       .set('store', resolve('store'))
       .set('layouts', resolve('layouts'))
+      .set('router', resolve('router'))
       .end()
       // 扩展名省略
       .extensions

@@ -1,33 +1,33 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import lazyLoading from './lazyLoading';
+import lazyLoading from './lazyLoading'
 
-Vue.use(Router);
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      redirect: '/home'
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: lazyLoading('home')
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: lazyLoading('register')
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: lazyLoading('login')
-    },
-    {
-      path: '*',
-      name: '404',
-      component: lazyLoading('notFound/404')
-    }
-  ]
-});
+const routes = [
+  {
+    path: '/',
+    name: '导航一',
+    component: lazyLoading('home'),
+    icon: '',
+    children: [
+      { path: '/main', name: '主页', component: lazyLoading('main') }
+    ]
+  },
+  {
+    path: '/register',
+    name: 'register',
+    hidden: true,
+    component: lazyLoading('register')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    hidden: true,
+    component: lazyLoading('login')
+  },
+  {
+    path: '*',
+    name: '404',
+    hidden: true,
+    component: lazyLoading('notFound/404')
+  }
+]
+
+export default routes

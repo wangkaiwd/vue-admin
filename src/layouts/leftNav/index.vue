@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import SideBar from './components/sideBar';
+  import SideBar from './components/sideBar'
 
   export default {
     name: 'LeftNav',
@@ -19,14 +19,14 @@
     data () {
       return {
         defaultActive: '/home/index'
-      };
+      }
     },
     watch: {
       '$route' (newVal) {
-        this.defaultActive = newVal.path;
+        this.defaultActive = newVal.path
       }
     },
-  };
+  }
 </script>
 
 <style lang="scss" scoped>
