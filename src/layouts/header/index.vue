@@ -1,17 +1,22 @@
 <template>
-  <div class="base-footer">
-    index
-  </div>
+  <el-row class="base-header">
+    <el-col>
+      <div>
+        <span class="base-header-username">张某某</span>
+        <img src="" alt="">
+      </div>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
   export default {
-    name: 'BaseFooter'
-  }
+    name: 'BaseHeader'
+  };
 </script>
 
 <style lang="scss" scoped>
-  .base-footer {
+  .base-header {
 
   }
 </style>
