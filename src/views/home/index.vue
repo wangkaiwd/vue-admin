@@ -30,6 +30,7 @@
 
 <style lang="scss" scoped>
   .admin-home {
+    height: 100%;
     &-content {
       display: flex;
       flex-direction: column;

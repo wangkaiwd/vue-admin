@@ -3,7 +3,7 @@
     <template v-for="menu in routerConfig">
       <el-submenu
         :key="`sub-${menu.name}`"
-        :index="menu.path"
+        :index="menu.name"
         v-if="menu.children && !menu.hidden"
       >
         <template slot="title">
@@ -44,9 +44,16 @@
 
 <style lang="scss" scoped>
   .side-bar-wrapper {
+    /deep/ .el-submenu__title {
+      &:hover {background-color: #d1dbe5;}
+    }
     .el-menu-item {
       height: 40px;
       line-height: 40px;
+      &:hover {background-color: #d1dbe5;}
+      &:focus {background-color: inherit;}
     }
+    /deep/ .el-submenu .el-menu {background-color: #e4e8f1;}
+
   }
 </style>

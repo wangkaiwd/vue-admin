@@ -14,11 +14,12 @@
 <script>
   export default {
     name: 'BaseHeader'
-  };
+  }
 </script>
 
 <style lang="scss" scoped>
   .base-header {
-
+    height: 60px;
+    background-color: $blue;
   }
 </style>
