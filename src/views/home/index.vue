@@ -34,6 +34,7 @@
     &-content {
       display: flex;
       flex-direction: column;
+      min-width: 600px;
     }
     &-content-page {
       flex: 1;
