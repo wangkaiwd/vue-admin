@@ -5,7 +5,7 @@
       <el-dropdown @command="onCommand">
         <img
           class="base-header-user-avatar"
-          :src="userInfo.email"
+          :src="userInfo.avatar"
           alt="">
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="personal">个人中心</el-dropdown-item>
@@ -22,7 +22,7 @@
   export default {
     name: 'BaseHeader',
     computed: {
-      ...mapState(['userInfo'])
+      ...mapState({ userInfo: state => state.user.userInfo })
     },
     methods: {
       onCommand (command) {
