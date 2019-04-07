@@ -1,0 +1,18 @@
+@import "vars";
+.search-form {
+  padding: 10px;
+  background-color: $gray;
+  margin-bottom: 10px;
+  .el-form-item {
+    margin-bottom: 0;
+  }
+}
+
+.el-table {
+  border: 1px solid #EBEEF5;
+  border-bottom: none;
+  th {
+    background-color: #eef1f6;
+    color: #1f2d3d;
+  }
+}
