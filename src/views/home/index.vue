@@ -7,8 +7,7 @@
         <div class="admin-home-content-page-header">
           <h4>{{title}}</h4>
           <el-breadcrumb separator="/">
-            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-            <el-breadcrumb-item>{{title}}</el-breadcrumb-item>
+            <el-breadcrumb-item v-for="name in breadCrumbs" :key="name">{{name}}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
         <router-view></router-view>
@@ -29,23 +28,38 @@
     components: { AdminHeader, AdminFooter, LeftNav },
     data () {
       return {
-        title: ''
+        title: '',
+        breadCrumbs: []
       };
     },
     watch: {
       '$route' (newRoute, oldRoute) {
         if (newRoute.path !== oldRoute.path) {
-          this.title = newRoute.name;
+          this.creatPageHeader(routeConfig, this.title);
         }
       }
     },
     mounted () {
-      this.findParentItem();
+      this.creatPageHeader();
     },
     methods: {
-      findParentItem () {
-        
-        console.log('parent', parent);
+      creatPageHeader () {
+        this.title = this.$route.name;
+        this.breadCrumbs = this.findParentItem(routeConfig, this.title);
+      },
+      findParentItem (array, name) {
+        let result;
+        array.some(o => {
+          let temp;
+          if (o.name === name) {
+            return result = [name];
+          }
+          temp = this.findParentItem(o.children || [], name);
+          if (temp) {
+            return result = [o.name, ...temp];
+          }
+        });
+        return result;
       }
     }
   };
