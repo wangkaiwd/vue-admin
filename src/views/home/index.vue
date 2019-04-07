@@ -29,7 +29,7 @@
   import AdminHeader from 'layouts/header';
   import AdminFooter from 'layouts/footer';
   import LeftNav from 'layouts/leftNav';
-  import { mapMutations } from 'vuex';
+  import { mapMutations, mapState } from 'vuex';
   import { goLogin } from 'utils/user';
 
   export default {

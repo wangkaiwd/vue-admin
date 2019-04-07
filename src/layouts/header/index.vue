@@ -1,11 +1,11 @@
 <template>
   <div class="base-header">
     <div class="base-header-user">
-      <span class="base-header-user-name">张某某</span>
+      <span class="base-header-user-name">{{userInfo.username}}</span>
       <el-dropdown @command="onCommand">
         <img
           class="base-header-user-avatar"
-          src="~img/defaultAvatar.png"
+          :src="userInfo.email"
           alt="">
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="personal">个人中心</el-dropdown-item>
@@ -17,14 +17,19 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
     name: 'BaseHeader',
+    computed: {
+      ...mapState(['userInfo'])
+    },
     methods: {
       onCommand (command) {
-        console.log('command', command)
+        console.log('command', command);
       }
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>
