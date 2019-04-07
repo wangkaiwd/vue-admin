@@ -1,4 +1,4 @@
-import lazyLoading from './lazyLoading'
+import lazyLoading from './lazyLoading';
 
 const routes = [
   {
@@ -10,7 +10,7 @@ const routes = [
       { path: '/main', name: '主页', component: lazyLoading('main') },
       { path: '/table', name: 'Table', component: lazyLoading('table') },
       { path: '/form', name: 'Form', component: lazyLoading('form') },
-      { path: '/list', name: 'List', component: lazyLoading('list') },
+      { path: '/list', name: '列表', component: lazyLoading('list') },
     ]
   },
   {
@@ -40,6 +40,6 @@ const routes = [
     hidden: true,
     component: lazyLoading('notFound/404')
   }
-]
+];
 
-export default routes
+export default routes;

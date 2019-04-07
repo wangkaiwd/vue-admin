@@ -2,7 +2,7 @@
   <el-col class="left-nav" :span="4">
     <div class="left-nav-logo">VUEADMIN</div>
     <el-menu
-      :default-active="defaultActive"
+      :default-active="$route.path"
       :unique-opened="true"
       class="left-nav-menu"
       :router="true"
@@ -13,17 +13,15 @@
 </template>
 
 <script>
-  import SideBar from './components/sideBar'
+  import SideBar from './components/sideBar';
 
   export default {
     name: 'LeftNav',
     components: { SideBar },
     data () {
-      return {
-        defaultActive: '/main'
-      }
+      return {};
     },
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

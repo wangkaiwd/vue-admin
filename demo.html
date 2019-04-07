@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  const datas = {
+    'tree': [
+      {
+        'name': 'name1',
+        'tree': [
+          { 'name': 'name2' },
+          { 'name': 'name3' },
+          {
+            'name': 'name4',
+            'tree': [
+              { 'name': 'name5' },
+              { 'name': 'name6' }
+            ]
+          },
+          { 'name': 'name7' }
+        ]
+      },
+      {
+        'name': 'name8',
+        'tree': [
+          { 'name': 'name9' }
+        ]
+      }
+    ]
+  };
+
+  function find (array, name) {
+    let result = null;
+    array.some(o => {
+      let temp;
+      if (o.name === name) {
+        return result = [name];
+      }
+      temp = find(o.tree || [], name);
+      console.log('temp', temp, 'result:', result);
+      if (temp) {
+        return result = [o.name, ...temp];
+      }
+    });
+    return result;
+  }
+
+  console.log(find(datas.tree, 'name5'));
+</script>
+</body>
+</html>
