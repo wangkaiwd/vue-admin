@@ -67,6 +67,8 @@
             fetchLogin(this.formItem).then(
               res => {
                 this.loginLoading = false;
+                this.$message(res.msg);
+                this.$router.push('/main');
                 console.log(res);
               },
               err => {

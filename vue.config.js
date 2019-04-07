@@ -2,20 +2,21 @@ const path = require('path');
 const resolve = dir => path.resolve(__dirname, `src/${dir}/`);
 module.exports = {
   // 前端配置
-  // devServer: {
-  //   // proxy: {
-  //   //   '/api': {
-  //   //     target: 'http://localhost:1234',
-  //   //     ws: true,
-  //   //     changeOrigin: true
-  //   //   }
-  //   // }
-  //   // 只能将本地前端代码对应的服务地址进行代理
-  //   // 设置代理时不用设置axios的baseURL的协议域名和端口号,否则会出错
-  //   proxy: 'http://localhost:1234'
-  // },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        ws: true,
+        changeOrigin: true
+      }
+    }
+    // 只能将本地前端代码对应的服务地址进行代理
+    // 设置代理时不用设置axios的baseURL的协议域名和端口号,否则会出错
+    // proxy: 'http://localhost:1234'
+  },
   // 关闭eslint
   lintOnSave: false,
+  productionSourceMap: process.env.NODE_ENV === 'development', // 打包时关闭sourceMap
   publicPath: process.env.NODE_ENV === 'development' ? '.' : '/vue-cli3.0-template/',
   chainWebpack: config => {
     // 这里是对环境的配置，不同环境对应不同的BASE_API，以便axios的请求地址不同

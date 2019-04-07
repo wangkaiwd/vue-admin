@@ -1,6 +1,8 @@
 <template>
   <div class="admin-main">
     测试页面
+    <br>
+    <router-link to="/list">跳转到list页面</router-link>
   </div>
 </template>
 

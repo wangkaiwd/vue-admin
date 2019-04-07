@@ -15,12 +15,12 @@
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-col :span="20">
-            <el-input v-model="formItem.password" placeholder="请输入密码"></el-input>
+            <el-input v-model="formItem.password" type="password" placeholder="请输入密码"></el-input>
           </el-col>
         </el-form-item>
         <el-form-item label="确认密码" prop="confirmPassword">
           <el-col :span="20">
-            <el-input v-model="formItem.confirmPassword" placeholder="请输入确认密码"></el-input>
+            <el-input v-model="formItem.confirmPassword" type="password" placeholder="请输入确认密码"></el-input>
           </el-col>
         </el-form-item>
         <el-form-item label="活动区域" prop="role">
@@ -34,7 +34,7 @@
             <el-col>已经有账号了？去
               <router-link to="/login">登录</router-link>
             </el-col>
-            <el-button type="primary" @click="onSubmit">注册</el-button>
+            <el-button type="primary" @click="onSubmit" :loading="registerLoading">注册</el-button>
           </el-col>
         </el-form-item>
       </el-form>
@@ -43,8 +43,11 @@
 </template>
 
 <script>
+  import regExpConfig from 'utils/regExpConfig';
+  import { fetchRegister } from 'api/user';
+
   export default {
-    name: 'AdminLogin',
+    name: 'AdminRegister',
     data () {
       return {
         formItem: {
@@ -59,26 +62,57 @@
             { required: true, message: '请输入用户名' },
           ],
           email: [
-            { required: true, message: '请输入邮箱' }
+            { required: true, message: '请输入正确的邮箱', pattern: regExpConfig.email }
           ],
           password: [
-            { required: true, message: '请输入密码' }
+            { required: true, message: '请输入密码' },
+            { validator: this.validatePassword }
           ],
           confirmPassword: [
-            { required: true, message: '请输入确认密码' }
+            { required: true, message: '请输入确认密码' },
+            { validator: this.validateConfirmPassword }
           ],
           role: [
             { required: true, message: '请至少选择一个角色' }
           ],
-        }
+        },
+        registerLoading: false
       };
     },
     methods: {
       onSubmit () {
         console.log('submit');
-        this.$refs.formItem.validate((valid, props) => {
-          console.log('values', valid, props);
+        this.$refs.formItem.validate((valid) => {
+          if (valid) {
+            const { confirmPassword, ...restParams } = this.formItem;
+            this.registerLoading = true;
+            fetchRegister(restParams).then(
+              res => {
+                this.registerLoading = false;
+                this.$message.success(res.msg);
+                this.$router.replace('/login');
+              },
+              err => {
+                this.registerLoading = false;
+                console.log(err);
+              }
+            );
+          }
         });
+      },
+      validatePassword (rule, value, callback) {
+        const { password, confirmPassword } = this.formItem;
+        if (password !== confirmPassword && confirmPassword !== '') {
+          this.$refs.formItem.validateField(['confirmPassword']);
+        }
+        callback();
+      },
+      validateConfirmPassword (rule, value, callback) {
+        const { password, confirmPassword } = this.formItem;
+        if (password !== confirmPassword) {
+          callback('俩次输入的密码不一致');
+        }
+        callback();
       }
     }
   };
