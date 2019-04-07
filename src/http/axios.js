@@ -1,6 +1,7 @@
 import axios from 'axios';
 // import baseURL from './env';
 import vm from '@/main';
+import { getToken } from 'utils/user';
 
 const CODE_OK = 0;
 const axiosInstance = axios.create({
@@ -10,6 +11,8 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   config => {
+    // 在每次请求发送的时候都要携带token
+    config.headers.authorization = getToken();
     return config;
   },
   err => {

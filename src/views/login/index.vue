@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import { fetchLogin } from 'api/user';
+  import { mapActions } from 'vuex';
   import regExpConfig from 'utils/regExpConfig';
 
   export default {
@@ -59,25 +59,29 @@
       };
     },
     methods: {
+      ...mapActions(['setUserInfo']),
       onSubmit () {
-        console.log('submit');
         this.$refs.formItem.validate((valid) => {
           if (valid) {
-            this.loginLoading = true;
-            fetchLogin(this.formItem).then(
-              res => {
-                this.loginLoading = false;
-                this.$message(res.msg);
-                this.$router.push('/main');
-                console.log(res);
-              },
-              err => {
-                this.loginLoading = false;
-                console.log(err);
-              }
-            );
+            // this.loginLoading = true;
+            // fetchLogin(this.formItem).then(
+            //   res => {
+            //     this.loginLoading = false;
+            //     this.$message(res.msg);
+            //     this.$router.push('/main');
+            //     console.log(res);
+            //   },
+            //   err => {
+            //     this.loginLoading = false;
+            //     console.log(err);
+            //   }
+            // );
+            this.setUserInfo({ params: this.formItem, cb: this.isLoading });
           }
         });
+      },
+      isLoading (loading) {
+        this.loading = loading;
       }
     }
   };

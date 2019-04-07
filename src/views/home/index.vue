@@ -29,7 +29,8 @@
   import AdminHeader from 'layouts/header';
   import AdminFooter from 'layouts/footer';
   import LeftNav from 'layouts/leftNav';
-  // import routeConfig from 'router';
+  import { mapMutations } from 'vuex';
+  import { goLogin } from 'utils/user';
 
   export default {
     name: 'AdminHome',
@@ -47,8 +48,10 @@
     mounted () {
       // console.log(this.$route);
       // this.creatPageHeader();
+      this.setUserInfo();
     },
     methods: {
+      ...mapMutations(['changeUserInfo']),
       // creatPageHeader () {
       //   this.title = this.$route.name;
       //   this.breadCrumbs = this.findParentItem(routeConfig, this.title);
@@ -69,6 +72,14 @@
       //   });
       //   return result;
       // }
+      setUserInfo () {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (userInfo) {
+          this.changeUserInfo(userInfo);
+        } else {
+          goLogin();
+        }
+      }
     }
   };
 </script>
