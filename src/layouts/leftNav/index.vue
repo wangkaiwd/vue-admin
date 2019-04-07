@@ -23,11 +23,6 @@
         defaultActive: '/main'
       }
     },
-    watch: {
-      '$route' (newVal) {
-        this.defaultActive = newVal.path
-      }
-    },
   }
 </script>
 

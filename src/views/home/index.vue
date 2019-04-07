@@ -4,6 +4,13 @@
     <el-col class="admin-home-content" :span="20">
       <admin-header></admin-header>
       <el-card shadow="never" class="admin-home-content-page">
+        <div class="admin-home-content-page-header">
+          <h4>{{title}}</h4>
+          <el-breadcrumb separator="/">
+            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+            <el-breadcrumb-item>{{title}}</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
         <router-view></router-view>
       </el-card>
       <admin-footer></admin-footer>
@@ -12,20 +19,36 @@
 </template>
 
 <script>
-  import AdminHeader from 'layouts/header'
-  import AdminFooter from 'layouts/footer'
-  import LeftNav from 'layouts/leftNav'
+  import AdminHeader from 'layouts/header';
+  import AdminFooter from 'layouts/footer';
+  import LeftNav from 'layouts/leftNav';
+  import routeConfig from 'router';
 
   export default {
     name: 'AdminHome',
     components: { AdminHeader, AdminFooter, LeftNav },
     data () {
-      return {}
+      return {
+        title: ''
+      };
+    },
+    watch: {
+      '$route' (newRoute, oldRoute) {
+        if (newRoute.path !== oldRoute.path) {
+          this.title = newRoute.name;
+        }
+      }
     },
     mounted () {
+      this.findParentItem();
     },
-    methods: {}
-  }
+    methods: {
+      findParentItem () {
+        
+        console.log('parent', parent);
+      }
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -40,6 +63,11 @@
       flex: 1;
       overflow: auto;
       border: none;
+      &-header {
+        padding-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 </style>
