@@ -1,7 +1,7 @@
 <template>
   <div class="admin-login">
     <el-card class="admin-login-card">
-      <div class="admin-login-card-title">系统注册</div>
+      <div class="admin-login-card-title">系统登录</div>
       <el-form :model="formItem" :rules="rules" class="admin-login-form" ref="formItem" label-width="80px">
         <el-form-item label="用户名" prop="username">
           <el-col :span="20">

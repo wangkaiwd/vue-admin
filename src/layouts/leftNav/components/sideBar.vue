@@ -26,20 +26,20 @@
   </div>
 </template>
 <script>
-  import routerConfig from 'router'
+  import { menus } from 'router';
 
   export default {
     name: 'SideBar',
     props: {
       routerConfig: {
         type: Array,
-        default: () => routerConfig
+        default: () => menus
       }
     },
     data () {
-      return {}
-    }
-  }
+      return {};
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
