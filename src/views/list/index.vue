@@ -33,6 +33,8 @@
 </template>
 
 <script>
+  import { fetchProfileList } from 'api/profile';
+
   export default {
     name: 'index',
     data () {
@@ -70,6 +72,18 @@
           address: '上海市普陀区金沙江路 1518 弄'
         }]
       };
+    },
+    mounted () {
+      this.getList();
+    },
+    methods: {
+      getList () {
+        fetchProfileList().then(
+          res => {
+            console.log('res', res);
+          }
+        );
+      }
     }
   };
 </script>

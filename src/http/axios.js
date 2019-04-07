@@ -33,6 +33,11 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(data);
   },
   err => {
+    if (err.message.includes('401')) {
+      vm.$message.error('用户信息失效，请重新登录');
+      vm.$router.replace('/login');
+      return;
+    }
     console.log(`响应出错: ${err.message}`);
     vm.$message.error('服务器响应出错！');
     return Promise.reject(err);

@@ -1,15 +1,20 @@
+import { fetchLogin } from 'api/user';
+
 const user = {
   namespaced: true,
   state: {
-    name: 'I am user'
+    userInfo: {}
   },
   //同步更改state中的状态
   mutations: {
     changeName (state) {
-      state.name = 'userChangeName'
+      state.name = 'userChangeName';
     }
   },
   //异步更改state中的状态
-  actions: {}
-}
-export default user
+  actions: {
+    getUserInfo () {
+    }
+  }
+};
+export default user;
