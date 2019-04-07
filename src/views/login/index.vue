@@ -10,12 +10,12 @@
         </el-form-item>
         <el-form-item label="邮箱" prop="email">
           <el-col :span="20">
-            <el-input v-model="formItem.email" placeholder="请输入用邮箱"></el-input>
+            <el-input v-model="formItem.email" type="email" placeholder="请输入用邮箱"></el-input>
           </el-col>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-col :span="20">
-            <el-input v-model="formItem.password" placeholder="请输入密码"></el-input>
+            <el-input v-model="formItem.password" type="password" placeholder="请输入密码"></el-input>
           </el-col>
         </el-form-item>
         <el-form-item>
@@ -23,7 +23,7 @@
             <el-col>已经有账号了？去
               <router-link to="/register">注册</router-link>
             </el-col>
-            <el-button type="primary" @click="onSubmit">登录</el-button>
+            <el-button type="primary" @click="onSubmit" :loading="loginLoading">登录</el-button>
           </el-col>
         </el-form-item>
       </el-form>
@@ -32,6 +32,9 @@
 </template>
 
 <script>
+  import { fetchLogin } from 'api/user';
+  import regExpConfig from 'utils/regExpConfig';
+
   export default {
     name: 'AdminLogin',
     data () {
@@ -46,19 +49,32 @@
             { required: true, message: '请输入用户名' },
           ],
           email: [
-            { required: true, message: '请输入邮箱' }
+            { required: true, message: '请输入正确的邮箱', pattern: regExpConfig.email }
           ],
           password: [
             { required: true, message: '请输入密码' }
           ]
-        }
+        },
+        loginLoading: false
       };
     },
     methods: {
       onSubmit () {
         console.log('submit');
-        this.$refs.formItem.validate((valid, props) => {
-          console.log('values', valid, props);
+        this.$refs.formItem.validate((valid) => {
+          if (valid) {
+            this.loginLoading = true;
+            fetchLogin(this.formItem).then(
+              res => {
+                this.loginLoading = false;
+                console.log(res);
+              },
+              err => {
+                this.loginLoading = false;
+                console.log(err);
+              }
+            );
+          }
         });
       }
     }

@@ -9,13 +9,13 @@ import qs from 'qs';
 const reqMethods = {
   // list/search
   get (url) {
-    return (params) => {
+    return (params = {}) => {
       return axiosInstance.get(url, { params });
     };
   },
   // json/form
   post (url, reqType = 'json') {
-    return (params) => {
+    return (params = {}) => {
       if (reqType === 'form') {
         params = qs.stringify(params);
       }

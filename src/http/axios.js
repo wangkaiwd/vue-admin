@@ -1,10 +1,10 @@
 import axios from 'axios';
-import baseURL from './env';
+// import baseURL from './env';
 import vm from '@/main';
 
 const CODE_OK = 0;
 const axiosInstance = axios.create({
-  baseURL,
+  // baseURL,
   timeout: 10000
 });
 

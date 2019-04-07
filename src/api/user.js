@@ -4,5 +4,5 @@
  */
 import reqMethods from 'http/ajax';
 
-const fetchLogin = reqMethods.post('/api/users/login', 'form');
-const fetchRegister = reqMethods.post('/api/users/register', 'form');
+export const fetchLogin = reqMethods.post('/api/users/login', 'form');
+export const fetchRegister = reqMethods.post('/api/users/register', 'form');
