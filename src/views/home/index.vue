@@ -5,9 +5,11 @@
       <admin-header></admin-header>
       <el-card shadow="never" class="admin-home-content-page">
         <div class="admin-home-content-page-header">
-          <h4>{{title}}</h4>
+          <!-- this里的数据都是响应式的，当this.$route发生改变的时候，对应的页面就会重新render,更新状态   -->
+          <strong>{{$route.name}}</strong>
           <el-breadcrumb separator="/">
-            <el-breadcrumb-item v-for="name in breadCrumbs" :key="name">{{name}}</el-breadcrumb-item>
+            <!--  $route.matched: 一个数组，包含当前路由的所有嵌套路径片段的路由记录，即当前路由以及当前路由对应的所有父级路由  -->
+            <el-breadcrumb-item v-for="route in $route.matched" :key="route.name">{{route.name}}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>
         <router-view></router-view>
@@ -33,20 +35,22 @@
       };
     },
     watch: {
-      '$route' (newRoute, oldRoute) {
-        if (newRoute.path !== oldRoute.path) {
-          this.creatPageHeader(routeConfig, this.title);
-        }
-      }
+      // '$route' (newRoute, oldRoute) {
+      //   if (newRoute.path !== oldRoute.path) {
+      //     this.creatPageHeader(routeConfig, this.title);
+      //   }
+      // }
     },
     mounted () {
-      this.creatPageHeader();
+      console.log(this.$route);
+      // this.creatPageHeader();
     },
     methods: {
       creatPageHeader () {
         this.title = this.$route.name;
         this.breadCrumbs = this.findParentItem(routeConfig, this.title);
       },
+      // https://stackoverflow.com/questions/53277219/javascript-find-all-parents-for-element-in-tree-recursive
       findParentItem (array, name) {
         let result;
         array.some(o => {
