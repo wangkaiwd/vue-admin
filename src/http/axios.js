@@ -4,6 +4,7 @@ import vm from '@/main';
 import { getToken, goLogin } from 'utils/user';
 
 const CODE_OK = 0;
+// 注意：在使用代理的时候不要设置baseUrl
 const axiosInstance = axios.create({
   // baseURL,
   timeout: 10000
@@ -36,9 +37,8 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(data);
   },
   err => {
-    if (err.message.includes('401')) {
+    if (err.message.includes('401')) { // 请求头没有携带token或token失效
       goLogin('用户信息已失效，请重新登录');
-      vm.$router.replace('/login');
       return;
     }
     console.log(`响应出错: ${err.message}`);
