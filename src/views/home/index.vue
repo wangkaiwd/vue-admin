@@ -48,7 +48,7 @@
     mounted () {
       // console.log(this.$route);
       // this.creatPageHeader();
-      this.setUserInfo();
+      // this.setUserInfo();
     },
     methods: {
       ...mapMutations(['changeUserInfo']),
