@@ -1,5 +1,7 @@
 const path = require('path');
 const resolve = dir => path.resolve(__dirname, `src/${dir}/`);
+const argv = process.argv;
+const mode = argv[argv.indexOf('--project-mode') + 1];
 module.exports = {
   // 前端配置
   devServer: {
@@ -16,14 +18,13 @@ module.exports = {
   },
   // 关闭eslint
   lintOnSave: false,
+  outputDir: `dist_${mode}`,
   productionSourceMap: process.env.NODE_ENV === 'development', // 打包时关闭sourceMap
   publicPath: process.env.NODE_ENV === 'development' ? '.' : '/vue-cli3.0-template/',
   chainWebpack: config => {
     // 这里是对环境的配置，不同环境对应不同的BASE_API，以便axios的请求地址不同
     // 这里用到了webpack.DefinePlugin
     config.plugin('define').tap(args => {
-      const argv = process.argv;
-      const mode = argv[argv.indexOf('--project-mode') + 1];
       // 这里必须要使用`"string"`,字符串必须要单双引号俩层嵌套，否则使用到process.env的时候会报错
       // 文档：这个插件直接执行文本替换，给定的值必须包含字符串本身内的实际引用。通常，有俩种方式
       // 来达到这个效果，使用'"production"',或者使用JSON.stringify('production')
