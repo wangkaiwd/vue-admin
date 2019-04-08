@@ -2,7 +2,8 @@
  * Created by wangkai on 2019-04-07
  * 用户相关接口
  */
-import reqMethods from 'http/ajax';
+import ajax from 'http/ajax';
 
-export const fetchLogin = reqMethods.post('/api/users/login', 'form');
-export const fetchRegister = reqMethods.post('/api/users/register', 'form');
+export const fetchLogin = ajax.post('/api/users/login', 'form');
+export const fetchRegister = ajax.post('/api/users/register', 'form');
+export const fetchLogout = ajax.post('/api/users/logout');

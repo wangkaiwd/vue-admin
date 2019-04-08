@@ -10,7 +10,7 @@ export const getToken = () => {
 };
 
 export const goLogin = (message) => {
-  vm.$message.warning(message);
+  message && vm.$message.warning(message);
   localStorage.clear();
   vm.$router.push('/login');
 };

@@ -18,6 +18,8 @@
 
 <script>
   import { mapState } from 'vuex';
+  import { fetchLogout } from 'api/user';
+  import { goLogin } from 'utils/user';
 
   export default {
     name: 'BaseHeader',
@@ -26,7 +28,15 @@
     },
     methods: {
       onCommand (command) {
+        command = command[0].toUpperCase() + command.slice(1);
         console.log('command', command);
+        this[`on${command}`]();
+      },
+      onLogout () {
+        fetchLogout().then(
+          () => goLogin(),
+          err => console.log(err)
+        );
       }
     }
   };
