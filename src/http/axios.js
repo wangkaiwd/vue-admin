@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import baseURL from './env';
 import vm from '@/main';
-import { getToken } from 'utils/user';
+import { getToken, goLogin } from 'utils/user';
 
 const CODE_OK = 0;
 const axiosInstance = axios.create({
@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
   },
   err => {
     if (err.message.includes('401')) {
-      vm.$message.error('用户信息失效，请重新登录');
+      goLogin('用户信息已失效，请重新登录');
       vm.$router.replace('/login');
       return;
     }

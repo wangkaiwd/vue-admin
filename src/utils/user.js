@@ -9,7 +9,8 @@ export const getToken = () => {
   return userInfo ? userInfo.token : '';
 };
 
-export const goLogin = () => {
+export const goLogin = (message) => {
+  vm.$message.warning(message);
   localStorage.clear();
   vm.$router.push('/login');
 };

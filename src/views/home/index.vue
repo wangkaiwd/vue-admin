@@ -48,7 +48,7 @@
     mounted () {
       // console.log(this.$route);
       // this.creatPageHeader();
-      // this.setUserInfo();
+      this.setUserInfo();
     },
     methods: {
       ...mapMutations(['changeUserInfo']),
@@ -77,7 +77,7 @@
         if (userInfo) {
           this.changeUserInfo(userInfo);
         } else {
-          goLogin();
+          goLogin('请先登录');
         }
       }
     }
