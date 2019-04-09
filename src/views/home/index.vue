@@ -41,7 +41,7 @@
     },
     watch: {},
     mounted () {
-      // this.setUserInfo();
+      this.setUserInfo();
     },
     methods: {
       ...mapMutations(['changeUserInfo']),

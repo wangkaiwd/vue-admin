@@ -15,18 +15,55 @@
       :data="tableData"
     >
       <el-table-column
+        type="index"
+        width="50"
+      >
+      </el-table-column>
+      <el-table-column
         prop="date"
-        label="日期"
-        width="180">
+        label="创建时间"
+        min-width="240"
+      >
+        <template #default="{row}">
+          <i class="el-icon-time"></i>
+          <span style="margin-left: 10px">{{formatTime(row.date)}}</span>
+        </template>
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
+        prop="type"
+        label="收支类型"
+        width="120"
+      >
       </el-table-column>
       <el-table-column
-        prop="address"
-        label="地址">
+        prop="describe"
+        label="收支描述"
+        width="200"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="income"
+        label="收入"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="expand"
+        label="支出"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="cash"
+        label="账户现金"
+        width="120"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="remark"
+        label="备注"
+        width="120"
+      >
       </el-table-column>
       <el-table-column label="操作" width="200">
         <template #default="{row}">
@@ -47,6 +84,7 @@
 
 <script>
   import { fetchProfileList } from 'api/profile';
+  import dayJs from 'dayjs';
 
   export default {
     name: 'index',
@@ -55,35 +93,7 @@
         searchForm: {
           name: ''
         },
-        tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }]
+        tableData: []
       };
     },
     mounted () {
@@ -93,7 +103,7 @@
       getList () {
         fetchProfileList().then(
           res => {
-            console.log('res', res);
+            this.tableData = res.data.data;
           }
         );
       },
@@ -108,6 +118,9 @@
               message: '删除成功!'
             });
           });
+      },
+      formatTime (date) {
+        return dayJs(date).format('YYYY-MM-DD HH:mm:ss');
       }
     }
   };
