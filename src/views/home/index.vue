@@ -30,7 +30,7 @@
   import AdminHeader from 'layouts/header';
   import AdminFooter from 'layouts/footer';
   import LeftNav from 'layouts/leftNav';
-  import { mapMutations, mapState } from 'vuex';
+  import { mapMutations } from 'vuex';
   import { goLogin } from 'utils/user';
 
   export default {
@@ -39,40 +39,12 @@
     data () {
       return {};
     },
-    watch: {
-      // '$route' (newRoute, oldRoute) {
-      //   if (newRoute.path !== oldRoute.path) {
-      //     this.creatPageHeader(routeConfig, this.title);
-      //   }
-      // }
-    },
+    watch: {},
     mounted () {
-      // console.log(this.$route);
-      // this.creatPageHeader();
       this.setUserInfo();
     },
     methods: {
       ...mapMutations(['changeUserInfo']),
-      // creatPageHeader () {
-      //   this.title = this.$route.name;
-      //   this.breadCrumbs = this.findParentItem(routeConfig, this.title);
-      //   console.log('breadCrumbs', this.breadCrumbs);
-      // },
-      // https://stackoverflow.com/questions/53277219/javascript-find-all-parents-for-element-in-tree-recursive
-      // findParentItem (array, name) {
-      //   let result;
-      //   array.map(o => {
-      //     let temp;
-      //     if (o.name === name) {
-      //       return result = [name];
-      //     }
-      //     temp = this.findParentItem(o.children || [], name);
-      //     if (temp) {
-      //       return result = [o.name, ...temp];
-      //     }
-      //   });
-      //   return result;
-      // }
       setUserInfo () {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
         if (userInfo) {

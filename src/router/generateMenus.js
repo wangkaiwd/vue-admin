@@ -7,6 +7,7 @@
  * @param routes 侧边栏数组
  * @returns {Array} 过滤处理后的侧边栏数组
  */
+// FIXME: 这里其实也可以都不做处理，而是在遍历sideBar组件的时候进行处理
 const menuList = (routes) => {
   const menus = JSON.parse(JSON.stringify(routes));
   // 先将叶子路由处理掉
