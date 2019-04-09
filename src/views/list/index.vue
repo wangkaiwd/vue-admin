@@ -13,6 +13,7 @@
     </div>
     <el-table
       :data="tableData"
+      v-loading="tableLoading"
     >
       <el-table-column
         type="index"
@@ -26,7 +27,7 @@
       >
         <template #default="{row}">
           <i class="el-icon-time"></i>
-          <span style="margin-left: 10px">{{formatTime(row.date)}}</span>
+          <span style="margin-left: 10px">{{row.date | formatTime}}</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -93,7 +94,8 @@
         searchForm: {
           name: ''
         },
-        tableData: []
+        tableData: [],
+        tableLoading: false
       };
     },
     mounted () {
@@ -101,10 +103,13 @@
     },
     methods: {
       getList () {
+        this.tableLoading = true;
         fetchProfileList().then(
           res => {
+            this.tableLoading = false;
             this.tableData = res.data.data;
-          }
+          },
+          () => this.tableLoading = false
         );
       },
       onEdit (row) {
@@ -119,9 +124,6 @@
             });
           });
       },
-      formatTime (date) {
-        return dayJs(date).format('YYYY-MM-DD HH:mm:ss');
-      }
     }
   };
 </script>
