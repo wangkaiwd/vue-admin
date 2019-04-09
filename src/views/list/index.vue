@@ -28,6 +28,19 @@
         prop="address"
         label="地址">
       </el-table-column>
+      <el-table-column label="操作" width="200">
+        <template #default="{row}">
+          <el-button
+            size="mini"
+            @click="onEdit(row)">编辑
+          </el-button>
+          <el-button
+            size="mini"
+            type="danger"
+            @click="onDelete(row)">删除
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -83,6 +96,18 @@
             console.log('res', res);
           }
         );
+      },
+      onEdit (row) {
+        console.log('edit', row);
+      },
+      onDelete (row) {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', { type: 'warning' })
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          });
       }
     }
   };

@@ -4,7 +4,7 @@
       <el-submenu
         :key="`sub-${menu.name}`"
         :index="menu.name"
-        v-if="menu.children && !menu.hidden"
+        v-if="menu.children"
       >
         <template slot="title">
           {{menu.name}}
@@ -18,7 +18,7 @@
       <el-menu-item
         :key="`item-${menu.name}`"
         :index="menu.path"
-        v-if="!menu.children && !menu.hidden"
+        v-else
       >
         {{menu.name}}
       </el-menu-item>
