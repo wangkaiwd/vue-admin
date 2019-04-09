@@ -13,6 +13,7 @@
               v-for="route in $route.matched"
               :to="{path:route.path}"
               :key="route.path"
+              v-if="route.name"
             >
               {{route.name}}
             </el-breadcrumb-item>

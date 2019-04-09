@@ -1,5 +1,5 @@
-import lazyLoading from './lazyLoading'
-import menuList from './generateMenus'
+import lazyLoading from './lazyLoading';
+import menuList from './generateMenus';
 
 const routes = [
   {
@@ -36,6 +36,16 @@ const routes = [
   // },
   {
     path: '/',
+    name: '',
+    component: lazyLoading('home'),
+    icon: '',
+    leaf: true,
+    children: [
+      { path: '/oneLevel', name: '1级菜单', component: lazyLoading('oneLevel') },
+    ]
+  },
+  {
+    path: '/',
     name: '嵌套',
     component: lazyLoading('home'),
     icon: '',
@@ -70,8 +80,8 @@ const routes = [
     hidden: true,
     component: lazyLoading('notFound/404')
   }
-]
-const menus = menuList(routes)
+];
+const menus = menuList(routes);
 // 想要将内容处理成自己想要的比较困难，通过动态为数组内容添加字段然后在遍历的过程中通过字段来确定是否显示相对来说会简单一些
 // 所以想要将数组的内容过滤掉相对来说会比较困难
-export { routes, menus }
+export { routes, menus };

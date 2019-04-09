@@ -9,6 +9,12 @@
  */
 const menuList = (routes) => {
   const menus = JSON.parse(JSON.stringify(routes));
+  // 先将叶子路由处理掉
+  const index = menus.findIndex(menu => menu.leaf);
+  if (index) {
+    const temp = menus[index].children;
+    menus.splice(index, 1, ...temp);
+  }
   /**
    * 内部递归函数，删除需要隐藏的数据
    * @param tree
