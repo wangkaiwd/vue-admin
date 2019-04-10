@@ -1,6 +1,6 @@
 <template>
   <div>
-    <admin-editor v-model="msg" :disabled="true"></admin-editor>
+    <admin-editor v-model="msg"></admin-editor>
   </div>
 </template>
 

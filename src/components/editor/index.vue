@@ -53,6 +53,7 @@
         if (this.disabled) { // 禁用配置菜单置空
           editor.customConfig.menus = [];
         }
+        this.showImgTab(editor);
         editor.customConfig.onchange = (html) => {
           this.$emit('change', html);
         };
@@ -62,6 +63,12 @@
         if (this.disabled) {
           editor.$textElem.attr('contenteditable', false);
         }
+      },
+      showImgTab (editor) {
+        // 隐藏“网络图片”tab
+        editor.customConfig.showLinkImg = false;
+        // 上传图片到服务器
+        editor.customConfig.uploadImgServer = '/upload';
       }
     }
   };
