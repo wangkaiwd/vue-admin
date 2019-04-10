@@ -1,6 +1,9 @@
 <template>
-  <div class="chart" ref="chart" style="width: 600px;height:400px;">
-
+  <div
+    class="chart"
+    ref="chart"
+    :style="{width,height}"
+  >
   </div>
 </template>
 
@@ -13,6 +16,18 @@
       options: {
         type: Object,
         default: () => ({})
+      },
+      width: {
+        type: String,
+        default: '600px'
+      },
+      height: {
+        type: String,
+        default: '400px'
+      },
+      loading: {
+        type: Boolean,
+        default: false
       }
     },
     watch: {
@@ -23,6 +38,11 @@
           }
         },
         deep: true
+      },
+      loading (newVal) {
+        if (this.myChart) {
+          newVal ? this.myChart.showLoading() : this.myChart.hideLoading();
+        }
       }
     },
     mounted () {

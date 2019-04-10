@@ -60,7 +60,6 @@
           editor.customConfig.menus = [];
         }
         editor.customConfig.onchange = (html) => {
-          console.log(html);
           this.$emit('input', html);
         };
         // 更新不及时会导致双向数据绑定出问题

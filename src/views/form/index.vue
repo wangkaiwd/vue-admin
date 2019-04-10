@@ -15,6 +15,9 @@
       return {
         msg: '<p>message</p>'
       };
+    },
+    mounted () {
+
     }
   };
 </script>
