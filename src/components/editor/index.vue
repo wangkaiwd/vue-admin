@@ -50,13 +50,18 @@
       },
       initEditor () {
         const editor = new Editor(this.$refs.editor);
+        if (this.disabled) { // 禁用配置菜单置空
+          editor.customConfig.menus = [];
+        }
         editor.customConfig.onchange = (html) => {
           this.$emit('change', html);
         };
         editor.create();
         editor.txt.html(this.editorContent);
-        this.disabled && editor.$textElem.attr('contenteditable', false);
         this.editor = editor;
+        if (this.disabled) {
+          editor.$textElem.attr('contenteditable', false);
+        }
       }
     }
   };
