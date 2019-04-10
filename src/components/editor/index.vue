@@ -36,11 +36,16 @@
       };
     },
     watch: {
-      editorContent (newVal) {
-        if (this.editor) {
-          this.editor.txt.html(newVal);
-        }
-      }
+      editorContent: {
+        handler (newVal) {
+          this.$nextTick(() => {
+            if (this.editor) {
+              this.editor.txt.html(newVal);
+            }
+          });
+        },
+        immediate: true
+      },
     },
     mounted () {
       this.initEditor();
@@ -61,7 +66,6 @@
         // 更新不及时会导致双向数据绑定出问题
         editor.customConfig.onchangeTimeout = 20;
         editor.create();
-        editor.txt.html(this.editorContent);
         this.editor = editor;
         if (this.disabled) {
           editor.$textElem.attr('contenteditable', false);
