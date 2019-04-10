@@ -13,18 +13,30 @@
   export default {
     name: 'AdminChart',
     props: {
+      /**
+       * 生成echarts的配置项
+       */
       options: {
         type: Object,
         default: () => ({})
       },
+      /**
+       * echarts容器的宽度
+       */
       width: {
         type: String,
         default: '600px'
       },
+      /**
+       * echarts容器的高度
+       */
       height: {
         type: String,
         default: '400px'
       },
+      /**
+       * 异步图表loading
+       */
       loading: {
         type: Boolean,
         default: false
