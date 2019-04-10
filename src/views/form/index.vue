@@ -1,15 +1,23 @@
 <template>
   <div>
-    form
+    <admin-editor v-model="msg"></admin-editor>
   </div>
 </template>
 
 <script>
+  import AdminEditor from 'components/editor';
+
   export default {
-    name: 'index'
-  }
+    name: 'index',
+    components: { AdminEditor },
+    data () {
+      return {
+        msg: '<p>message</p>'
+      };
+    }
+  };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
