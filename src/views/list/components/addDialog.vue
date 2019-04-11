@@ -1,5 +1,10 @@
 <template>
-  <el-dialog :title="dialogTitle" custom-class="add-dialog" :visible.sync="visible">
+  <el-dialog
+    :title="dialogTitle"
+    custom-class="add-dialog"
+    :visible="visible"
+    @close="$emit('update:visible',false)"
+  >
     <el-form :model="form">
       <el-form-item label="活动名称" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off"></el-input>
