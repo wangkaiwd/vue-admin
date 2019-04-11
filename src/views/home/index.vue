@@ -60,7 +60,8 @@
     }
     &-content-page {
       flex: 1;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       border: none;
       &-header {
         padding-bottom: 20px;
@@ -71,7 +72,6 @@
 
     .slide-left-enter-active,
     .slide-left-leave-active {
-      /*position: absolute;*/
       transition: all .6s cubic-bezier(.55, 0, .1, 1);
       transform: translateX(0);
     }
