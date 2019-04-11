@@ -10,7 +10,7 @@
           <admin-bread></admin-bread>
         </div>
         <transition name="slide-left" mode="out-in">
-          <router-view class="child-view"></router-view>
+          <router-view></router-view>
         </transition>
       </el-card>
       <admin-footer></admin-footer>
