@@ -11,6 +11,9 @@
    * 富文本的常用功能：
    *  1. 输入内容：a.获取值 b.设置值 c.非空校验 d.禁用
    *  2. 上传图片：可能要自己通过formData来进行图片上传
+   *      a. 上传前判断：1.格式，2.大小
+   *      b. 上传成功
+   *      c. 提示：1. 上传成功 2.上传失败 3.格式，大小不符合要求
    */
   import Editor from 'wangeditor';
 
@@ -28,6 +31,10 @@
       disabled: {
         type: Boolean,
         default: false
+      },
+      uploadProps: {
+        type: Object,
+        default: () => ({ filename: 'file' })
       }
     },
     data () {
@@ -60,6 +67,7 @@
           editor.customConfig.menus = [];
         }
         this.showImgTab(editor);
+        // editor.customConfig.customUploadImg = this.uploadImg;
         editor.customConfig.onchange = (html) => {
           this.$emit('input', html);
         };
@@ -76,7 +84,13 @@
         editor.customConfig.showLinkImg = false;
         // 上传图片到服务器
         editor.customConfig.uploadImgServer = '/upload';
-      }
+      },
+      // uploadImg (files, insert) {
+      //
+      // },
+      // beforeUpload (files) {
+      //
+      // }
     }
   };
 </script>
