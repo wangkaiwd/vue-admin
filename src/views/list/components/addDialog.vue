@@ -1,42 +1,69 @@
 <template>
   <el-dialog
     :title="dialogTitle"
-    custom-class="add-dialog"
+    class="add-dialog"
     :visible="visible"
     @close="$emit('update:visible',false)"
   >
     <el-form :model="form" ref="form" :rules="rules">
       <el-form-item label="收支类型" prop="type" :label-width="formLabelWidth">
-        <el-col :span="22">
-          <el-select v-model="form.type" placeholder="请选择收支类型">
+        <el-col :span="18">
+          <el-select class="admin-form-item" v-model="form.type" placeholder="请选择收支类型">
             <el-option label="收入" value="shanghai"></el-option>
             <el-option label="支出" value="beijing"></el-option>
           </el-select>
         </el-col>
       </el-form-item>
       <el-form-item label="收支描述" prop="describe" :label-width="formLabelWidth">
-        <el-col :span="22">
+        <el-col :span="18">
           <el-input v-model="form.describe" placeholder="请输入收支描述"></el-input>
         </el-col>
       </el-form-item>
       <el-form-item label="收入" prop="income" :label-width="formLabelWidth">
-        <el-col :span="22">
-          <el-input v-model="form.income" type="number" placeholder="请输入收入"></el-input>
+        <el-col :span="18">
+          <el-input-number
+            class="admin-form-item"
+            controls-position="right"
+            :precision="2"
+            :min="0"
+            v-model="form.income"
+            type="number"
+            placeholder="请输入收入"
+          >
+          </el-input-number>
         </el-col>
       </el-form-item>
       <el-form-item label="支出" prop="expend" :label-width="formLabelWidth">
-        <el-col :span="22">
-          <el-input v-model="form.expend" type="number" placeholder="请输入支出"></el-input>
+        <el-col :span="18">
+          <el-input-number
+            class="admin-form-item"
+            controls-position="right"
+            :precision="2"
+            :min="0"
+            v-model="form.expend"
+            type="number"
+            placeholder="请输入支出"
+          >
+          </el-input-number>
         </el-col>
       </el-form-item>
       <el-form-item label="账户现金" prop="cash" :label-width="formLabelWidth">
-        <el-col :span="22">
-          <el-input v-model="form.cash" type="number" placeholder="请输入账户现金"></el-input>
+        <el-col :span="18">
+          <el-input-number
+            class="admin-form-item"
+            controls-position="right"
+            :precision="2"
+            :min="0"
+            v-model="form.cash"
+            type="number"
+            placeholder="请输入账户现金"
+          >
+          </el-input-number>
         </el-col>
       </el-form-item>
       <el-form-item label="备注" prop="remark" :label-width="formLabelWidth">
-        <el-col :span="22">
-          <el-input type="textarea" autosize v-model="form.remark" placeholder="请输入备注"></el-input>
+        <el-col :span="18">
+          <el-input type="textarea" :rows="4" v-model="form.remark" placeholder="请输入备注"></el-input>
         </el-col>
       </el-form-item>
     </el-form>
@@ -50,9 +77,9 @@
 <script>
 
   const PAGE_CFG = {
-    add: { title: '新增', api: '' },
-    edit: { title: '编辑', api: '' },
-    detail: { title: '查看', api: '' }
+    add: { title: '添加资金信息', api: '' },
+    edit: { title: '编辑资金信息', api: '' },
+    detail: { title: '查看资金信息', api: '' }
   };
   export default {
     name: 'AddDialog',
@@ -72,32 +99,31 @@
         form: {
           type: '',
           describe: '',
-          income: '',
-          expend: '',
-          cash: '',
+          income: undefined,
+          expend: undefined,
+          cash: undefined,
           remark: ''
         },
-        formLabelWidth: '100px',
+        formLabelWidth: '140px',
         rules: {
           type: [
-            { type: String, required: true, message: '请选择收支类型', trigger: 'blur' },
+            { required: true, message: '请选择收支类型', trigger: 'blur' },
           ],
           describe: [
-            { type: String, required: true, message: '请填写收支描述', trigger: 'blur' }
+            { required: true, message: '请填写收支描述', trigger: 'blur' }
           ],
           income: [
-            { type: Number, required: true, message: '请填写收入', trigger: 'blur' },
+            { required: true, message: '请填写收入', trigger: 'blur' },
           ],
           expend: [
-            { type: Number, required: true, message: '请填写支出', trigger: 'blur' },
+            { required: true, message: '请填写支出', trigger: 'blur' },
           ],
           cash: [
-            { type: Number, required: true, message: '请填写账户现金', trigger: 'blur' },
+            { required: true, message: '请填写账户现金', trigger: 'blur' },
           ],
           remark: [
-            { type: String, required: true, message: '请填写备注', trigger: 'blur' },
+            { required: true, message: '请填写备注', trigger: 'blur' },
           ],
-
         }
       };
     },
@@ -124,6 +150,11 @@
 
 <style lang="scss" scoped>
   .add-dialog {
-
+    .admin-form-item {
+      width: 100%;
+    }
+    /deep/ .el-input-number .el-input__inner {
+      text-align: left;
+    }
   }
 </style>
