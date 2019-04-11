@@ -75,11 +75,11 @@
 </template>
 
 <script>
+  import { fetchProfileAdd, fetchProfileEdit, fetchProfileDetail } from 'api/profile';
 
   const PAGE_CFG = {
-    add: { title: '添加资金信息', api: '' },
-    edit: { title: '编辑资金信息', api: '' },
-    detail: { title: '查看资金信息', api: '' }
+    add: { title: '添加资金信息', api: fetchProfileAdd },
+    edit: { title: '编辑资金信息', api: fetchProfileEdit },
   };
   export default {
     name: 'AddDialog',
@@ -128,9 +128,7 @@
       };
     },
     mounted () {
-      if (this.pageType === 'detail') {
 
-      }
     },
     methods: {
       onOkClick () {
@@ -140,9 +138,6 @@
             this.$emit('on-ok');
           }
         });
-      },
-      getDetailData () {
-
       }
     }
   };
