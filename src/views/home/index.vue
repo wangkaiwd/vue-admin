@@ -9,7 +9,9 @@
           <strong>{{$route.name}}</strong>
           <admin-bread></admin-bread>
         </div>
-        <router-view></router-view>
+        <transition name="slide-left" mode="out-in">
+          <router-view class="child-view"></router-view>
+        </transition>
       </el-card>
       <admin-footer></admin-footer>
     </el-col>
@@ -65,6 +67,21 @@
         display: flex;
         justify-content: space-between;
       }
+    }
+
+    .slide-left-enter-active,
+    .slide-left-leave-active {
+      /*position: absolute;*/
+      transition: all .6s cubic-bezier(.55, 0, .1, 1);
+      transform: translateX(0);
+    }
+    .slide-left-enter {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    .slide-left-leave-to {
+      opacity: 0;
+      transform: translateX(-40px);
     }
   }
 </style>
