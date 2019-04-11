@@ -11,7 +11,13 @@
 
 #### 项目启动
 #### 项目技术栈
-* `vue`全家桶(`vue+vuex+vue`)
+前端是以`vue`为主的技术栈，包括如下：  
+`vue vue-router vuex axios`
+
+后端是以`express`为主结合`mongodb`数据库完成：  
+`nodejs express mongodb jsonwebtoken`
+#### 项目依赖
+
 #### 参考`demo`
 
 #### 
