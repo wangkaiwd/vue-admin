@@ -7,7 +7,7 @@ const routes = [
     name: '导航一',
     component: lazyLoading('home'),
     redirect: '/main',
-    icon: '',
+    iconCls: 'el-icon-sold-out',
     children: [
       { path: '/main', name: '主页', component: lazyLoading('main') },
       { path: '/table', name: 'Table', component: lazyLoading('table') },
@@ -19,7 +19,7 @@ const routes = [
     path: '/',
     name: '导航二',
     component: lazyLoading('home'),
-    icon: '',
+    iconCls: 'el-icon-date',
     children: [
       { path: '/group2', name: '测试2', component: lazyLoading('group2') },
     ]
@@ -36,9 +36,9 @@ const routes = [
   // },
   {
     path: '/',
-    name: '',
+    name: 'el-icon-edit-outline',
     component: lazyLoading('home'),
-    icon: '',
+    iconCls: '',
     leaf: true,
     children: [
       { path: '/oneLevel', name: '1级菜单', component: lazyLoading('oneLevel') },
@@ -48,7 +48,7 @@ const routes = [
     path: '/',
     name: '嵌套',
     component: lazyLoading('home'),
-    icon: '',
+    iconCls: '',
     children: [
       {
         path: '/menu1', name: 'menu1', component: lazyLoading('nest/menu1'), redirect: '/menu1/menu1-1',

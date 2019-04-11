@@ -9,6 +9,9 @@
           <el-button type="primary">搜索</el-button>
           <el-button>重置</el-button>
         </el-form-item>
+        <el-form-item class="search-form-add">
+          <el-button type="primary">新增</el-button>
+        </el-form-item>
       </el-form>
     </div>
     <el-table
@@ -85,7 +88,6 @@
 
 <script>
   import { fetchProfileList } from 'api/profile';
-  import dayJs from 'dayjs';
 
   export default {
     name: 'index',

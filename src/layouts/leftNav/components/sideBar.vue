@@ -7,6 +7,7 @@
         v-if="menu.children"
       >
         <template slot="title">
+          <i :class="menu.iconCls" v-if="menu.iconCls"></i>
           {{menu.name}}
         </template>
         <side-bar
@@ -20,6 +21,7 @@
         :index="menu.path"
         v-else
       >
+        <i :class="menu.iconCls" v-if="menu.iconCls"></i>
         {{menu.name}}
       </el-menu-item>
     </template>
@@ -54,6 +56,8 @@
       &:focus {background-color: inherit;}
     }
     /deep/ .el-submenu .el-menu {background-color: #e4e8f1;}
-
+    /deep/ .el-submenu [class^=el-icon-] {
+      margin-right: 0;
+    }
   }
 </style>

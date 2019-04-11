@@ -1,6 +1,7 @@
 <template>
   <div>
-    <admin-editor v-model="msg"></admin-editor>
+    {{msg}}<br>
+    <admin-editor v-model="msg" :disabled="false"></admin-editor>
   </div>
 </template>
 
@@ -14,6 +15,9 @@
       return {
         msg: '<p>message</p>'
       };
+    },
+    mounted () {
+
     }
   };
 </script>

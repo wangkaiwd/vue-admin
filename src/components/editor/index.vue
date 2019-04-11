@@ -1,6 +1,7 @@
 <template>
   <div class="editor">
-    <div ref="editor"></div>
+    <div ref="editor">
+    </div>
     <button @click="getContent">查看内容</button>
   </div>
 </template>
@@ -17,7 +18,7 @@
     name: 'AdminEditor',
     model: {
       prop: 'editorContent',
-      event: 'change'
+      event: 'input'
     },
     props: {
       editorContent: {
@@ -31,15 +32,20 @@
     },
     data () {
       return {
-        editor: {}
+        editor: null
       };
     },
     watch: {
-      editorContent (newVal) {
-        if (this.editor) {
-          this.editor.txt.html(newVal);
-        }
-      }
+      editorContent: {
+        handler (newVal) {
+          this.$nextTick(() => {
+            if (this.editor) {
+              this.editor.txt.html(newVal);
+            }
+          });
+        },
+        immediate: true
+      },
     },
     mounted () {
       this.initEditor();
@@ -55,10 +61,11 @@
         }
         this.showImgTab(editor);
         editor.customConfig.onchange = (html) => {
-          this.$emit('change', html);
+          this.$emit('input', html);
         };
+        // 更新不及时会导致双向数据绑定出问题
+        editor.customConfig.onchangeTimeout = 20;
         editor.create();
-        editor.txt.html(this.editorContent);
         this.editor = editor;
         if (this.disabled) {
           editor.$textElem.attr('contenteditable', false);
