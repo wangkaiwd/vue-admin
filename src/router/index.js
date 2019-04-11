@@ -11,7 +11,7 @@ const routes = [
     children: [
       { path: '/main', name: '主页', component: lazyLoading('main') },
       { path: '/table', name: 'Table', component: lazyLoading('table') },
-      { path: '/form', name: 'Form', component: lazyLoading('form') },
+      { path: '/editor', name: '富文本', component: lazyLoading('editor') },
       { path: '/list', name: '列表', component: lazyLoading('list') },
     ]
   },
