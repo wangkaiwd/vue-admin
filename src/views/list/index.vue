@@ -10,7 +10,7 @@
           <el-button>重置</el-button>
         </el-form-item>
         <el-form-item class="search-form-add">
-          <el-button type="primary">新增</el-button>
+          <el-button type="primary" @click="addDialogVisible=true">新增</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -83,21 +83,25 @@
         </template>
       </el-table-column>
     </el-table>
+    <add-dialog :on-ok="onOkClick" :visible.sync="addDialogVisible"></add-dialog>
   </div>
 </template>
 
 <script>
   import { fetchProfileList } from 'api/profile';
+  import AddDialog from './components/addDialog';
 
   export default {
     name: 'index',
+    components: { AddDialog },
     data () {
       return {
         searchForm: {
           name: ''
         },
         tableData: [],
-        tableLoading: false
+        tableLoading: false,
+        addDialogVisible: false
       };
     },
     mounted () {
@@ -126,6 +130,9 @@
             });
           });
       },
+      onOkClick () {
+        this.getList();
+      }
     }
   };
 </script>
