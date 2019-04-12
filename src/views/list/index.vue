@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="list">
     <div class="search-form">
       <el-form :model="searchForm" :inline="true">
         <el-form-item>
@@ -83,6 +83,13 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      layout="prev, pager, next"
+      :total="pageKey.totalCount"
+      :current-page="pageKey.currentPage"
+      @current-change="onCurrentChange"
+    >
+    </el-pagination>
     <add-dialog
       @on-ok="onOkClick"
       :page-type="dialogType"
@@ -110,7 +117,12 @@
         tableLoading: false,
         addDialogVisible: false,
         dialogType: 'add',
-        dialogItem: {}
+        dialogItem: {},
+        pageKey: {
+          currentPage: 1,
+          pageSize: 10,
+          totalCount: 0
+        }
       };
     },
     mounted () {
@@ -119,10 +131,13 @@
     methods: {
       getList () {
         this.tableLoading = true;
-        fetchProfileList().then(
+        const { totalCount, ...restPageKey } = this.pageKey;
+        fetchProfileList({ ...restPageKey }).then(
           res => {
             this.tableLoading = false;
             this.tableData = res.data.data;
+            this.pageKey.totalCount = res.data.totalCount;
+            this.pageKey.currentPage = res.data.currentPage;
           },
           () => this.tableLoading = false
         );
@@ -154,11 +169,23 @@
       },
       onOkClick () {
         this.getList();
+      },
+      onCurrentChange (page) {
+        this.pageKey.currentPage = page;
+        this.getList();
       }
     }
   };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .list {
+    .el-pagination {
+      white-space: nowrap;
+      padding: 4px 0;
+      font-weight: 700;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
 </style>
