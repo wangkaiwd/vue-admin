@@ -10,7 +10,7 @@
           <el-button>重置</el-button>
         </el-form-item>
         <el-form-item class="search-form-add">
-          <el-button type="primary" @click="addDialogVisible=true">新增</el-button>
+          <el-button type="primary" @click="onAdd">新增</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -52,7 +52,7 @@
       >
       </el-table-column>
       <el-table-column
-        prop="expand"
+        prop="expend"
         label="支出"
         width="120"
       >
@@ -83,12 +83,19 @@
         </template>
       </el-table-column>
     </el-table>
-    <add-dialog :on-ok="onOkClick" :visible.sync="addDialogVisible"></add-dialog>
+    <add-dialog
+      @on-ok="onOkClick"
+      :page-type="dialogType"
+      :visible.sync="addDialogVisible"
+      v-if="addDialogVisible"
+      :dialogItem="dialogItem"
+    >
+    </add-dialog>
   </div>
 </template>
 
 <script>
-  import { fetchProfileList } from 'api/profile';
+  import { fetchProfileList, fetchProfileDelete } from 'api/profile';
   import AddDialog from './components/addDialog';
 
   export default {
@@ -101,7 +108,9 @@
         },
         tableData: [],
         tableLoading: false,
-        addDialogVisible: false
+        addDialogVisible: false,
+        dialogType: 'add',
+        dialogItem: {}
       };
     },
     mounted () {
@@ -118,16 +127,29 @@
           () => this.tableLoading = false
         );
       },
+      onAdd () {
+        this.dialogType = 'add';
+        this.addDialogVisible = true;
+        this.dialogItem = {};
+      },
       onEdit (row) {
-        console.log('edit', row);
+        this.dialogType = 'edit';
+        this.addDialogVisible = true;
+        this.dialogItem = row;
       },
       onDelete (row) {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', { type: 'warning' })
           .then(() => {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
+            fetchProfileDelete({ id: row.id })
+              .then(
+                res => {
+                  this.$message({
+                    type: 'success',
+                    message: res.msg
+                  });
+                  this.getList();
+                }
+              );
           });
       },
       onOkClick () {

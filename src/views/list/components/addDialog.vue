@@ -9,8 +9,7 @@
       <el-form-item label="收支类型" prop="type" :label-width="formLabelWidth">
         <el-col :span="18">
           <el-select class="admin-form-item" v-model="form.type" placeholder="请选择收支类型">
-            <el-option label="收入" value="shanghai"></el-option>
-            <el-option label="支出" value="beijing"></el-option>
+            <el-option :label="item" v-for="item in moneyList" :value="item" :key="item"></el-option>
           </el-select>
         </el-col>
       </el-form-item>
@@ -66,21 +65,31 @@
           <el-input type="textarea" :rows="4" v-model="form.remark" placeholder="请输入备注"></el-input>
         </el-col>
       </el-form-item>
+      <el-form-item :label-width="formLabelWidth">
+        <el-col :span="18">
+          <el-button @click="$emit('update:visible',false)">取 消</el-button>
+          <el-button type="primary" :loading="submitLoading" @click="onOkClick">确 定</el-button>
+        </el-col>
+      </el-form-item>
     </el-form>
-    <div slot="footer" class="dialog-footer">
-      <el-button @click="$emit('update:visible',false)">取 消</el-button>
-      <el-button type="primary" @click="onOkClick">确 定</el-button>
-    </div>
   </el-dialog>
 </template>
 
 <script>
-  import { fetchProfileAdd, fetchProfileEdit, fetchProfileDetail } from 'api/profile';
+  import { fetchProfileAdd, fetchProfileEdit } from 'api/profile';
 
   const PAGE_CFG = {
     add: { title: '添加资金信息', api: fetchProfileAdd },
     edit: { title: '编辑资金信息', api: fetchProfileEdit },
   };
+  const MONEY_LIST = [
+    '提现',
+    '提现手续费',
+    '充值',
+    '优惠券',
+    '充值礼券',
+    '转账'
+  ];
   export default {
     name: 'AddDialog',
     props: {
@@ -91,6 +100,10 @@
       pageType: {
         type: String,
         default: 'add'
+      },
+      dialogItem: {
+        type: Object,
+        default: () => ({})
       }
     },
     data () {
@@ -105,6 +118,8 @@
           remark: ''
         },
         formLabelWidth: '140px',
+        submitLoading: false,
+        moneyList: MONEY_LIST,
         rules: {
           type: [
             { required: true, message: '请选择收支类型', trigger: 'blur' },
@@ -128,16 +143,32 @@
       };
     },
     mounted () {
-
+      this.editData();
     },
     methods: {
       onOkClick () {
         this.$refs.form.validate((valid) => {
           if (valid) {
-            this.$emit('update:visible', false);
-            this.$emit('on-ok');
+            this.submitLoading = true;
+            PAGE_CFG[this.pageType].api(this.form)
+              .then(
+                res => {
+                  this.submitLoading = false;
+                  this.$message.success(res.msg);
+                  this.$emit('update:visible', false);
+                  this.$emit('on-ok');
+                },
+                () => this.submitLoading = false
+              );
           }
         });
+      },
+      editData () {
+        console.log(this.pageType);
+        if (this.pageType === 'edit') {
+          const { date, id, ...rest } = this.dialogItem;
+          this.form = rest;
+        }
       }
     }
   };

@@ -38,8 +38,9 @@ axiosInstance.interceptors.response.use(
   },
   err => {
     const { status, data } = err.response;
+    console.dir('err', err);
     if (status === 401) { // 请求头没有携带token或token失效
-      // goLogin('用户信息已失效，请重新登录');
+      goLogin('用户信息已失效，请重新登录');
       console.log(err);
     } else {
       console.dir(`响应出错: ${err}`);
