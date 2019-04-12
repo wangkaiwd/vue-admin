@@ -150,6 +150,9 @@
         this.$refs.form.validate((valid) => {
           if (valid) {
             this.submitLoading = true;
+            if (this.pageType === 'edit') {
+              this.form.id = this.dialogItem.id;
+            }
             PAGE_CFG[this.pageType].api(this.form)
               .then(
                 res => {
