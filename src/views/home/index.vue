@@ -1,7 +1,9 @@
 <template>
-  <el-row type="flex" class="admin-home">
-    <left-nav :is-collapsed="isCollapsed"></left-nav>
-    <el-col class="admin-home-content" :span="20">
+  <el-container class="admin-home">
+    <el-aside width="200px" class="admin-home-left">
+      <left-nav :is-collapsed="isCollapsed"></left-nav>
+    </el-aside>
+    <el-container class="admin-home-content" :span="20">
       <admin-header :is-collapsed.sync="isCollapsed"></admin-header>
       <el-card shadow="never" class="admin-home-content-page">
         <div class="admin-home-content-page-header">
@@ -14,8 +16,8 @@
         </transition>
       </el-card>
       <admin-footer></admin-footer>
-    </el-col>
-  </el-row>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
