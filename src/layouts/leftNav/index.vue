@@ -1,15 +1,14 @@
 <template>
-  <el-col class="left-nav" :span="4">
+  <el-menu
+    :default-active="$route.path"
+    :unique-opened="true"
+    class="left-nav-menu"
+    :router="true"
+    :collapse="isCollapsed"
+  >
     <div class="left-nav-logo">VUEADMIN</div>
-    <el-menu
-      :default-active="$route.path"
-      :unique-opened="true"
-      class="left-nav-menu"
-      :router="true"
-    >
-      <side-bar></side-bar>
-    </el-menu>
-  </el-col>
+    <side-bar></side-bar>
+  </el-menu>
 </template>
 
 <script>
@@ -17,6 +16,12 @@
 
   export default {
     name: 'LeftNav',
+    props: {
+      isCollapsed: {
+        type: Boolean,
+        default: false
+      }
+    },
     components: { SideBar },
     data () {
       return {};
@@ -29,6 +34,10 @@
     display: flex;
     flex-direction: column;
     min-width: 260px;
+    &-menu:not(.el-menu--collapse) {
+      width: 200px;
+      min-height: 400px;
+    }
     &-logo {
       padding-left: 20px;
       color: $white;
@@ -40,7 +49,6 @@
       border-right: 1px solid rgba(238, 241, 147, 0.3);
     }
     &-menu {
-      flex: 1;
       overflow: auto;
       background-color: #eef1f6;
       border: none;

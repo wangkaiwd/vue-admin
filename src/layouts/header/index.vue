@@ -1,5 +1,8 @@
 <template>
   <div class="base-header">
+    <div @click="$emit('update:is-collapsed',!isCollapsed)" class="base-header-icon" :class="{collapsed:isCollapsed}">
+      <admin-icon icon="md-menu"></admin-icon>
+    </div>
     <div class="base-header-user">
       <span class="base-header-user-name">{{userInfo.username}}</span>
       <el-dropdown @command="onCommand">
@@ -23,6 +26,12 @@
 
   export default {
     name: 'BaseHeader',
+    props: {
+      isCollapsed: {
+        type: Boolean,
+        default: false
+      }
+    },
     computed: {
       ...mapState({ userInfo: state => state.user.userInfo })
     },
@@ -48,6 +57,18 @@
     align-items: center;
     height: 60px;
     background-color: $blue;
+    &-icon {
+      padding-left: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all .4s;
+      &:hover {
+        color: $white;
+      }
+      &.collapsed {
+        transform: rotate(90deg);
+      }
+    }
     &-user {
       display: flex;
       align-items: center;

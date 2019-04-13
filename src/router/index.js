@@ -38,17 +38,16 @@ const routes = [
     path: '/',
     name: 'el-icon-edit-outline',
     component: lazyLoading('home'),
-    iconCls: '',
     leaf: true,
     children: [
-      { path: '/oneLevel', name: '1级菜单', component: lazyLoading('oneLevel') },
+      { path: '/oneLevel', iconCls: 'el-icon-bell', name: '1级菜单', component: lazyLoading('oneLevel') },
     ]
   },
   {
     path: '/',
     name: '嵌套',
     component: lazyLoading('home'),
-    iconCls: '',
+    iconCls: 'el-icon-bell',
     children: [
       {
         path: '/menu1', name: 'menu1', component: lazyLoading('nest/menu1'), redirect: '/menu1/menu1-1',

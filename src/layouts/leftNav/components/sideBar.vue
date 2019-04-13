@@ -8,7 +8,7 @@
       >
         <template slot="title">
           <i :class="menu.iconCls" v-if="menu.iconCls"></i>
-          {{menu.name}}
+          <span slot="title">{{menu.name}}</span>
         </template>
         <side-bar
           v-if="menu.children"
@@ -22,7 +22,7 @@
         v-else
       >
         <i :class="menu.iconCls" v-if="menu.iconCls"></i>
-        {{menu.name}}
+        <span slot="title">{{menu.name}}</span>
       </el-menu-item>
     </template>
   </div>
@@ -47,6 +47,7 @@
 <style lang="scss" scoped>
   .side-bar-wrapper {
     /deep/ .el-submenu__title {
+      overflow: hidden;
       &:hover {background-color: #d1dbe5;}
     }
     .el-menu-item {
@@ -57,6 +58,9 @@
     }
     /deep/ .el-submenu .el-menu {background-color: #e4e8f1;}
     /deep/ .el-submenu [class^=el-icon-] {
+      margin-right: 0;
+    }
+    .el-menu-item [class^=el-icon-] {
       margin-right: 0;
     }
   }
