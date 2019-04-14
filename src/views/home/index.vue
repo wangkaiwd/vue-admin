@@ -33,18 +33,9 @@
     components: { AdminHeader, AdminFooter, LeftNav, AdminBread },
     watch: {},
     mounted () {
-      this.setUserInfo();
     },
     methods: {
-      ...mapMutations(['CHANGE_USER_INFO']),
-      setUserInfo () {
-        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        if (userInfo) {
-          this.CHANGE_USER_INFO(userInfo);
-        } else {
-          goLogin('请先登录');
-        }
-      }
+
     }
   };
 </script>

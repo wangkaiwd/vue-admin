@@ -63,19 +63,6 @@
       onSubmit () {
         this.$refs.formItem.validate((valid) => {
           if (valid) {
-            // this.loginLoading = true;
-            // fetchLogin(this.formItem).then(
-            //   res => {
-            //     this.loginLoading = false;
-            //     this.$message(res.msg);
-            //     this.$router.push('/main');
-            //     console.log(res);
-            //   },
-            //   err => {
-            //     this.loginLoading = false;
-            //     console.log(err);
-            //   }
-            // );
             this.SET_USER_INFO({ params: this.formItem, cb: this.isLoading });
           }
         });

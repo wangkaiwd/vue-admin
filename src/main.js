@@ -11,6 +11,8 @@ import { formatTime } from 'filters/tools';
 import AdminIcon from 'components/icon';
 
 Vue.use(ElementUI);
+import 'router/permission';
+
 Vue.filter('formatTime', formatTime);
 Vue.component('AdminIcon', AdminIcon);
 Vue.config.productionTip = false;
@@ -20,5 +22,4 @@ const vm = new Vue({
   store, // 把store的实例注入到所有的子组件中，子组件可以通过this.$store来进行访问
   render: h => h(App)
 }).$mount('#app');
-
 export default vm;
