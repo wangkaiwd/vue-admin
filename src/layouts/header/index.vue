@@ -42,6 +42,9 @@
           () => goLogin(),
           err => console.log(err)
         );
+      },
+      onPersonal () {
+        console.log('个人中心');
       }
     }
   };

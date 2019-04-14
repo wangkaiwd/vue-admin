@@ -31,19 +31,9 @@
   export default {
     name: 'AdminHome',
     components: { AdminHeader, AdminFooter, LeftNav, AdminBread },
-    data () {
-      return {
-        // isCollapsed: false
-      };
-    },
-    computed: {
-      // sideWidth () {
-      //   return this.isCollapsed ? '64px' : '200px';
-      // }
-    },
     watch: {},
     mounted () {
-      // this.setUserInfo();
+      this.setUserInfo();
     },
     methods: {
       ...mapMutations(['CHANGE_USER_INFO']),

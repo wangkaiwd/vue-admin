@@ -59,7 +59,7 @@
       };
     },
     methods: {
-      ...mapActions(['SET_USER_INFO']),
+      ...mapActions('user', ['SET_USER_INFO']),
       onSubmit () {
         this.$refs.formItem.validate((valid) => {
           if (valid) {

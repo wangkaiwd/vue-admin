@@ -8,6 +8,9 @@ const test = { // 测试环境
 const pro = { // 生产环境
   baseURL: 'http://xxx.pro'
 };
+export const mock = {
+  baseURL: 'https://easy-mock.com/mock/5cb343e6bc34df60b08c29f4'
+};
 
 const envConfig = {
   dev,
