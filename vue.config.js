@@ -18,7 +18,7 @@ module.exports = {
   // },
   // 关闭eslint
   lintOnSave: false,
-  outputDir: `dist_${mode}`,
+  // outputDir: `dist_${mode}`,
   productionSourceMap: process.env.NODE_ENV === 'development', // 打包时关闭sourceMap
   publicPath: process.env.NODE_ENV === 'development' ? '.' : '/vue-admin/',
   chainWebpack: config => {
