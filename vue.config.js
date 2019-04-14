@@ -20,7 +20,7 @@ module.exports = {
   lintOnSave: false,
   outputDir: `dist_${mode}`,
   productionSourceMap: process.env.NODE_ENV === 'development', // 打包时关闭sourceMap
-  publicPath: process.env.NODE_ENV === 'development' ? '.' : '/vue-cli3.0-template/',
+  publicPath: process.env.NODE_ENV === 'development' ? '.' : '/vue-admin/',
   chainWebpack: config => {
     // 这里是对环境的配置，不同环境对应不同的BASE_API，以便axios的请求地址不同
     // 这里用到了webpack.DefinePlugin
