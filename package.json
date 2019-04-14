@@ -7,7 +7,8 @@
     "serve": "vue-cli-service serve --project-mode dev",
     "lint": "vue-cli-service lint",
     "build:pro": "vue-cli-service build --project-mode pro",
-    "build:test": "vue-cli-service build --report --project-mode test"
+    "build:test": "vue-cli-service build --project-mode test",
+    "build:analyze": "vue-cli-service build --report --project-mode test"
   },
   "dependencies": {
     "axios": "^0.18.0",
