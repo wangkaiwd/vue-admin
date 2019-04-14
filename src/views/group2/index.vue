@@ -1,56 +1,40 @@
 <template>
-  <div>
-    <admin-chart :options="options" :loading="loading"></admin-chart>
+  <div class="split-panel-demo">
+    <split-panel :value.sync="value">
+      <div slot="panel-left" class="demo-left">
+        左面板
+      </div>
+      <div slot="panel-right" class="demo-right">
+        右面板
+      </div>
+    </split-panel>
   </div>
 </template>
 
 <script>
   import AdminChart from 'components/chart';
+  import SplitPanel from 'components/splitPanel';
 
   export default {
     name: 'index',
-    components: { AdminChart },
+    components: { AdminChart, SplitPanel },
     data () {
       return {
-        loading: false,
-        options: {}
+        value: 0.2
       };
     },
     mounted () {
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-        this.options = {
-          title: {
-            text: 'ECharts 入门示例'
-          },
-          tooltip: {},
-          legend: {
-            data: ['销量']
-          },
-          xAxis: {
-            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-          },
-          yAxis: {},
-          series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-          }]
-        };
-      }, 2000);
-      setTimeout(() => {
-        this.options.xAxis.data = ['衬衫1', '羊毛衫1', '雪纺衫1', '裤子1', '高跟鞋1', '袜子1'];
-        this.options.series = [{
-          name: '销量',
-          type: 'bar',
-          data: [10, 20, 26, 12, 10, 26]
-        }];
-      }, 4000);
+
     }
   };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .split-panel-demo {
+    .demo-left,
+    .demo-right {
+      height: 400px;
+      border: 1px solid #ccc;
+    }
+  }
 </style>
