@@ -59,7 +59,7 @@
       };
     },
     methods: {
-      ...mapActions(['setUserInfo']),
+      ...mapActions(['SET_USER_INFO']),
       onSubmit () {
         this.$refs.formItem.validate((valid) => {
           if (valid) {
@@ -76,7 +76,7 @@
             //     console.log(err);
             //   }
             // );
-            this.setUserInfo({ params: this.formItem, cb: this.isLoading });
+            this.SET_USER_INFO({ params: this.formItem, cb: this.isLoading });
           }
         });
       },

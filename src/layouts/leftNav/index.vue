@@ -46,7 +46,7 @@
       min-height: 400px;
     }
     &-logo {
-      padding: 10px 26px;
+      padding: 10px 20px;
       color: $white;
       height: 60px;
       display: flex;

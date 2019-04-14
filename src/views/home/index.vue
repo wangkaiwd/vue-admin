@@ -23,7 +23,9 @@
   import AdminFooter from 'layouts/footer';
   import AdminBread from 'layouts/breadcrumb';
   import LeftNav from 'layouts/leftNav';
-  import { mapMutations } from 'vuex';
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapMutations } = createNamespacedHelpers('user');
   import { goLogin } from 'utils/user';
 
   export default {
@@ -44,11 +46,11 @@
       // this.setUserInfo();
     },
     methods: {
-      ...mapMutations(['changeUserInfo']),
+      ...mapMutations(['CHANGE_USER_INFO']),
       setUserInfo () {
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
         if (userInfo) {
-          this.changeUserInfo(userInfo);
+          this.CHANGE_USER_INFO(userInfo);
         } else {
           goLogin('请先登录');
         }

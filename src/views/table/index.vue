@@ -1,12 +1,17 @@
 <template>
   <div>
-    table
+    <count-up></count-up>
   </div>
 </template>
 
 <script>
+  import CountUp from 'components/countUp';
+
   export default {
     name: 'index',
+    components: {
+      CountUp
+    },
     data () {
       return {};
     },

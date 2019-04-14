@@ -33,7 +33,7 @@
       }
     },
     computed: {
-      ...mapState({ userInfo: state => state.user.userInfo })
+      ...mapState('user', ['userInfo'])
     },
     methods: {
       onCommand (command) {

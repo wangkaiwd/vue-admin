@@ -2350,6 +2350,11 @@ cosmiconfig@^5.0.0:
     lodash.get "^4.4.2"
     parse-json "^4.0.0"
 
+countup.js@^2.0.4:
+  version "2.0.4"
+  resolved "http://registry.npm.taobao.org/countup.js/download/countup.js-2.0.4.tgz#8c845452e499b16187c0d1beb1e5d717bda90005"
+  integrity sha1-jIRUUuSZsWGHwNG+seXXF72pAAU=
+
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "http://registry.npm.taobao.org/create-ecdh/download/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
