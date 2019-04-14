@@ -42,6 +42,11 @@
         default: false
       }
     },
+    data () {
+      return {
+        timerId: null
+      };
+    },
     watch: {
       options: {
         handler (newVal) {
@@ -66,7 +71,20 @@
         // 指定图表的配置项和数据
         // 使用刚指定的配置项和数据显示图表。
         this.myChart.setOption(this.options);
+        window.addEventListener('resize', this.onResize);
+      },
+      onResize () {
+        if (this.timerId) {
+          clearTimeout(this.timerId);
+          this.timerId = null;
+        }
+        this.timerId = setTimeout(() => {
+          this.myChart.resize();
+        }, 100);
       }
+    },
+    beforeDestroy () {
+      window.removeEventListener('resize', this.onResize);
     }
   };
 </script>

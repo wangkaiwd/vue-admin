@@ -1,7 +1,7 @@
 <template>
   <div class="base-header">
     <div @click="$emit('update:is-collapsed',!isCollapsed)" class="base-header-icon" :class="{collapsed:isCollapsed}">
-      <admin-icon icon="md-menu"></admin-icon>
+      <admin-icon icon="menu"></admin-icon>
     </div>
     <div class="base-header-user">
       <span class="base-header-user-name">{{userInfo.username}}</span>
