@@ -7,6 +7,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV === 'development',
+  state: {
+    isCollapsed: false
+  },
+  mutations: {
+    CHANGE_NAV (state, status) {
+      state.isCollapsed = status;
+    }
+  },
   modules: {
     user,
     goods

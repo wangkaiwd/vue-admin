@@ -1,6 +1,6 @@
 <template>
   <div class="base-header">
-    <div @click="$emit('update:is-collapsed',!isCollapsed)" class="base-header-icon" :class="{collapsed:isCollapsed}">
+    <div @click="CHANGE_NAV(!isCollapsed)" class="base-header-icon" :class="{collapsed:isCollapsed}">
       <admin-icon icon="menu"></admin-icon>
     </div>
     <div class="base-header-user">
@@ -20,22 +20,18 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState, mapMutations } from 'vuex';
   import { fetchLogout } from 'api/user';
   import { goLogin } from 'utils/user';
 
   export default {
     name: 'BaseHeader',
-    props: {
-      isCollapsed: {
-        type: Boolean,
-        default: false
-      }
-    },
     computed: {
-      ...mapState('user', ['userInfo'])
+      ...mapState('user', ['userInfo']),
+      ...mapState(['isCollapsed'])
     },
     methods: {
+      ...mapMutations(['CHANGE_NAV']),
       onCommand (command) {
         command = command[0].toUpperCase() + command.slice(1);
         console.log('command', command);

@@ -15,20 +15,16 @@
 
 <script>
   import SideBar from './components/sideBar';
+  import { mapState } from 'vuex';
 
   export default {
     name: 'LeftNav',
-    props: {
-      isCollapsed: {
-        type: Boolean,
-        default: false
-      }
-    },
     components: { SideBar },
     data () {
       return {};
     },
     computed: {
+      ...mapState(['isCollapsed']),
       logoText () {
         return this.isCollapsed ? 'VUE' : 'VUEADMIN';
       }

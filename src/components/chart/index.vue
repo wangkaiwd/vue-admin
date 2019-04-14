@@ -9,6 +9,7 @@
 
 <script>
   import echarts from 'echarts';
+  import { mapState } from 'vuex';
 
   export default {
     name: 'AdminChart',
@@ -47,6 +48,9 @@
         timerId: null
       };
     },
+    computed: {
+      ...mapState(['isCollapsed'])
+    },
     watch: {
       options: {
         handler (newVal) {
@@ -59,6 +63,13 @@
       loading (newVal) {
         if (this.myChart) {
           newVal ? this.myChart.showLoading() : this.myChart.hideLoading();
+        }
+      },
+      isCollapsed () {
+        if (this.myChart) {
+          setTimeout(() => {
+            this.myChart.resize();
+          }, 500);
         }
       }
     },
