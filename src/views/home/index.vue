@@ -1,9 +1,7 @@
 <template>
   <el-container class="admin-home">
-    <el-aside width="200px" class="admin-home-left">
-      <left-nav :is-collapsed="isCollapsed"></left-nav>
-    </el-aside>
-    <el-container class="admin-home-content" :span="20">
+    <left-nav :is-collapsed="isCollapsed"></left-nav>
+    <el-container class="admin-home-content">
       <admin-header :is-collapsed.sync="isCollapsed"></admin-header>
       <el-card shadow="never" class="admin-home-content-page">
         <div class="admin-home-content-page-header">
@@ -36,6 +34,11 @@
         isCollapsed: false
       };
     },
+    computed: {
+      // sideWidth () {
+      //   return this.isCollapsed ? '64px' : '200px';
+      // }
+    },
     watch: {},
     mounted () {
       // this.setUserInfo();
@@ -56,8 +59,10 @@
 
 <style lang="scss" scoped>
   .admin-home {
+    display: flex;
     height: 100%;
     &-content {
+      flex: 1;
       display: flex;
       flex-direction: column;
       min-width: 600px;

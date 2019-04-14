@@ -1,5 +1,5 @@
 <template>
-  <div class="side-bar-wrapper">
+  <div class="side-bar-wrapper" :class="{collapse}">
     <template v-for="menu in routerConfig">
       <el-submenu
         :key="`sub-${menu.name}`"
@@ -36,6 +36,10 @@
       routerConfig: {
         type: Array,
         default: () => menus
+      },
+      collapse: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -47,8 +51,19 @@
 <style lang="scss" scoped>
   .side-bar-wrapper {
     /deep/ .el-submenu__title {
-      overflow: hidden;
       &:hover {background-color: #d1dbe5;}
+    }
+    &.collapse {
+      .el-submenu > .el-submenu__title span {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        display: inline-block;
+      }
+      /deep/ .el-submenu__icon-arrow {
+        display: none;
+      }
     }
     .el-menu-item {
       height: 40px;
@@ -56,12 +71,12 @@
       &:hover {background-color: #d1dbe5;}
       &:focus {background-color: inherit;}
     }
-    /deep/ .el-submenu .el-menu {background-color: #e4e8f1;}
+    /deep/ .el-submenu .el-menu:not(.el-menu--popup) {background-color: #e4e8f1;}
     /deep/ .el-submenu [class^=el-icon-] {
-      margin-right: 0;
+      /*margin-right: 0;*/
     }
     .el-menu-item [class^=el-icon-] {
-      margin-right: 0;
+      /*margin-right: 0;*/
     }
   }
 </style>

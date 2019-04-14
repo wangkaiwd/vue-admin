@@ -58,13 +58,11 @@
     height: 60px;
     background-color: $blue;
     &-icon {
-      padding-left: 20px;
+      margin-left: 20px;
       font-size: 24px;
       cursor: pointer;
       transition: all .4s;
-      &:hover {
-        color: $white;
-      }
+      color: $white;
       &.collapsed {
         transform: rotate(90deg);
       }

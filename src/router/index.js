@@ -47,7 +47,7 @@ const routes = [
     path: '/',
     name: '嵌套',
     component: lazyLoading('home'),
-    iconCls: 'el-icon-bell',
+    iconCls: 'el-icon-menu',
     children: [
       {
         path: '/menu1', name: 'menu1', component: lazyLoading('nest/menu1'), redirect: '/menu1/menu1-1',

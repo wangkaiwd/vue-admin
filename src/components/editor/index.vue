@@ -96,4 +96,8 @@
 </script>
 
 <style lang="scss" scoped>
+  .editor {
+    position: relative;
+    z-index: 10;
+  }
 </style>
