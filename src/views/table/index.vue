@@ -1,6 +1,6 @@
 <template>
   <div>
-    <count-up></count-up>
+    <count-up :start-val="4000"></count-up>
   </div>
 </template>
 
