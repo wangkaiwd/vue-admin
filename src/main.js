@@ -20,6 +20,13 @@ Vue.config.productionTip = false;
 const vm = new Vue({
   router,
   store, // 把store的实例注入到所有的子组件中，子组件可以通过this.$store来进行访问
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    if (sessionStorage.redirect) {
+      const redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      this.$router.push(redirect);
+    }
+  }
 }).$mount('#app');
 export default vm;
