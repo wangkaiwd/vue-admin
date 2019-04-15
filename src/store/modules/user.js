@@ -30,15 +30,13 @@ const user = {
       );
     },
     AUTH_TOKEN ({ commit }) {
-      return new Promise((resolve, reject) => {
-        fetchAuthToken().then(
-          res => {
-            commit('CHANGE_USER_INFO', res.data);
-            resolve();
-          },
-          err => reject(err)
-        );
-      });
+      return fetchAuthToken().then(
+        res => {
+          commit('CHANGE_USER_INFO', res.data);
+          return Promise.resolve();
+        },
+        err => Promise.reject(err)
+      );
     }
   }
 };
