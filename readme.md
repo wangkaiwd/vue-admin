@@ -34,10 +34,19 @@ yarn build:analyze
 后端是以`express`为主结合`mongodb`数据库完成：  
 `nodejs express mongodb jsonwebtoken`
 
+
 #### 项目依赖
-
+* [`axios`](https://github.com/axios/axios):基于`Promise`的`http`客户端，用于浏览器和`node.js`
+* [`qs`](https://github.com/ljharb/qs):支持解析嵌套的`querystring`。通俗来讲就是可以将以`key1=val1&key2=val2&...`格式的字符串转换为对象格式`{key1:val1,key2:val2,...}` 
+* [`elemente ui`](http://element-cn.eleme.io/#/zh-CN/component/installation):基于`Vue 2.0`的桌面端组件库
+* [`dayjs`](https://github.com/iamkun/dayjs): 一个轻量的日期处理库，用法和`moment.js`类似
+* [`countup.js`](https://inorganik.github.io/countUp.js/): 一个有趣的数字动画库
+* [`wangeditor`](http://www.wangeditor.com/): 基于javascript和css开发的 Web富文本编辑器， 轻量、简洁、易用、开源免费
+* [`echarts`](https://echarts.baidu.com/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts):一个使用 JavaScript 实现的开源可视化库
 #### 参考`demo`
-
+* [`vue-element-admin`](https://github.com/PanJiaChen/vue-element-admin)
+* [`vue-admin-template`](https://github.com/PanJiaChen/vue-admin-template)
+* [`vue-admin`](https://github.com/taylorchen709/vue-admin)
 ### 实现功能
 * 后台接口
     - [x] 登录
@@ -49,8 +58,9 @@ yarn build:analyze
 * `vue`组件封装
     - [x] 富文本组件(图片上传暂未实现)
     - [x] `echarts`组件
+    - [x] 区域分割组件
 * 项目模块
     - [x] `axios`请求封装
     - [x] `list`页面增删改查`demo`
-    - [ ] 左侧导航栏收缩
-    - [ ] `mock`数据接入
+    - [x] 左侧导航栏收缩
+    - [x] `mock`数据接入
