@@ -83,7 +83,7 @@ const routes = [
     component: lazyLoading('notFound/404')
   }
 ];
-const router = new VueRouter({ routes });
+const router = new VueRouter({ mode: process.env.NODE_ENV === 'development' ? 'hash' : 'history', routes });
 const menus = menuList(routes);
 // 想要将内容处理成自己想要的比较困难，通过动态为数组内容添加字段然后在遍历的过程中通过字段来确定是否显示相对来说会简单一些
 // 所以想要将数组的内容过滤掉相对来说会比较困难
