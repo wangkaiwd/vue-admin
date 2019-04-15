@@ -9,6 +9,7 @@
 
 项目中的大多数需求都是根据自己工作中碰到需求的一个总结，有可能带有一些片面性，在使用的时候要根据自己的需求进行改进。项目中也通过几个真实的后台接口，真实模拟了一个简单的增删改查，也对`jsonwebtoken`，进行了简单实践，这也算是自己在后端接口方面的一个实战。
 
+想要学习`node`的小伙伴可以点击这里:[`node`入门笔记](https://github.com/wangkaiwd/nodejs-relevant/blob/master/nodeBase/readme.md)，这是我在网上整理的一份`node`入门笔记，喜欢的可以`star`。
 #### 项目启动
 ```npm
 git clone git@github.com:wangkaiwd/vue-admin.git
