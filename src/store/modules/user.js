@@ -1,4 +1,4 @@
-import { fetchLogin } from 'api/user';
+import { fetchLogin, fetchAuthToken } from 'api/user';
 import vm from '@/main';
 
 const user = {
@@ -9,6 +9,7 @@ const user = {
   //同步更改state中的状态
   mutations: {
     CHANGE_USER_INFO (state, userInfo) {
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
       state.userInfo = userInfo;
     }
   },
@@ -19,7 +20,6 @@ const user = {
       fetchLogin(params).then(
         res => {
           cb(false);
-          localStorage.setItem('userInfo', JSON.stringify(res.data));
           commit('CHANGE_USER_INFO', res.data);
           vm.$router.push('/main');
         },
@@ -28,6 +28,17 @@ const user = {
           cb(false);
         }
       );
+    },
+    AUTH_TOKEN ({ commit }) {
+      return new Promise((resolve, reject) => {
+        fetchAuthToken().then(
+          res => {
+            commit('CHANGE_USER_INFO', res.data);
+            resolve();
+          },
+          err => reject(err)
+        );
+      });
     }
   }
 };
