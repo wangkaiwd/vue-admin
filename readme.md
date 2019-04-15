@@ -31,7 +31,7 @@ yarn build:analyze
 ```
 注意事项：
 * 本地开发的话可以结合对应的真实接口来使用，接口`dmoe`我写到了另外一个仓库：https://github.com/wangkaiwd/node-interface-demo。  
-* 使用真实接口开发的话要更换`axios`的`baseURL`,并在`vue.config.js`中配置服务代理
+* 使用真实接口开发的话要注释`axios`的`baseURL`,并在`vue.config.js`中配置服务代理
 #### 项目技术栈
 前端是以`vue`为主的技术栈，包括如下：  
 * `vue`
