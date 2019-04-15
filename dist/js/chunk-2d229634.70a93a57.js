@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d229634"],{dcdc:function(e,n,t){"use strict";t.r(n);var s=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("router-view",{staticClass:"admin-nest"})},c=[],a={name:"AdminNest"},i=a,r=t("2877"),u=Object(r["a"])(i,s,c,!1,null,"45e72b7f",null);n["default"]=u.exports}}]);

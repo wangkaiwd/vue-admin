@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d230f98"],{ef23:function(e,n,t){"use strict";t.r(n);var c=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[e._v("1及菜单测试")])},u=[],a={name:"index"},i=a,r=t("2877"),s=Object(r["a"])(i,c,u,!1,null,"297e9314",null);n["default"]=s.exports}}]);
