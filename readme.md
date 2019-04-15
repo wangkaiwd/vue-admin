@@ -10,6 +10,23 @@
 项目中的大多数需求都是根据自己工作中碰到需求的一个总结，有可能带有一些片面性，在使用的时候要根据自己的需求进行改进。项目中也通过几个真实的后台接口，真实模拟了一个简单的增删改查，也对`jsonwebtoken`，进行了简单实践，这也算是自己在后端接口方面的一个实战。
 
 #### 项目启动
+```npm
+git clone git@github.com:wangkaiwd/vue-admin.git
+cd vue-admin
+# 启动项目
+yarn
+yarn start
+
+# 打包
+yarn build:test
+yarn build:pro
+
+# 打包文件分析
+yarn build:analyze
+```
+注意事项：
+* 本地开发的话可以结合对应的真实接口来使用，接口`dmoe`我写到了另外一个仓库：node-interface-demo。  
+* 使用真实接口开发的话要更换`axios`的`baseURL`,并在`vue.config.js`中配置服务代理
 #### 项目技术栈
 前端是以`vue`为主的技术栈，包括如下：  
 `vue vue-router vuex axios`
@@ -21,7 +38,6 @@
 
 #### 参考`demo`
 
-#### 
 ### 实现功能
 * 后台接口
     - [x] 登录
