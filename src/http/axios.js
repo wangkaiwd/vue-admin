@@ -41,7 +41,7 @@ axiosInstance.interceptors.response.use(
     const { status, data } = err.response;
     if (status === 401) { // 请求头没有携带token或token失效
       goLogin('用户信息已失效，请重新登录');
-      console.log(err);
+      return Promise.reject(err);
     } else {
       console.dir(`响应出错: ${err}`);
       vm.$message.error('服务器响应出错！');
