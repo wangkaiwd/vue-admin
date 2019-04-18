@@ -68,7 +68,7 @@
         });
       },
       isLoading (loading) {
-        this.loading = loading;
+        this.loginLoading = loading;
       }
     }
   };

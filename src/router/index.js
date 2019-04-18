@@ -25,7 +25,7 @@ const routes = [
     component: lazyLoading('home'),
     iconCls: 'el-icon-date',
     children: [
-      { path: '/group2', name: '测试2', component: lazyLoading('group2') },
+      { path: '/splitPanel', name: '分割面板', component: lazyLoading('splitPanel') },
     ]
   },
   // 这里可以使用不同path来对应同一个组件Home
@@ -35,7 +35,7 @@ const routes = [
   //   component: lazyLoading('home'),
   //   icon: '',
   //   children: [
-  //     { path: '/demo2/group2', name: '测试2', component: lazyLoading('group2') },
+  //     { path: '/demo2/splitPanel', name: '测试2', component: lazyLoading('splitPanel') },
   //   ]
   // },
   {
@@ -43,7 +43,7 @@ const routes = [
     component: lazyLoading('home'),
     leaf: true,
     children: [
-      { path: '/oneLevel', iconCls: 'el-icon-bell', name: '1级菜单', component: lazyLoading('oneLevel') },
+      { path: '/editTable', iconCls: 'el-icon-bell', name: '编辑表格', component: lazyLoading('editTable') },
     ]
   },
   {

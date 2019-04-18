@@ -6,7 +6,7 @@ import { getToken, goLogin } from 'utils/user';
 const CODE_OK = 0;
 // 注意：在使用代理的时候不要设置baseUrl
 const axiosInstance = axios.create({
-  // baseURL: mock.baseURL,
+  baseURL: mock.baseURL,
   timeout: 10000
 });
 

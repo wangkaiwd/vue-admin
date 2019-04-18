@@ -1,19 +1,32 @@
 <template>
-  <div>
-    <count-up :start-val="4000"></count-up>
-  </div>
+  <edit-table
+    :columns="columns"
+    :tableData="tableData"
+  >
+  </edit-table>
 </template>
 
 <script>
-  import CountUp from 'components/countUp';
+  import EditTable from 'components/editTable';
+  import data from 'mock';
 
   export default {
-    name: 'index',
-    components: {
-      CountUp
-    },
+    name: 'AdminTable',
+    components: { EditTable },
     data () {
-      return {};
+      return {
+        columns: [
+          {
+            prop: 'name', width: '180', label: '姓名',
+            editable: {
+              widget: 'el-input'
+            }
+          },
+          { prop: 'age', width: '180', label: '年龄' },
+          { prop: 'email', label: '邮箱' }
+        ],
+        tableData: data.dataSource
+      };
     },
   };
 </script>
