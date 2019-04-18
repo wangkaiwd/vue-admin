@@ -43,7 +43,7 @@ const routes = [
     component: lazyLoading('home'),
     leaf: true,
     children: [
-      { path: '/editTable', iconCls: 'el-icon-bell', name: '编辑表格', component: lazyLoading('editTable') },
+      { path: '/dirTree', iconCls: 'el-icon-bell', name: '目录树', component: lazyLoading('dirTree') },
     ]
   },
   {

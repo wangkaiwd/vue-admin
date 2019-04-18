@@ -30,7 +30,7 @@
 
 <script type="text/jsx">
   import ColRender from './colRender';
-
+  // FIXME: 这里使用index来进行更新数组会不会有问题
   export default {
     name: 'EditTable',
     components: { ColRender },
@@ -42,7 +42,6 @@
       return {
         copyData: JSON.parse(JSON.stringify(this.tableData)),
         editIds: [],
-        newValue: ''
       };
     },
     computed: {
@@ -53,23 +52,26 @@
     methods: {
       onInput ({ row, column, index }, newValue) {
         this.copyData[index][column.prop] = newValue;
-        this.newValue = newValue;
       },
-      onClick ({ row, column, index }) {
+      onClick ({ row, column, index }, newValue) {
         const i = this.editIds.indexOf(`${column.prop}_${index}`);
+        const { required = true } = column.editable;
         if (i === -1) {
           return this.editIds.push(`${column.prop}_${index}`);
         }
-        if (!this.newValue && this.newValue !== 0) return this.$message.warning('内容不能为空');
+        if (!newValue && newValue !== 0 && required) return this.$message.warning('内容不能为空');
         this.editIds.splice(i, 1);
         this.$emit('update:table-data', this.copyData);
         // 暴露编辑完成事件，将修改的信息传回
-        this.$emit('edit-ok', { row, column, index, newValue: this.newValue });
+        this.$emit('edit-ok', { row, column, index, newValue });
+      },
+      onBlur () {
+
       },
       generateEditColumns () {
         const editColumns = this.columns.map(col => {
           if ('editable' in col) {
-            const { widget, ...rest } = col.editable;
+            const { widget, trigger, ...rest } = col.editable;
             const render = (h, { row, column, index }) => {
               const isEditing = this.editIds.includes(`${column.prop}_${index}`);
               return (
@@ -88,7 +90,7 @@
                   }
 
                   <el-button
-                    on-click={this.onClick.bind(this, { row, column, index })}
+                    on-click={this.onClick.bind(this, { row, column, index }, row[column.prop])}
                     class="edit-button"
                   >
                     {isEditing ? '保存' : '编辑'}

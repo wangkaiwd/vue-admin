@@ -17,12 +17,24 @@
       return {
         columns: [
           {
-            prop: 'name', width: '180', label: '姓名',
+            prop: 'name', width: '200', label: '姓名',
             editable: {
-              widget: 'el-input'
+              widget: 'el-input',
+              style: { width: '100px' },
+              required: false,
+              trigger: 'blur'
             }
           },
-          { prop: 'age', width: '180', label: '年龄' },
+          {
+            prop: 'age', width: '200', label: '年龄',
+            editable: {
+              widget: 'el-input-number',
+              min: 2,
+              max: 30,
+              controls: false,
+              style: { width: '100px' }
+            }
+          },
           { prop: 'email', label: '邮箱' }
         ],
         tableData: data.dataSource

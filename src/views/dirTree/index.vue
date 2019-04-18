@@ -1,5 +1,5 @@
 <template>
-  <div>1及菜单测试</div>
+  <div>目录树</div>
 </template>
 
 <script>
