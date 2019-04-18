@@ -53,9 +53,10 @@
       onInput ({ row, column, index }, newValue) {
         this.copyData[index][column.prop] = newValue;
       },
-      onClick ({ row, column, index }, newValue) {
+      onClick ({ row, column, index }) {
         const i = this.editIds.indexOf(`${column.prop}_${index}`);
         const { required = true } = column.editable;
+        const newValue = row[column.prop];
         if (i === -1) {
           return this.editIds.push(`${column.prop}_${index}`);
         }
@@ -65,8 +66,9 @@
         // 暴露编辑完成事件，将修改的信息传回
         this.$emit('edit-ok', { row, column, index, newValue });
       },
-      onBlur () {
-
+      onBlur ({ row, column, index }) {
+        this.copyData[index][column.prop] = row[column.prop];
+        this.$emit('update:tableData', this.copyData);
       },
       generateEditColumns () {
         const editColumns = this.columns.map(col => {
@@ -77,24 +79,30 @@
               return (
                 <div class="edit-col">
                   {
-                    isEditing
+                    (isEditing || trigger === 'blur')
                       ?
                       <col.editable.widget
                         value={row[column.prop]}
                         on-input={this.onInput.bind(this, { row, column, index })}
+                        on-blur={
+                          trigger === 'blur' ? this.onBlur.bind(this, { row, column, index }) : () => {}
+                        }
                         {...{ attrs: rest }}
                       >
                       </col.editable.widget>
                       :
                       <span>{row[column.prop]}</span>
                   }
+                  {
+                    trigger !== 'blur' &&
+                    <el-button
+                      on-click={this.onClick.bind(this, { row, column, index })}
+                      className="edit-button"
+                    >
+                      {isEditing ? '保存' : '编辑'}
+                    </el-button>
+                  }
 
-                  <el-button
-                    on-click={this.onClick.bind(this, { row, column, index }, row[column.prop])}
-                    class="edit-button"
-                  >
-                    {isEditing ? '保存' : '编辑'}
-                  </el-button>
                 </div>
               );
             };

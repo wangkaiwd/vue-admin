@@ -29,8 +29,8 @@
             prop: 'age', width: '200', label: '年龄',
             editable: {
               widget: 'el-input-number',
-              min: 2,
-              max: 30,
+              min: 1,
+              max: 100,
               controls: false,
               style: { width: '100px' }
             }
