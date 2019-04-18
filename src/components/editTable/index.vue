@@ -21,8 +21,8 @@
         >
         </col-render>
         <span v-else>
-            {{row[item.prop]}}
-          </span>
+          {{row[item.prop]}}
+        </span>
       </template>
     </el-table-column>
   </el-table>
