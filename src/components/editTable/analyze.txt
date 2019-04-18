@@ -1,0 +1,15 @@
+需求分析：
+
+1. api:一般都是某一列可以编辑，所以为columns添加一个属性editable: true
+2. 修改操作情况：
+        a. input框输入的时候更改dataSource
+        b. input框失去焦点的时候更改dataSource
+        c. 添加编辑保存按钮，可以在点击保存的时候更改dataSource
+        a,b情况在用户体验上是没有区别的，但是在代码性能上面有极大的提升
+        c情况在添加了编辑保存之后，要考虑样式问题
+3. 输入框类型(常见)：
+    a. input type=text 输入文本，输入文本数字组合
+    b. inputNumber 只能输入数字
+    常用的属性：a. placeholder
+                b. max min precision disabled
+                e. required validator
