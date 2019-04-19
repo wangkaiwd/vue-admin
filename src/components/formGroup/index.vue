@@ -108,6 +108,7 @@
    *      2. checkbox 和 radio这来个元素有些特殊，通过label来控制对应的value值，通过slot来显示对应的文字信息，
    *          而select是和正常理解一样的
    *      3. 错误信息回显什么时候该消失？
+   *      4. 组件的key值设计会不会有什么问题？
    */
   export default {
     name: 'FormGroup',
