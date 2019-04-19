@@ -48,20 +48,11 @@ const routes = [
   },
   {
     path: '/',
-    name: '嵌套',
+    name: '动态form',
     component: lazyLoading('home'),
     iconCls: 'el-icon-menu',
     children: [
-      {
-        path: '/menu1', name: 'menu1', component: lazyLoading('nest/menu1'), redirect: '/menu1/menu1-1',
-        children: [
-          { path: '/menu1/menu1-1', name: 'menu1-1', component: lazyLoading('nest/menu1/menu1-1'), },
-          { path: '/menu1/menu1-2', name: 'menu1-2', component: lazyLoading('nest/menu1/menu1-2'), }
-        ]
-      },
-      {
-        path: '/menu2', name: 'menu2', component: lazyLoading('nest/menu2'),
-      },
+      {path: '/mapForm', name: '渲染form', component: lazyLoading('mapForm')}
     ]
   },
   {
