@@ -1,5 +1,5 @@
 <template>
-  <form-group></form-group>
+  <form-group :form-list="formList"></form-group>
 </template>
 
 <script>
@@ -14,27 +14,25 @@
       rules: [
         { required: true, message: '请输入输入框', trigger: 'change' }
       ],
-      widgetProps: {}
+      widgetProps: {
+        placeholder: '请输入内容'
+      }
     },
     {
       label: '单选',
       value: '2',
       prop: 'radio',
       widget: 'el-radio-group',
-      rules: [
-        { required: true, message: '请选择单选', trigger: 'change' }
-      ],
-      widgetProps: {},
       children: [
         {
           widget: 'el-radio',
-          value: '1',
-          label: 'radio1'
+          label: '1',
+          title: 'radio1'
         },
         {
           widget: 'el-radio',
-          value: '2',
-          label: 'radio2'
+          label: '2',
+          title: 'radio2'
         }
       ]
     },
@@ -45,9 +43,9 @@
       widget: 'el-checkbox-group',
       widgetProps: {},
       children: [
-        { label: 'checkbox1', widget: 'el-checkbox', value: 1, },
-        { label: 'checkbox2', widget: 'el-checkbox', value: 2, },
-        { label: 'checkbox3', widget: 'el-checkbox', value: 3, },
+        { title: 'checkbox1', widget: 'el-checkbox', label: 1, },
+        { title: 'checkbox2', widget: 'el-checkbox', label: 2, },
+        { title: 'checkbox3', widget: 'el-checkbox', label: 3, },
       ]
     },
     {
@@ -57,8 +55,8 @@
       widget: 'el-select',
       widgetProps: {},
       children: [
-        { label: 'select1', widget: 'el-option', value: '1' },
-        { label: 'select2', widget: 'el-option', value: '2' },
+        { label: 'select1', widget: 'el-option', value: 1 },
+        { label: 'select2', widget: 'el-option', value: 2 },
       ]
     }
   ];
