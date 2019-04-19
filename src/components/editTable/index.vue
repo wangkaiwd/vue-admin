@@ -82,7 +82,7 @@
                     (isEditing || trigger === 'blur')
                       ?
                       <col.editable.widget
-                        value={row[column.prop]}
+                        vModel={row[column.prop]}
                         on-input={this.onInput.bind(this, { row, column, index })}
                         on-blur={
                           trigger === 'blur' ? this.onBlur.bind(this, { row, column, index }) : () => {}
@@ -102,7 +102,6 @@
                       {isEditing ? '保存' : '编辑'}
                     </el-button>
                   }
-
                 </div>
               );
             };
