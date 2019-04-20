@@ -8,7 +8,7 @@ const routerTemplate = () => {
       page: {
         'dashboard': true,
         'main': true,
-        'editTable': false,
+        'editTable': true,
         'editor': true,
         'list': true,
         'components': true,

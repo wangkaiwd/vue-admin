@@ -15,11 +15,11 @@ import Vue from 'vue';
 const vm = new Vue();
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  if (to.path !== '/login' && to.path !== 'register') {
+  if (to.path !== '/login' && to.path !== '/register') {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (userInfo) {
       store.commit('user/CHANGE_USER_INFO', userInfo);
-      const noAuth = (!to.meta.access || !store.getters['router/page'][to.meta.access]) && to.path !== '/401';
+      const noAuth = to.meta.access && !store.getters['router/page'][to.meta.access] && to.path !== '/401';
       if (noAuth) {
         return next({ path: '/401', replace: true });
       }

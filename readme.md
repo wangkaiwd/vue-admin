@@ -71,7 +71,7 @@ const data = {
 ```
 在路由列表配置的时候，我们设置了`meta`属性，通过`meta`中的`access`属性来过滤出符合有权限的路由列表。这里如果后端返回的数据包含所有的权限，那我们可以通过`beforeEach`全局前置路由守卫来判断将要进入的页面是否有权限，没有权限跳转`401`页面
 ```js
-const noAuth = (!to.meta.access || !store.getters['router/page'][to.meta.access]) && to.path !== '/401';
+const noAuth = to.meta.access && !store.getters['router/page'][to.meta.access] && to.path !== '/401';
 if (noAuth) {
   return next({ path: '/401', replace: true });
 }
