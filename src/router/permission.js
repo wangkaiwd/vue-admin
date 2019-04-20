@@ -15,23 +15,29 @@ import Vue from 'vue';
 const vm = new Vue();
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  if (to.path !== '/login') {
+  if (to.path !== '/login' && to.path !== 'register') {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (userInfo) {
       store.commit('user/CHANGE_USER_INFO', userInfo);
+      const noAuth = (!to.meta.access || !store.getters['router/page'][to.meta.access]) && to.path !== '/401';
+      if (noAuth) {
+        return next({ path: '/401', replace: true });
+      }
       next();
     } else {
       vm.$message.warning('请先登录后再访问');
       localStorage.clear();
       next('/login');
     }
-  } else { // 如果是登录页面
+  } else if (to.path === '/login') { // 如果是登录页面
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (!userInfo) return next();
     store.commit('user/CHANGE_USER_INFO', userInfo);
     vm.$message.success('用户已登录');
     NProgress.done();
     next('/main');
+  } else {
+    next();
   }
 });
 router.afterEach((to, from, next) => {

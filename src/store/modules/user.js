@@ -15,18 +15,14 @@ const user = {
   },
   //异步更改state中的状态
   actions: {
-    SET_USER_INFO ({ commit }, { params, cb }) {
-      cb(true);
-      fetchLogin(params).then(
+    SET_USER_INFO ({ commit }, { params }) {
+      return fetchLogin(params).then(
         res => {
-          cb(false);
           commit('CHANGE_USER_INFO', res.data);
           vm.$router.push('/main');
+          return Promise.resolve(res.data);
         },
-        err => {
-          console.log(err);
-          cb(false);
-        }
+        err => Promise.reject(err)
       );
     },
     AUTH_TOKEN ({ commit }) {

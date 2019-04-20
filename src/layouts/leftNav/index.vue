@@ -9,7 +9,11 @@
     <router-link tag="div" to="/main" class="left-nav-logo" :class="{collapsed:isCollapsed}">
       {{logoText}}
     </router-link>
-    <side-bar :collapse="isCollapsed"></side-bar>
+    <side-bar
+      :collapse="isCollapsed"
+      :router-config="menus"
+    >
+    </side-bar>
   </el-menu>
 </template>
 
@@ -25,6 +29,7 @@
     },
     computed: {
       ...mapState(['isCollapsed']),
+      ...mapState('router', ['menus']),
       logoText () {
         return this.isCollapsed ? 'VUE' : 'VUEADMIN';
       }

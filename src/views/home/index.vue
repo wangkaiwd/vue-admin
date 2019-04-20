@@ -23,10 +23,6 @@
   import AdminFooter from 'layouts/footer';
   import AdminBread from 'layouts/breadcrumb';
   import LeftNav from 'layouts/leftNav';
-  import { createNamespacedHelpers } from 'vuex';
-
-  const { mapMutations } = createNamespacedHelpers('user');
-  import { goLogin } from 'utils/user';
 
   export default {
     name: 'AdminHome',
@@ -34,9 +30,7 @@
     watch: {},
     mounted () {
     },
-    methods: {
-
-    }
+    methods: {}
   };
 </script>
 

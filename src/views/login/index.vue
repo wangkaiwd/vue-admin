@@ -60,16 +60,25 @@
     },
     methods: {
       ...mapActions('user', ['SET_USER_INFO']),
+      ...mapActions('router', ['GET_MENUS']),
       onSubmit () {
         this.$refs.formItem.validate((valid) => {
           if (valid) {
-            this.SET_USER_INFO({ params: this.formItem, cb: this.isLoading });
+            this.loginLoading = true;
+            this.SET_USER_INFO({ params: this.formItem })
+              .then(
+                () => {
+                  this.loginLoading = false;
+                  return this.GET_MENUS();
+                },
+                () => this.loginLoading = false
+              )
+              .then(
+                res => console.log(res)
+              );
           }
         });
       },
-      isLoading (loading) {
-        this.loginLoading = loading;
-      }
     }
   };
 </script>

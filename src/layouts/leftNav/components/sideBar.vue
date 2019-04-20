@@ -28,14 +28,12 @@
   </div>
 </template>
 <script>
-  import { menus } from 'router';
-
   export default {
     name: 'SideBar',
     props: {
       routerConfig: {
         type: Array,
-        default: () => menus
+        default: () => []
       },
       collapse: {
         type: Boolean,

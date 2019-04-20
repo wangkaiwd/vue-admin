@@ -9,25 +9,53 @@ const authRoutes = [
   {
     path: '/',
     name: 'Dashboard',
-    access: 'dashboard',
+    // access: 'dashboard', // 这些额外的数据并不会出现在路由对象中，需要使用meta属性
     component: lazyLoading('home'),
     redirect: '/main',
     iconCls: 'el-icon-sold-out',
+    meta: { access: 'dashboard' },
     children: [
-      { path: '/main', name: '主页', access: 'main', component: lazyLoading('main') },
-      { path: '/editTable', name: '可编辑表格', access: 'editTable', component: lazyLoading('editTable') },
-      { path: '/editor', name: '富文本', access: 'editor', component: lazyLoading('editor') },
-      { path: '/list', name: '列表', access: 'list', component: lazyLoading('list') },
+      {
+        path: '/main',
+        name: '主页',
+        component: lazyLoading('main'),
+        meta: { access: 'main' },
+      },
+      {
+        path: '/editTable',
+        name: '可编辑表格',
+        component: lazyLoading('editTable'),
+        meta: { access: 'editTable' },
+      },
+      {
+        path: '/editor',
+        name: '富文本',
+        component: lazyLoading('editor'),
+        meta: { access: 'editor' }
+      },
+      {
+        path: '/list',
+        name: '列表',
+        access: 'list',
+        component: lazyLoading('list'),
+        meta: { access: 'list' }
+      },
     ]
   },
   {
     path: '/',
     name: '组件',
-    access: 'components',
     component: lazyLoading('home'),
     iconCls: 'el-icon-date',
+    meta: { access: 'components' },
     children: [
-      { path: '/splitPanel', name: '分割面板', access: 'splitPanel', component: lazyLoading('splitPanel') },
+      {
+        path: '/splitPanel',
+        name: '分割面板',
+        access: 'splitPanel',
+        component: lazyLoading('splitPanel'),
+        meta: { access: 'splitPanel' },
+      },
     ]
   },
   {
@@ -35,17 +63,28 @@ const authRoutes = [
     component: lazyLoading('home'),
     leaf: true,
     children: [
-      { path: '/dirTree', iconCls: 'el-icon-bell', name: '目录树', access: 'dirTree', component: lazyLoading('dirTree') },
+      {
+        path: '/dirTree',
+        iconCls: 'el-icon-bell',
+        name: '目录树',
+        component: lazyLoading('dirTree'),
+        meta: { access: 'dirTree' }
+      },
     ]
   },
   {
     path: '/',
     name: 'form',
-    access: 'form',
     component: lazyLoading('home'),
     iconCls: 'el-icon-menu',
+    meta: { access: 'form' },
     children: [
-      { path: '/mapForm', name: '渲染form', access: 'mapForm', component: lazyLoading('mapForm') }
+      {
+        path: '/mapForm',
+        name: '渲染form',
+        component: lazyLoading('mapForm'),
+        meta: { access: 'mapForm' },
+      }
     ]
   }
 ];
@@ -63,10 +102,16 @@ const commonRoutes = [
     component: lazyLoading('login')
   },
   {
+    path: '/401',
+    name: '401',
+    hidden: true,
+    component: lazyLoading('errorPages/401')
+  },
+  {
     path: '*',
     name: '404',
     hidden: true,
-    component: lazyLoading('notFound/404')
+    component: lazyLoading('errorPages/404')
   }
 ];
 const routes = [...authRoutes, ...commonRoutes];
