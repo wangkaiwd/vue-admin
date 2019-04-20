@@ -55,8 +55,8 @@
       widget: 'el-select',
       widgetProps: {},
       children: [
-        { label: 'select1', widget: 'el-option', value: 1 },
-        { label: 'select2', widget: 'el-option', value: 2 },
+        { title: 'select1', widget: 'el-option', value: 1 },
+        { title: 'select2', widget: 'el-option', value: 2 },
       ]
     }
   ];

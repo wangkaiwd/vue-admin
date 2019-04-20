@@ -14,8 +14,6 @@ import Vue from 'vue';
 
 const vm = new Vue();
 router.beforeEach((to, from, next) => {
-  console.log('路由加载开始');
-  console.log(to.path);
   NProgress.start();
   if (to.path !== '/login') {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -37,8 +35,6 @@ router.beforeEach((to, from, next) => {
   }
 });
 router.afterEach((to, from, next) => {
-  console.log('路由加载完成');
-  console.log(to.path);
   NProgress.done();
 });
 

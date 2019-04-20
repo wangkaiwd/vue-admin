@@ -19,7 +19,8 @@
             :key="child.label"
           >
             <!-- checkbox和radio不需要value,只通过label就可以-->
-            <span v-if="!child.value">{{child.title}}</span>
+            <!-- 这里checkbox, radio和select都通过title以slot插槽的形式渲染-->
+            <span>{{child.title}}</span>
           </component>
         </template>
       </component>
