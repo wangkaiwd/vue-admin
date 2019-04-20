@@ -14,7 +14,7 @@ const routes = [
     iconCls: 'el-icon-sold-out',
     children: [
       { path: '/main', name: '主页', component: lazyLoading('main') },
-      { path: '/table', name: 'Table', component: lazyLoading('table') },
+      { path: '/editTable', name: '可编辑表格', component: lazyLoading('table') },
       { path: '/editor', name: '富文本', component: lazyLoading('editor') },
       { path: '/list', name: '列表', component: lazyLoading('list') },
     ]
