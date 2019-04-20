@@ -11,9 +11,6 @@
 想要学习`node`的小伙伴可以点击这里:[`node`入门笔记](https://github.com/wangkaiwd/nodejs-relevant/blob/master/nodeBase/readme.md)，这是我在网上整理的一份`node`入门笔记，喜欢的可以`star`。
 
 项目截图： 
-![home](./screenshots/home.gif)
-
-![home](./screenshots/others.gif)
 #### 项目启动
 ```npm
 git clone git@github.com:wangkaiwd/vue-admin.git
@@ -52,10 +49,91 @@ yarn build:analyze
 
 #### 权限控制
 在实际工作中，前端是不可能一个人完成权限控制的，我们需要与后端配合。这个时候后端需要返回给我们类似这样的数据：  
-```json
-
+```js
+const data = {
+  page: {
+    'dashboard': true,
+    'main': true,
+    'editTable': false,
+    'editor': true,
+    'list': true,
+    'components': true,
+    'splitPanel': true,
+    'dirTree': true,
+    'form': true,
+    'mapForm': true
+  },
+  component: {
+    'list:edit':true,
+    'list:publish': true
+  }
+}
 ```
-之后我们要根据后端返回的数据，将路由列表进行过滤，得到对应用户对应权限的路由列表
+在路由列表配置的时候，我们设置了`meta`属性，通过`meta`中的`access`属性来过滤出符合有权限的路由列表。这里如果后端返回的数据包含所有的权限，那我们可以通过`beforeEach`全局前置路由守卫来判断将要进入的页面是否有权限，没有权限跳转`401`页面
+```js
+const noAuth = (!to.meta.access || !store.getters['router/page'][to.meta.access]) && to.path !== '/401';
+if (noAuth) {
+  return next({ path: '/401', replace: true });
+}
+```
+由于`menus`会在侧边栏组件，登录组件以及路由守卫和初始化组件(刷新页面重新获取信息)的时候用到，而如果我们的权限如果精确到操作按钮的话，那么几乎每个页面都可能用到，所以我们将这些信息存储到`vuex`中，单独用一个`router modules`来进行管理：
+```js
+// 目录： store -> modules -> routers
+
+/**
+ * 根据权限信息过滤路由生成的侧边栏
+ * FIXME: 在调用之前注意要深拷贝
+ * @param array 侧边栏数组
+ * @param authInfo 权限信息
+ * @returns {array} 返回过滤后的新数组
+ */
+const getAuthMenus = (array, authInfo) => {
+  return array.filter(item => {
+    if (item.meta.access && authInfo.page[item.meta.access]) {
+      if (item.children) item.children = getAuthMenus(item.children, authInfo);
+      return true;
+    }
+  });
+};
+const router = {
+  namespaced: true,
+  state: {
+    authInfo: {},
+    menus: []
+  },
+  getters: {
+    page (state) {
+      return state.authInfo.page || {};
+    },
+    component (state) {
+      return state.authInfo.component || {};
+    }
+  },
+  mutations: {
+    SET_MENUS (state, { authInfo, menus }) {
+      localStorage.setItem('authInfo', JSON.stringify(authInfo));
+      localStorage.setItem('menus', JSON.stringify(menus));
+      state.menus = menus;
+      state.authInfo = authInfo;
+    }
+  },
+  actions: {
+    GET_MENUS ({ commit }) {
+      // 调用实机：1. 用户登录之后， 2. 权限发生变化之后
+      return fetchRouter().then(
+        res => {
+          // 当访问不存时要跳转401页面
+          // 这里深拷贝之后component属性会消失，需要留意一下
+          const copyMenus = JSON.parse(JSON.stringify(menus));
+          const authMenus = getAuthMenus(copyMenus, res.data);
+          commit('SET_MENUS', { authInfo: res.data, menus: authMenus });
+          return Promise.resolve({ authInfo: res.data, menus: authMenus });
+        }
+      );
+    }
+  }
+};
+```
 
 #### 参考`demo`
 参考了社区优秀的`vue-admin`项目，给各位大佬`star`:   

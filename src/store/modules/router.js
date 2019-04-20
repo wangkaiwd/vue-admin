@@ -5,6 +5,13 @@
 import { menus } from 'router';
 import { fetchRouter } from 'api/user';
 
+/**
+ * 根据权限信息过滤路由生成的侧边栏
+ * FIXME: 在调用之前注意要深拷贝
+ * @param array 侧边栏数组
+ * @param authInfo 权限信息
+ * @returns {array} 返回过滤后的新数组
+ */
 const getAuthMenus = (array, authInfo) => {
   return array.filter(item => {
     if (item.meta.access && authInfo.page[item.meta.access]) {
