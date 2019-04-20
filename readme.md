@@ -1,4 +1,5 @@
 ## `vue`项目实战小节
+> 由于项目是边学习边进行实践，所以对应的注释会比较多，有些问题没有解释清楚还请谅解
 ### 项目初衷
 在最近的一段时间，一直负责公司的后台管理系统的开发和维护，整个技术栈涉及到`react + redux + redux-thunk + ant design`,并且将`react`升级到了`16.8`最新版本，尝试了`react hooks`的使用。之后自己也在`github`写了一个[`react`版本](https://github.com/wangkaiwd/react-create-app-kit)的后台管理系统的模板。
 
