@@ -49,6 +49,14 @@ yarn build:analyze
 * [`countup.js`](https://inorganik.github.io/countUp.js/): 一个有趣的数字动画库
 * [`wangeditor`](http://www.wangeditor.com/): 基于javascript和css开发的 Web富文本编辑器， 轻量、简洁、易用、开源免费
 * [`echarts`](https://echarts.baidu.com/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts):一个使用 JavaScript 实现的开源可视化库
+
+#### 权限控制
+在实际工作中，前端是不可能一个人完成权限控制的，我们需要与后端配合。这个时候后端需要返回给我们类似这样的数据：  
+```json
+
+```
+之后我们要根据后端返回的数据，将路由列表进行过滤，得到对应用户对应权限的路由列表
+
 #### 参考`demo`
 参考了社区优秀的`vue-admin`项目，给各位大佬`star`:   
 * [`vue-element-admin`](https://github.com/PanJiaChen/vue-element-admin)

@@ -10,6 +10,10 @@ import './registerServiceWorker';
 import { formatTime } from 'filters/tools';
 import AdminIcon from 'components/icon';
 
+if (process.env.NODE_ENV === 'development') {
+  // require是同步引入
+  (async () => await import('mock'))();
+}
 Vue.use(ElementUI);
 // 将js文件引入，如果需要用到里面的函数或者变量，需要将其导出，外部才能使用，否则只是执行js文件中的代码
 import 'router/permission';

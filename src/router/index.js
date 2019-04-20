@@ -5,56 +5,51 @@ Vue.use(VueRouter);
 import lazyLoading from './lazyLoading';
 import menuList from './generateMenus';
 
-const routes = [
+const authRoutes = [
   {
     path: '/',
-    name: '导航一',
+    name: 'Dashboard',
+    access: 'dashboard',
     component: lazyLoading('home'),
     redirect: '/main',
     iconCls: 'el-icon-sold-out',
     children: [
-      { path: '/main', name: '主页', component: lazyLoading('main') },
-      { path: '/editTable', name: '可编辑表格', component: lazyLoading('table') },
-      { path: '/editor', name: '富文本', component: lazyLoading('editor') },
-      { path: '/list', name: '列表', component: lazyLoading('list') },
+      { path: '/main', name: '主页', access: 'main', component: lazyLoading('main') },
+      { path: '/editTable', name: '可编辑表格', access: 'editTable', component: lazyLoading('editTable') },
+      { path: '/editor', name: '富文本', access: 'editor', component: lazyLoading('editor') },
+      { path: '/list', name: '列表', access: 'list', component: lazyLoading('list') },
     ]
   },
   {
     path: '/',
-    name: '导航二',
+    name: '组件',
+    access: 'components',
     component: lazyLoading('home'),
     iconCls: 'el-icon-date',
     children: [
-      { path: '/splitPanel', name: '分割面板', component: lazyLoading('splitPanel') },
+      { path: '/splitPanel', name: '分割面板', access: 'splitPanel', component: lazyLoading('splitPanel') },
     ]
   },
-  // 这里可以使用不同path来对应同一个组件Home
-  // {
-  //   path: '/demo2',
-  //   name: '导航二',
-  //   component: lazyLoading('home'),
-  //   icon: '',
-  //   children: [
-  //     { path: '/demo2/splitPanel', name: '测试2', component: lazyLoading('splitPanel') },
-  //   ]
-  // },
   {
     path: '/',
     component: lazyLoading('home'),
     leaf: true,
     children: [
-      { path: '/dirTree', iconCls: 'el-icon-bell', name: '目录树', component: lazyLoading('dirTree') },
+      { path: '/dirTree', iconCls: 'el-icon-bell', name: '目录树', access: 'dirTree', component: lazyLoading('dirTree') },
     ]
   },
   {
     path: '/',
-    name: '动态form',
+    name: 'form',
+    access: 'form',
     component: lazyLoading('home'),
     iconCls: 'el-icon-menu',
     children: [
-      { path: '/mapForm', name: '渲染form', component: lazyLoading('mapForm') }
+      { path: '/mapForm', name: '渲染form', access: 'mapForm', component: lazyLoading('mapForm') }
     ]
-  },
+  }
+];
+const commonRoutes = [
   {
     path: '/register',
     name: 'register',
@@ -74,6 +69,7 @@ const routes = [
     component: lazyLoading('notFound/404')
   }
 ];
+const routes = [...authRoutes, ...commonRoutes];
 const router = new VueRouter({ routes });
 const menus = menuList(routes);
 // 想要将内容处理成自己想要的比较困难，通过动态为数组内容添加字段然后在遍历的过程中通过字段来确定是否显示相对来说会简单一些

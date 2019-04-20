@@ -2,7 +2,9 @@
  * Created by wangkai on 2019/4/18
  */
 import Mock from 'mockjs';
+import routerTemplate from './response/router';
 
+const prefix = '/api/';
 const tableTemplate = {
   'dataSource|10': [
     {
@@ -14,4 +16,6 @@ const tableTemplate = {
   ]
 };
 const data = Mock.mock(tableTemplate);
+
+Mock.mock(`${prefix}users/authInfo`, 'GET', routerTemplate);
 export default data;
