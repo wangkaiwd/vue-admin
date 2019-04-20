@@ -52,7 +52,7 @@ const routes = [
     component: lazyLoading('home'),
     iconCls: 'el-icon-menu',
     children: [
-      {path: '/mapForm', name: '渲染form', component: lazyLoading('mapForm')}
+      { path: '/mapForm', name: '渲染form', component: lazyLoading('mapForm') }
     ]
   },
   {
