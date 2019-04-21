@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
-Vue.use(VueRouter);
 import lazyLoading from './lazyLoading';
 import menuList from './generateMenus';
+
+Vue.use(VueRouter);
 
 const authRoutes = [
   {
@@ -20,12 +20,6 @@ const authRoutes = [
         name: '主页',
         component: lazyLoading('main'),
         meta: { access: 'main' },
-      },
-      {
-        path: '/editTable',
-        name: '可编辑表格',
-        component: lazyLoading('editTable'),
-        meta: { access: 'editTable' },
       },
       {
         path: '/editor',
@@ -55,6 +49,12 @@ const authRoutes = [
         access: 'splitPanel',
         component: lazyLoading('splitPanel'),
         meta: { access: 'splitPanel' },
+      },
+      {
+        path: '/editTable',
+        name: '编辑表格',
+        component: lazyLoading('editTable'),
+        meta: { access: 'editTable' },
       },
     ]
   },

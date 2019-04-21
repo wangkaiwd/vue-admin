@@ -21,10 +21,14 @@ export const goLogin = (message) => {
  * @returns {Promise<any>}
  */
 export const initMenus = () => {
-  const authInfo = JSON.parse(localStorage.getItem('authInfo'));
-  const menus = JSON.parse(localStorage.getItem('menus'));
-  if (!authInfo || !menus) {
-    return store.dispatch('router/GET_MENUS');
-  }
-  store.commit('router/SET_MENUS', { authInfo, menus });
+  return new Promise((resolve, reject) => {
+    const authInfo = JSON.parse(localStorage.getItem('authInfo'));
+    const menus = JSON.parse(localStorage.getItem('menus'));
+    if (!authInfo || !menus) {
+      // 发请求的时候要有用户信息
+      return store.dispatch('router/GET_MENUS');
+    }
+    store.commit('router/SET_MENUS', { authInfo, menus, hasGetRouter: true });
+    resolve();
+  });
 };

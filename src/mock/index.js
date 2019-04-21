@@ -17,5 +17,5 @@ const tableTemplate = {
   ]
 };
 const data = Mock.mock(tableTemplate);
-Mock.mock(`${mock.baseURL}${prefix}users/authInfo`, routerTemplate);
+Mock.mock(`${mock.baseURL}${prefix}users/authInfo`, 'get', routerTemplate);
 export default data;

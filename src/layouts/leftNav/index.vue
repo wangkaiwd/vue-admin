@@ -38,7 +38,7 @@
     methods: {
       ...mapMutations('topNav', ['ADD_NAV']),
       onSelect (index, indexPath) {
-        console.log(index, indexPath);
+        this.ADD_NAV({ index, menus: this.menus });
       }
     }
   };

@@ -59,7 +59,7 @@
 
     .slide-left-enter-active,
     .slide-left-leave-active {
-      transition: all .4s cubic-bezier(.55, 0, .1, 1);
+      transition: all .2s cubic-bezier(.55, 0, .1, 1);
       transform: translateX(0);
     }
     .slide-left-enter {

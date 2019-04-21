@@ -11,19 +11,35 @@ import store from 'store';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import Vue from 'vue';
+import { initMenus } from 'utils/user';
 
 const vm = new Vue();
+// 这里的大概逻辑：
+//  1. 用户信息是否存在：
+//      a.存在如果去登陆页面，要提示已登陆，重新回到主页
+//      b.存在没有去登录页执行next()
+//  2. 用户信息不存在：请登录后访问
+//  3. 用户访问的页面是否有权限，有权限的话直接访问，没有权限跳转到401
+
+const authRouter = (to, next) => {
+  const noAuth = to.meta.access && !store.getters['router/page'][to.meta.access] && to.path !== '/401';
+  if (noAuth) {
+    return next({ path: '/401', replace: true });
+  }
+  next();
+};
 router.beforeEach((to, from, next) => {
   NProgress.start();
   if (to.path !== '/login' && to.path !== '/register') {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (userInfo) {
       store.commit('user/CHANGE_USER_INFO', userInfo);
-      const noAuth = to.meta.access && !store.getters['router/page'][to.meta.access] && to.path !== '/401';
-      if (noAuth) {
-        return next({ path: '/401', replace: true });
+      const { hasGetRouter } = store.state.router;
+      if (hasGetRouter) {
+        authRouter(to, next);
+      } else {
+        initMenus().then(() => authRouter(to, next));
       }
-      next();
     } else {
       vm.$message.warning('请先登录后再访问');
       localStorage.clear();

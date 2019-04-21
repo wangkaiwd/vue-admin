@@ -39,7 +39,8 @@ const router = {
   namespaced: true,
   state: {
     authInfo: {},
-    menus: []
+    menus: [],
+    hasGetRouter: false
   },
   getters: {
     page (state) {
@@ -50,11 +51,12 @@ const router = {
     }
   },
   mutations: {
-    SET_MENUS (state, { authInfo, menus }) {
+    SET_MENUS (state, { authInfo, menus, hasGetRouter }) {
       localStorage.setItem('authInfo', JSON.stringify(authInfo));
       localStorage.setItem('menus', JSON.stringify(menus));
       state.menus = menus;
       state.authInfo = authInfo;
+      state.hasGetRouter = hasGetRouter;
     }
   },
   actions: {
@@ -62,14 +64,20 @@ const router = {
       // 调用实机：1. 用户登录之后， 2. 权限发生变化之后
       return fetchRouter().then(
         res => {
+          console.log('GET_MENUS');
           // 当访问不存在路由的时候由后端提示
           const copyMenus = JSON.parse(JSON.stringify(menus));
           const authMenus = getAuthMenus(copyMenus, res.data);
-          commit('SET_MENUS', { authInfo: res.data, menus: authMenus });
-          return Promise.resolve({ authInfo: res.data, menus: authMenus });
+          commit('SET_MENUS', { authInfo: res.data, menus: authMenus, hasGetRouter: true });
+          return Promise.resolve({ authInfo: res.data, menus: authMenus, hasGetRouter: true });
         }
       );
     }
   }
 };
 export default router;
+/*
+* 权限问题梳理：
+*   1. 在用户登录以后获取权限信息
+*   2. 用户如果刷新页面，要重新获取权限信息（传参：用户信息，要在beforeRouter之前调用）
+* */
