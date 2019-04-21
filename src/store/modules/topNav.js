@@ -18,7 +18,8 @@ const getActiveTab = (menus, index) => {
 const topNav = {
   namespaced: true,
   state: {
-    topNavList: []
+    topNavList: [],
+    activeTab: '',
   },
   mutations: {
     ADD_NAV (state, item) {
@@ -27,11 +28,29 @@ const topNav = {
       const { topNavList } = state;
       const isRepeat = topNavList.some(list => list.path === index);
       if (!isRepeat) {
-        state.topNavList.push(getActiveTab(menus, index));
+        topNavList.push(getActiveTab(menus, index));
       }
+      state.activeTab = index;
+    },
+    CHANGE_ACTIVE (state, index) {
+      state.activeTab = index;
     },
     DELETE_NAV (state, item) {
-
+      const { topNavList } = state;
+      const { index } = item;
+      const targetIndex = topNavList.findIndex(list => list.path === index);
+      if (index === state.activeTab) {
+        const prevTab = topNavList[targetIndex - 1] && topNavList[targetIndex - 1].path;
+        const nextTab = topNavList[targetIndex + 1] && topNavList[targetIndex + 1].path;
+        if (prevTab) {
+          state.activeTab = prevTab;
+        } else if (nextTab) {
+          state.activeTab = nextTab;
+        } else {
+          state.activeTab = '';
+        }
+      }
+      topNavList.splice(targetIndex, 1);
     }
   },
   actions: {}
