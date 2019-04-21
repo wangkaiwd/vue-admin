@@ -3,6 +3,7 @@
     <left-nav></left-nav>
     <el-container class="admin-home-content">
       <admin-header></admin-header>
+      <top-nav></top-nav>
       <el-card shadow="never" class="admin-home-content-page">
         <div class="admin-home-content-page-header">
           <!-- this里的数据都是响应式的，当this.$route发生改变的时候，对应的页面就会重新render,更新状态   -->
@@ -23,14 +24,14 @@
   import AdminFooter from 'layouts/footer';
   import AdminBread from 'layouts/breadcrumb';
   import LeftNav from 'layouts/leftNav';
+  import TopNav from 'layouts/topNav';
 
   export default {
     name: 'AdminHome',
-    components: { AdminHeader, AdminFooter, LeftNav, AdminBread },
+    components: { AdminHeader, AdminFooter, LeftNav, AdminBread, TopNav },
     watch: {},
     mounted () {
     },
-    methods: {}
   };
 </script>
 

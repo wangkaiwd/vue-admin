@@ -20,6 +20,21 @@ const getAuthMenus = (array, authInfo) => {
     }
   });
 };
+/**
+ * 将所有侧边栏对象处理成一维数组
+ * @param menus
+ * @param result
+ */
+const flattenMenus = (menus, result) => {
+  menus.map(item => {
+    if (item.children) {
+      flattenMenus(item.children, result);
+    } else {
+      result.push(item);
+    }
+  });
+  return result;
+};
 const router = {
   namespaced: true,
   state: {

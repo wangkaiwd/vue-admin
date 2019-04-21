@@ -5,6 +5,7 @@
     class="left-nav-menu"
     :router="true"
     :collapse="isCollapsed"
+    @select="onSelect"
   >
     <router-link tag="div" to="/main" class="left-nav-logo" :class="{collapsed:isCollapsed}">
       {{logoText}}
@@ -19,7 +20,7 @@
 
 <script>
   import SideBar from './components/sideBar';
-  import { mapState } from 'vuex';
+  import { mapState, mapMutations } from 'vuex';
 
   export default {
     name: 'LeftNav',
@@ -32,6 +33,12 @@
       ...mapState('router', ['menus']),
       logoText () {
         return this.isCollapsed ? 'VUE' : 'VUEADMIN';
+      }
+    },
+    methods: {
+      ...mapMutations('topNav', ['ADD_NAV']),
+      onSelect (index, indexPath) {
+        console.log(index, indexPath);
       }
     }
   };
