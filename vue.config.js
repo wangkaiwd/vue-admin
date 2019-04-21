@@ -50,6 +50,7 @@ module.exports = {
       .set('layouts', resolve('layouts'))
       .set('router', resolve('router'))
       .set('mock', resolve('mock'))
+      .set('directives', resolve('directives'))
       .end()
       // 扩展名省略
       .extensions

@@ -22,6 +22,9 @@
 <script>
   import { mapState, mapMutations } from 'vuex';
 
+  /**
+   * 这里的路由比较简单，并没有涉及到比较复杂的传参，所以直接通过index来进行跳转
+   */
   export default {
     name: 'TopNav',
     computed: {

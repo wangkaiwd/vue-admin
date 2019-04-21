@@ -8,6 +8,7 @@ import 'styles/reset';
 import 'styles/base';
 import './registerServiceWorker';
 import { formatTime } from 'filters/tools';
+import adminAuth from 'directives/auth';
 import AdminIcon from 'components/icon';
 
 if (process.env.NODE_ENV === 'development') {
@@ -20,6 +21,7 @@ Vue.use(ElementUI);
 
 Vue.filter('formatTime', formatTime);
 Vue.component('AdminIcon', AdminIcon);
+Vue.directive('admin-auth', adminAuth);
 Vue.config.productionTip = false;
 const vm = new Vue({
   router,

@@ -30,9 +30,14 @@ const authRoutes = [
       {
         path: '/list',
         name: '列表',
-        access: 'list',
         component: lazyLoading('list'),
         meta: { access: 'list' }
+      },
+      {
+        path: '/authButton',
+        name: '权限',
+        component: lazyLoading('authButton'),
+        meta: { access: true }
       },
     ]
   },

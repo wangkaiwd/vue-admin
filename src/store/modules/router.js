@@ -5,21 +5,8 @@
 import { menus } from 'router';
 import { fetchRouter } from 'api/user';
 
-/**
- * 根据权限信息过滤路由生成的侧边栏
- * FIXME: 在调用之前注意要深拷贝
- * @param array 侧边栏数组
- * @param authInfo 权限信息
- * @returns {array} 返回过滤后的新数组
- */
-const getAuthMenus = (array, authInfo) => {
-  return array.filter(item => {
-    if (item.meta.access && authInfo.page[item.meta.access]) {
-      if (item.children) item.children = getAuthMenus(item.children, authInfo);
-      return true;
-    }
-  });
-};
+import { getAuthMenus } from 'utils/user';
+
 /**
  * 将所有侧边栏对象处理成一维数组
  * @param menus
@@ -53,7 +40,6 @@ const router = {
   mutations: {
     SET_MENUS (state, { authInfo, menus, hasGetRouter }) {
       localStorage.setItem('authInfo', JSON.stringify(authInfo));
-      localStorage.setItem('menus', JSON.stringify(menus));
       state.menus = menus;
       state.authInfo = authInfo;
       state.hasGetRouter = hasGetRouter;
@@ -64,7 +50,6 @@ const router = {
       // 调用实机：1. 用户登录之后， 2. 权限发生变化之后
       return fetchRouter().then(
         res => {
-          console.log('GET_MENUS');
           // 当访问不存在路由的时候由后端提示
           const copyMenus = JSON.parse(JSON.stringify(menus));
           const authMenus = getAuthMenus(copyMenus, res.data);

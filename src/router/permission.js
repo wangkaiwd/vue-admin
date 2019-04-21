@@ -22,7 +22,7 @@ const vm = new Vue();
 //  3. 用户访问的页面是否有权限，有权限的话直接访问，没有权限跳转到401
 
 const authRouter = (to, next) => {
-  const noAuth = to.meta.access && !store.getters['router/page'][to.meta.access] && to.path !== '/401';
+  const noAuth = to.meta.access && to.meta.access !== true && !store.getters['router/page'][to.meta.access] && to.path !== '/401';
   if (noAuth) {
     return next({ path: '/401', replace: true });
   }

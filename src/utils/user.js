@@ -4,6 +4,7 @@
  */
 import vm from '@/main';
 import store from 'store';
+import { menus } from 'router';
 
 export const getToken = () => {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -23,12 +24,30 @@ export const goLogin = (message) => {
 export const initMenus = () => {
   return new Promise((resolve, reject) => {
     const authInfo = JSON.parse(localStorage.getItem('authInfo'));
-    const menus = JSON.parse(localStorage.getItem('menus'));
-    if (!authInfo || !menus) {
+    if (!authInfo) {
       // 发请求的时候要有用户信息
       return store.dispatch('router/GET_MENUS');
     }
-    store.commit('router/SET_MENUS', { authInfo, menus, hasGetRouter: true });
+    const copyMenus = JSON.parse(JSON.stringify(menus));
+    const authMenus = getAuthMenus(copyMenus, authInfo);
+    store.commit('router/SET_MENUS', { authInfo, menus: authMenus, hasGetRouter: true });
     resolve();
+  });
+};
+
+/**
+ * 根据权限信息过滤路由生成的侧边栏
+ * FIXME: 在调用之前注意要深拷贝
+ * @param array 侧边栏数组
+ * @param authInfo 权限信息
+ * @returns {array} 返回过滤后的新数组
+ */
+export const getAuthMenus = (array, authInfo) => {
+  return array.filter(item => {
+    // 在没有和后端同事联调的时候，本地access设置为true可以直接访问
+    if ((item.meta.access && authInfo.page[item.meta.access]) || item.meta.access === true) {
+      if (item.children) item.children = getAuthMenus(item.children, authInfo);
+      return true;
+    }
   });
 };
