@@ -2,7 +2,7 @@
   <div class="editor">
     <div ref="editor">
     </div>
-    <button @click="getContent">查看内容</button>
+    <el-button @click="getContent">查看内容</el-button>
   </div>
 </template>
 

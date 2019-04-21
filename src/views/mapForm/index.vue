@@ -1,5 +1,14 @@
 <template>
-  <form-group :form-list="formList"></form-group>
+  <div class="map-form">
+    <el-alert
+      title="下边的form通过json文件动态生成"
+      type="warning"
+      :closable="false"
+      style="margin-bottom: 20px"
+    >
+    </el-alert>
+    <form-group :form-list="formList"></form-group>
+  </div>
 </template>
 
 <script>
