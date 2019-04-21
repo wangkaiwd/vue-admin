@@ -11,10 +11,11 @@ import { formatTime } from 'filters/tools';
 import adminAuth from 'directives/auth';
 import AdminIcon from 'components/icon';
 
-if (process.env.NODE_ENV === 'development') {
-  // require是同步引入 , async返回的还是一个Promise
-  require('mock');
-}
+// if (process.env.NODE_ENV === 'development') {
+//   // require是同步引入 , async返回的还是一个Promise
+//   require('mock');
+// }
+import 'mock';
 import 'router/permission';
 
 Vue.use(ElementUI);
