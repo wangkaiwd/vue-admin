@@ -16,7 +16,7 @@
     },
     methods: {
       onTabRemove (name) {
-        console.log('remove');
+        console.log('remove', name);
       }
     }
   };
