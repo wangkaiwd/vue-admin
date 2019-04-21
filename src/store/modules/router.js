@@ -12,16 +12,6 @@ import { getAuthMenus } from 'utils/user';
  * @param menus
  * @param result
  */
-const flattenMenus = (menus, result) => {
-  menus.map(item => {
-    if (item.children) {
-      flattenMenus(item.children, result);
-    } else {
-      result.push(item);
-    }
-  });
-  return result;
-};
 const router = {
   namespaced: true,
   state: {
