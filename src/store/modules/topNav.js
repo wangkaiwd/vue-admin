@@ -29,11 +29,15 @@ const topNav = {
       const isRepeat = topNavList.some(list => list.path === index);
       if (!isRepeat) {
         topNavList.push(getActiveTab(menus, index));
+        localStorage.setItem('topNavList', JSON.stringify(topNavList));
       }
       state.activeTab = index;
     },
     CHANGE_ACTIVE (state, index) {
       state.activeTab = index;
+    },
+    CHANGE_TOPNAVLIST (state, topNavList) {
+      state.topNavList = topNavList;
     },
     DELETE_NAV (state, item) {
       const { topNavList } = state;
@@ -51,6 +55,7 @@ const topNav = {
         }
       }
       topNavList.splice(targetIndex, 1);
+      localStorage.setItem('topNavList', JSON.stringify(topNavList));
     }
   },
   actions: {}
