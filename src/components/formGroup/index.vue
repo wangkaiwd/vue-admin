@@ -8,7 +8,12 @@
       :rules="item.rules"
       :error="errorObject[item.prop]"
     >
-      <component :is="item.widget" v-bind="item.widgetProps" v-model="formValues[item.prop]">
+      <component
+        :is="item.widget"
+        v-bind="item.widgetProps"
+        v-model="formValues[item.prop]"
+        @change="onChange(item.prop)"
+      >
         <template v-if="item.children">
           <!-- 需要注意：复选框和单选框的label属性是value属性-->
           <component
@@ -33,60 +38,6 @@
 </template>
 
 <script>
-
-  const formList = [
-    {
-      label: '输入框',
-      prop: 'input',
-      value: '111',
-      widget: 'el-input',
-      rules: [
-        { required: true, message: '请输入输入框', trigger: 'change' }],
-      widgetProps: {}
-    },
-    {
-      label: '单选',
-      value: 2,
-      prop: 'radio',
-      widget: 'el-radio-group',
-      widgetProps: {},
-      children: [
-        {
-          widget: 'el-radio',
-          value: 1,
-          label: 'radio1'
-        },
-        {
-          widget: 'el-radio',
-          value: 2,
-          label: 'radio2'
-        }
-      ]
-    },
-    {
-      label: '多选框',
-      value: [1, 2],
-      prop: 'checkbox',
-      widget: 'el-checkbox-group',
-      widgetProps: {},
-      children: [
-        { label: 'checkbox1', widget: 'el-checkbox', value: 1, },
-        { label: 'checkbox2', widget: 'el-checkbox', value: 2, },
-        { label: 'checkbox3', widget: 'el-checkbox', value: 3, },
-      ]
-    },
-    {
-      label: '下拉',
-      value: 1,
-      prop: 'select',
-      widget: 'el-select',
-      widgetProps: {},
-      children: [
-        { label: 'select1', widget: 'el-option', value: 1 },
-        { label: 'select2', widget: 'el-option', value: 2 },
-      ]
-    }
-  ];
   /**
    * 组件分析：
    *  1. 兼容各种form表单元素（检验）
@@ -108,7 +59,7 @@
    *      1. 直接对遍历表单数据进行v-model的绑定，会导致校验出问题，所以绑定了重新赋值的formValues
    *      2. checkbox 和 radio这来个元素有些特殊，通过label来控制对应的value值，通过slot来显示对应的文字信息，
    *          而select是和正常理解一样的
-   *      3. 错误信息回显什么时候该消失？
+   *      3. 错误信息回显什么时候该消失？失去焦点的情况
    *      4. 组件的key值设计会不会有什么问题？
    */
   export default {
@@ -120,29 +71,20 @@
       },
       formList: {
         type: Array,
-        default: () => formList
+        default: () => []
       },
-      // submitApi: {
-      //   type: String,
-      //   required: true
-      // }
     },
     data () {
       return {
-        formValues: {}, // 这里为什么不能用计算属性
-        errorObject: {}
+        formValues: {}, // 这里为什么不能用计算属性？这里的每个属性都通过了v-model进行绑定
+        initFormValues: {}, // 这里不能使用form自带的初始化api,自带的会直接将值重置为undefined,并且checkbox还出现了undefined,在传值的时候要过滤
+        errorObject: {}, // 后端返回错误信息提示
       };
     },
     watch: {
       // 这里为什么使用watch而不使用computed
-      formList () { // 在formList发生变化的时候，更新valueList
+      formList () { // 在formList发生变化的时候，更新formValues和initFormValues
         this.setFormValues();
-      },
-      formValues: {
-        handler () {
-          this.errorObject = {};
-        },
-        deep: true
       }
     },
     mounted () {
@@ -153,11 +95,11 @@
         this.formList.map(form => {
           this.$set(this.formValues, form.prop, form.value);
         });
+        this.initFormValues = JSON.parse(JSON.stringify(this.formValues));
       },
       onSubmit () {
         this.$refs.formGroup.validate(valid => {
           if (valid) {
-            console.log(this.formValues);
             const reqObj = {
               input: '输入框不对',
               radio: '单选不对',
@@ -169,7 +111,11 @@
         });
       },
       onReset () {
-        this.$refs.formGroup.resetFields();
+        this.formValues = JSON.parse(JSON.stringify(this.initFormValues));
+        this.errorObject = {};
+      },
+      onChange (prop) {
+        this.errorObject[prop] = '';
       }
     }
   };

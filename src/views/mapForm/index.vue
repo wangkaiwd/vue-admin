@@ -15,7 +15,8 @@
         { required: true, message: '请输入输入框', trigger: 'change' }
       ],
       widgetProps: {
-        placeholder: '请输入内容'
+        placeholder: '请输入内容',
+        maxLength: 12
       }
     },
     {
@@ -41,6 +42,7 @@
       value: [1, 2],
       prop: 'checkbox',
       widget: 'el-checkbox-group',
+      rules: [{ required: true, message: '请选择多选框', trigger: 'change' }],
       widgetProps: {},
       children: [
         { title: 'checkbox1', widget: 'el-checkbox', label: 1, },
@@ -55,8 +57,8 @@
       widget: 'el-select',
       widgetProps: {},
       children: [
-        { title: 'select1', widget: 'el-option', value: 1 },
-        { title: 'select2', widget: 'el-option', value: 2 },
+        { title: 'select1', widget: 'el-option', value: 1, label: 'select1' },
+        { title: 'select2', widget: 'el-option', value: 2, label: 'select2' },
       ]
     }
   ];
