@@ -4,13 +4,15 @@ import vm from '@/main';
 const user = {
   namespaced: true,
   state: {
-    userInfo: {}
+    userInfo: {},
+    hasGetUserInfo: false
   },
   //同步更改state中的状态
   mutations: {
     CHANGE_USER_INFO (state, userInfo) {
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       state.userInfo = userInfo;
+      state.hasGetUserInfo = true;
     }
   },
   //异步更改state中的状态

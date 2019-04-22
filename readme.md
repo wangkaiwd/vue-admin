@@ -113,7 +113,6 @@ const router = {
   mutations: {
     SET_MENUS (state, { authInfo, menus }) {
       localStorage.setItem('authInfo', JSON.stringify(authInfo));
-      localStorage.setItem('menus', JSON.stringify(menus));
       state.menus = menus;
       state.authInfo = authInfo;
     }

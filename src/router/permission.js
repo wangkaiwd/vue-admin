@@ -33,12 +33,18 @@ router.beforeEach((to, from, next) => {
   if (to.path !== '/login' && to.path !== '/register') {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (userInfo) {
-      store.commit('user/CHANGE_USER_INFO', userInfo);
+      const { hasGetUserInfo } = store.state.user;
+      if (!hasGetUserInfo) {
+        store.commit('user/CHANGE_USER_INFO', userInfo);
+      }
       const { hasGetRouter } = store.state.router;
       if (hasGetRouter) {
         authRouter(to, next);
       } else {
-        initMenus().then(() => authRouter(to, next));
+        initMenus().then(
+          () => authRouter(to, next),
+          () => next()
+        );
       }
     } else {
       vm.$message.warning('请先登录后再访问');

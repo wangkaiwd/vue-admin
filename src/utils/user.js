@@ -26,7 +26,10 @@ export const initMenus = () => {
     const authInfo = JSON.parse(localStorage.getItem('authInfo'));
     if (!authInfo) {
       // 发请求的时候要有用户信息
-      return store.dispatch('router/GET_MENUS');
+      store.dispatch('router/GET_MENUS').then(
+        res => resolve(res),
+        err => reject(err)
+      );
     }
     const copyMenus = JSON.parse(JSON.stringify(menus));
     const authMenus = getAuthMenus(copyMenus, authInfo);
