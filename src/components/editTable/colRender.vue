@@ -13,7 +13,7 @@
     },
     render (h, ctx) {
       const { row, index, column, render } = ctx.props;
-      return render(h, { row, index, column });
+      return render({ row, index, column });
     }
   };
 </script>

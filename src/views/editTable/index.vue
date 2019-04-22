@@ -1,9 +1,28 @@
 <template>
-  <edit-table
-    :columns="columns"
-    :tableData="tableData"
-  >
-  </edit-table>
+  <div class="admin-table">
+    <el-button
+      class="json-button"
+      type="primary"
+      @click="dialogVisible=true"
+    >
+      查看当前表格数据
+    </el-button>
+    <edit-table
+      :columns="columns"
+      :tableData="tableData"
+    >
+    </edit-table>
+    <el-dialog
+      title="表格数据"
+      :visible.sync="dialogVisible"
+      @close="dialogVisible=false"
+    >
+      <el-card>
+        <pre><code>{{tableData}}</code></pre>
+      </el-card>
+    </el-dialog>
+  </div>
+
 </template>
 
 <script>
@@ -34,17 +53,21 @@
               style: { width: '100px' }
             }
           },
-          { prop: 'email', label: '邮箱' }
+          { prop: 'email', label: '邮箱', width: '220' },
+          { prop: 'address', label: '地址' },
         ],
-        tableData: data.dataSource
+        tableData: data.dataSource,
+        dialogVisible: false
       };
     },
+    computed: {}
   };
 </script>
 
 <style lang="scss" scoped>
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
+  .admin-table {
+    .json-button {
+      margin-bottom: 20px;
+    }
   }
 </style>

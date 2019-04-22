@@ -75,7 +75,7 @@
         const editColumns = this.columns.map(col => {
           if ('editable' in col) {
             const { widget, trigger, ...rest } = col.editable;
-            const render = (h, { row, column, index }) => {
+            const render = ({ row, column, index }) => {
               const isEditing = this.editIds.includes(`${column.prop}_${index}`);
               return (
                 <el-row type="flex" align="middle" gutter={16} class="edit-col">

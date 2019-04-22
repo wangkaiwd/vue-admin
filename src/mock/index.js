@@ -12,7 +12,8 @@ const tableTemplate = {
       id: '@id',
       name: '@cname',
       'age|1-100': 100,
-      email: '@email'
+      email: '@email',
+      address: '@county(true)'
     }
   ]
 };
