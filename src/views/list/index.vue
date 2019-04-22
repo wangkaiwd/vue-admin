@@ -137,7 +137,7 @@
             this.tableLoading = false;
             this.tableData = res.data.data;
             this.pageKey.totalCount = res.data.totalCount;
-            this.pageKey.currentPage = res.data.currentPage;
+            // this.pageKey.currentPage = res.data.currentPage;
           },
           () => this.tableLoading = false
         );
