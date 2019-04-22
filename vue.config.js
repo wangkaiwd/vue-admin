@@ -1,7 +1,9 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 const resolve = dir => path.resolve(__dirname, `src/${dir}/`);
 const argv = process.argv;
 const mode = argv[argv.indexOf('--project-mode') + 1];
+const isPro = process.env.NODE_ENV === 'production';
 module.exports = {
   // 前端配置，当启用mock的时候关闭，跨域时开启
   // devServer: {
@@ -19,8 +21,8 @@ module.exports = {
   // 关闭eslint
   lintOnSave: false,
   outputDir: `dist`,
-  productionSourceMap: process.env.NODE_ENV === 'development', // 打包时关闭sourceMap
-  publicPath: process.env.NODE_ENV === 'development' ? '.' : '/vue-admin/',
+  productionSourceMap: !isPro, // 打包时关闭sourceMap
+  publicPath: isPro ? '/vue-admin/' : '.',
   chainWebpack: config => {
     // 这里是对环境的配置，不同环境对应不同的BASE_API，以便axios的请求地址不同
     // 这里用到了webpack.DefinePlugin
@@ -65,6 +67,24 @@ module.exports = {
           @import "styles/vars.scss";
         `
       }
+    }
+  },
+  configureWebpack: {
+    optimization: { // 移除打包后的console.log
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            compress: {
+              warnings: false,
+              drop_console: isPro, //console
+              drop_debugger: false // pure_funcs: ['console.log']移除
+            }
+          }
+        })
+      ]
+    },
+    performance: { // 关闭性能提示信息
+      hints: false,
     }
   }
 };

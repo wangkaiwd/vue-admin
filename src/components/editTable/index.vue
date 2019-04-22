@@ -9,6 +9,7 @@
       :prop="item.prop"
       :label="item.label"
       :width="item.width"
+      :min-width="item.minWidth"
       :key="item.prop"
     >
       <template #default="{row,column,$index}">

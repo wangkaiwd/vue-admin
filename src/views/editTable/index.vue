@@ -9,7 +9,7 @@
     </el-button>
     <edit-table
       :columns="columns"
-      :tableData="tableData"
+      :tableData.sync="tableData"
     >
     </edit-table>
     <el-dialog
@@ -54,7 +54,7 @@
             }
           },
           { prop: 'email', label: '邮箱', width: '220' },
-          { prop: 'address', label: '地址' },
+          { prop: 'address', label: '地址', minWidth: '320' },
         ],
         tableData: data.dataSource,
         dialogVisible: false
