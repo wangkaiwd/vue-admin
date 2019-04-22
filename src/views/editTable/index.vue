@@ -20,7 +20,6 @@
             prop: 'name', width: '200', label: '姓名',
             editable: {
               widget: 'el-input',
-              style: { width: '100px' },
               required: false,
               trigger: 'blur'
             }

@@ -65,6 +65,7 @@
         this.$emit('update:table-data', this.copyData);
         // 暴露编辑完成事件，将修改的信息传回
         this.$emit('edit-ok', { row, column, index, newValue });
+        this.$message.success('保存成功');
       },
       onBlur ({ row, column, index }) {
         this.copyData[index][column.prop] = row[column.prop];
@@ -77,32 +78,37 @@
             const render = (h, { row, column, index }) => {
               const isEditing = this.editIds.includes(`${column.prop}_${index}`);
               return (
-                <div class="edit-col">
-                  {
-                    (isEditing || trigger === 'blur')
-                      ?
-                      <col.editable.widget
-                        vModel={row[column.prop]}
-                        on-input={this.onInput.bind(this, { row, column, index })}
-                        on-blur={
-                          trigger === 'blur' ? this.onBlur.bind(this, { row, column, index }) : () => {}
-                        }
-                        {...{ attrs: rest }}
+                <el-row type="flex" align="middle" gutter={16} class="edit-col">
+                  <el-col span={14}>
+                    {
+                      (isEditing || trigger === 'blur')
+                        ?
+                        <col.editable.widget
+                          vModel={row[column.prop]}
+                          on-input={this.onInput.bind(this, { row, column, index })}
+                          on-blur={
+                            trigger === 'blur' ? this.onBlur.bind(this, { row, column, index }) : () => {}
+                          }
+                          {...{ attrs: rest }}
+                        >
+                        </col.editable.widget>
+                        :
+                        <span>{row[column.prop]}</span>
+                    }
+                  </el-col>
+                  <el-col span={8}>
+                    {
+                      trigger !== 'blur' &&
+                      <el-button
+                        size="small"
+                        on-click={this.onClick.bind(this, { row, column, index })}
+                        className="edit-button"
                       >
-                      </col.editable.widget>
-                      :
-                      <span>{row[column.prop]}</span>
-                  }
-                  {
-                    trigger !== 'blur' &&
-                    <el-button
-                      on-click={this.onClick.bind(this, { row, column, index })}
-                      className="edit-button"
-                    >
-                      {isEditing ? '保存' : '编辑'}
-                    </el-button>
-                  }
-                </div>
+                        {isEditing ? '保存' : '编辑'}
+                      </el-button>
+                    }
+                  </el-col>
+                </el-row>
               );
             };
             return { ...col, render };
@@ -118,9 +124,17 @@
 <style lang="scss" scoped>
   .edit-table {
     /deep/ .edit-col {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      .el-input__inner {
+        height: 32px;
+        line-height: 32px;
+      }
+      .el-input-number .el-input__inner {
+        text-align: left;
+      }
+      .el-input-number {
+        width: 100%;
+        line-height: 32px;
+      }
     }
   }
 </style>
