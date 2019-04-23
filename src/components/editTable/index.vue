@@ -86,6 +86,7 @@
                         ?
                         <col.editable.widget
                           vModel={row[column.prop]}
+                          size={'small'}
                           on-input={this.onInput.bind(this, { row, column, index })}
                           on-blur={
                             trigger === 'blur' ? this.onBlur.bind(this, { row, column, index }) : () => {}
@@ -125,16 +126,12 @@
 <style lang="scss" scoped>
   .edit-table {
     /deep/ .edit-col {
-      .el-input__inner {
-        height: 32px;
-        line-height: 32px;
-      }
+      /*小技巧：通过按钮和Input的尺寸来进行样式优化*/
       .el-input-number .el-input__inner {
         text-align: left;
       }
       .el-input-number {
         width: 100%;
-        line-height: 32px;
       }
     }
   }
