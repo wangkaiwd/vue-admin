@@ -59,13 +59,13 @@
       };
     },
     methods: {
-      ...mapActions('user', ['SET_USER_INFO']),
+      ...mapActions('user', ['GET_USER_INFO']),
       ...mapActions('router', ['GET_MENUS']),
       onSubmit () {
         this.$refs.formItem.validate((valid) => {
           if (valid) {
             this.loginLoading = true;
-            this.SET_USER_INFO({ params: this.formItem })
+            this.GET_USER_INFO({ params: this.formItem })
               .then(
                 () => {
                   this.loginLoading = false;

@@ -14,7 +14,9 @@
           :src="userInfo.avatar"
           alt="">
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="personal">个人中心</el-dropdown-item>
+          <el-dropdown-item command="personal">
+            <router-link tag="span" to="/userCenter">个人中心</router-link>
+          </el-dropdown-item>
           <el-dropdown-item command="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -37,7 +39,6 @@
       ...mapMutations(['CHANGE_NAV']),
       onCommand (command) {
         command = command[0].toUpperCase() + command.slice(1);
-        console.log('command', command);
         this[`on${command}`]();
       },
       onLogout () {
@@ -46,9 +47,6 @@
           err => console.log(err)
         );
       },
-      onPersonal () {
-        console.log('个人中心');
-      }
     }
   };
 </script>

@@ -14,6 +14,8 @@ export const getToken = () => {
 export const goLogin = (message) => {
   message && vm.$message.warning(message);
   localStorage.clear();
+  store.commit('router/SET_ROUTER_STATUS', false);
+  store.commit('user/SET_LOGIN_STATUS', false);
   vm.$router.push('/login');
 };
 

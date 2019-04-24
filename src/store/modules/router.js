@@ -33,6 +33,9 @@ const router = {
       state.menus = menus;
       state.authInfo = authInfo;
       state.hasGetRouter = hasGetRouter;
+    },
+    SET_ROUTER_STATUS (state, status) {
+      state.hasGetRouter = status;
     }
   },
   actions: {

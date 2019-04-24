@@ -35,7 +35,7 @@ router.beforeEach((to, from, next) => {
     if (userInfo) {
       const { hasGetUserInfo } = store.state.user;
       if (!hasGetUserInfo) {
-        store.commit('user/CHANGE_USER_INFO', userInfo);
+        store.commit('user/SET_USER_INFO', userInfo);
       }
       const { hasGetRouter } = store.state.router;
       if (hasGetRouter) {
@@ -54,10 +54,10 @@ router.beforeEach((to, from, next) => {
   } else if (to.path === '/login') { // 如果是登录页面
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (!userInfo) return next();
-    store.commit('user/CHANGE_USER_INFO', userInfo);
+    store.commit('user/SET_USER_INFO', userInfo);
     vm.$message.success('用户已登录');
-    NProgress.done();
     next('/main');
+    NProgress.done();
   } else {
     next();
   }
