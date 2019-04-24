@@ -85,7 +85,9 @@
         this.tags.splice(i, 1);
       },
       onInputConfirm () {
-
+        this.tags.push(this.inputValue);
+        this.inputValue = '';
+        this.inputVisible = false;
       },
       showInput () {
         this.inputVisible = true;
@@ -124,7 +126,7 @@
       margin: 20px 0;
     }
     &-tag-content {margin-left: -6px; margin-top: -6px;}
-    &-tag-item {margin-left: 6px;margin-top: 6px;}
+    &-tag-item {margin-left: 10px;margin-top: 10px;}
     &-item:not(:first-child) {
       margin: 6px 0;
     }
