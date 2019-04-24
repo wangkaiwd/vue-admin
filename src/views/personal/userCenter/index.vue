@@ -19,7 +19,10 @@
             :key="item.id"
           >
             <admin-icon :icon="item.icon"></admin-icon>
-            <span class="detail-text">{{item.text}}</span>
+            <span class="detail-text" v-if="item.icon === 'github'">
+              <a target="_blank" :href="item.text">前往github</a>
+            </span>
+            <span class="detail-text" v-else>{{item.text}}</span>
           </el-col>
         </el-row>
         <el-row class="user-center-wrapper">
@@ -39,7 +42,7 @@
               v-if="inputVisible"
               v-model="inputValue"
               ref="saveTagInput"
-              size="small"
+              size="mini"
               @keyup.enter.native="onInputConfirm"
               @blur="onInputConfirm"
             >
@@ -47,7 +50,7 @@
             <el-button
               v-else
               class="user-center-tag-item"
-              size="small"
+              size="mini"
               @click="showInput"
             >
               + New Tag
@@ -85,6 +88,9 @@
         this.tags.splice(i, 1);
       },
       onInputConfirm () {
+        if (this.inputValue.trim() === '') {
+          return this.$message.warning('请输入内容');
+        }
         this.tags.push(this.inputValue);
         this.inputValue = '';
         this.inputVisible = false;
@@ -127,14 +133,11 @@
     }
     &-tag-content {margin-left: -6px; margin-top: -6px;}
     &-tag-item {margin-left: 10px;margin-top: 10px;}
-    &-item:not(:first-child) {
-      margin: 6px 0;
-    }
+    &-item:not(:first-child) {margin: 6px 0;}
     .detail-text {
       margin-left: 6px;
+      line-height: 1.2;
     }
-    .new-tag-input {
-      width: 80px;
-    }
+    .new-tag-input {width: 80px;}
   }
 </style>
