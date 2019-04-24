@@ -4,6 +4,9 @@
       <admin-icon icon="menu"></admin-icon>
     </div>
     <div class="base-header-user">
+      <span class="base-header-user-github">
+
+      </span>
       <span class="base-header-user-name">{{userInfo.username}}</span>
       <el-dropdown @command="onCommand">
         <img

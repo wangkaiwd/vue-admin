@@ -91,6 +91,21 @@ const authRoutes = [
         meta: { access: 'mapForm' },
       }
     ]
+  },
+  {
+    path: '/',
+    name: '个人页',
+    component: lazyLoading('home'),
+    iconCls: 'el-icon-setting',
+    meta: { access: true },
+    children: [
+      {
+        path: '/userCenter',
+        name: '个人中心',
+        component: lazyLoading('personal/userCenter'),
+        meta: { access: true },
+      }
+    ]
   }
 ];
 const commonRoutes = [
