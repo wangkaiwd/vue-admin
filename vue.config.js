@@ -1,4 +1,7 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const AutoDllPlugin = require('autodll-webpack-plugin');
+const pkg = require('./package');
 const path = require('path');
 const resolve = dir => path.resolve(__dirname, `src/${dir}/`);
 const argv = process.argv;
@@ -70,6 +73,18 @@ module.exports = {
     }
   },
   configureWebpack: {
+    plugins: [
+      new HardSourceWebpackPlugin(),
+      new AutoDllPlugin({
+        inject: true, // will inject the DLL bundle to index.html
+        debug: true,
+        filename: '[name]_[hash].js',
+        path: './dll',
+        entry: {
+          vendor: Object.keys(pkg.dependencies)
+        }
+      })
+    ],
     optimization: { // 移除打包后的console.log
       minimizer: [
         new UglifyJsPlugin({
