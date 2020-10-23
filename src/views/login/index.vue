@@ -20,7 +20,7 @@
         </el-form-item>
         <el-form-item>
           <el-col class="admin-login-form-register" :span="20">
-            <el-col>已经有账号了？去
+            <el-col>还没有账号了？去
               <router-link to="/register">注册</router-link>
             </el-col>
             <el-button type="primary" @click="onSubmit" :loading="loginLoading">登录</el-button>
