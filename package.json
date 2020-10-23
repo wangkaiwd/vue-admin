@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "yarn run serve",
+    "start": "yarn serve",
     "serve": "vue-cli-service serve --project-mode dev",
     "lint": "vue-cli-service lint",
     "build:pro": "vue-cli-service build --project-mode pro",
@@ -19,6 +19,7 @@
     "nprogress": "^0.2.0",
     "qs": "^6.7.0",
     "register-service-worker": "^1.6.2",
+    "sass": "^1.27.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
@@ -36,7 +37,6 @@
     "eslint-plugin-vue": "^5.0.0",
     "hard-source-webpack-plugin": "^0.13.1",
     "mockjs": "^1.0.1-beta3",
-    "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "vue-template-compiler": "^2.5.21"

@@ -23,3 +23,5 @@ git commit -m 'deploy'
 git push -f git@github.com:wangkaiwd/vue-admin.git master:gh-pages
 
 cd -
+
+rm -rf dist
