@@ -10,7 +10,7 @@
 这之前一直有用`vue`写一些组件，但是却一直没有写过后台管理系统，所以这次既算是对`vue`写后管理系统的一次尝试，也是自己对后台管理系统相关业务需求和`vue`整体知识的一个总结，方便之后自己复习和回顾，也希望能帮助到社区的小伙伴。
 
 ### 项目介绍
-项目截图：  
+项目截图(部分页面)：  
 ![](https://raw.githubusercontent.com/wangkaiwd/drawing-bed/master/20201023144614.png)  
 ![](https://raw.githubusercontent.com/wangkaiwd/drawing-bed/master/20201023144738.png)
 
@@ -79,7 +79,7 @@ yarn build:analyze
 * [`wangeditor`](http://www.wangeditor.com/): 基于javascript和css开发的 Web富文本编辑器， 轻量、简洁、易用、开源免费
 * [`echarts`](https://echarts.baidu.com/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts) :一个使用 JavaScript 实现的开源可视化库
 
-#### 权限控制
+### 权限控制
 在实际工作中，前端是不可能一个人完成权限控制的，我们需要与后端配合。这个时候后端需要返回给我们类似这样的数据：  
 ```js
 const data = {
@@ -101,7 +101,7 @@ const data = {
   }
 }
 ```
-在路由列表配置的时候，我们设置了`meta`属性，通过`meta`中的`access`属性来过滤出符合有权限的路由列表。这里如果后端返回的数据包含所有的权限，那我们可以通过`beforeEach`全局前置路由守卫来判断将要进入的页面是否有权限，没有权限跳转`401`页面
+在路由列表配置的时候，我们设置了`meta`属性，通过`meta`中的`access`属性来过滤出符合有权限的路由列表。这里后端返回的数据包含所有的权限，那我们可以通过`beforeEach`全局前置路由守卫来判断将要进入的页面是否有权限，没有权限跳转`401`页面
 ```js
 const noAuth = to.meta.access && !store.getters['router/page'][to.meta.access] && to.path !== '/401';
 if (noAuth) {
@@ -150,7 +150,7 @@ const router = {
   },
   actions: {
     GET_MENUS ({ commit }) {
-      // 调用实机：1. 用户登录之后， 2. 权限发生变化之后
+      // 调用时机：1. 用户登录之后， 2. 权限发生变化之后
       return fetchRouter().then(
         res => {
           // 当访问不存时要跳转401页面
@@ -165,8 +165,7 @@ const router = {
   }
 };
 ```
-
-#### 参考`demo`
+### 参考`demo`
 
 参考了社区优秀的`vue-admin`项目，给各位大佬递茶:   
 * [`vue-element-admin`](https://github.com/PanJiaChen/vue-element-admin)
